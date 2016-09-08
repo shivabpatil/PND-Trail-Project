@@ -5,6 +5,7 @@
     "watch": "gulp watch"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "4.14.0",
     "gulp": "3.9.1",
     "gulp-mocha": "3.0.1",
