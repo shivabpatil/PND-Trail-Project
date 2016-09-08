@@ -30,7 +30,15 @@ app.use('/api',bikeRouter);
 //admin aoi routes 
 
 adminRouter.route('/admins').get(function (req,res) {
-	Admin.find(function (error,admins) {
+
+	//query with name
+	var query={};
+	if (req.query.name) {
+	 	query.name=req.query.name;
+	 } 
+
+	//liat all admins
+	Admin.find(query,function (error,admins) {
 		if (error) {
 			res.status(500).send(error);
 		} else {
@@ -41,7 +49,14 @@ adminRouter.route('/admins').get(function (req,res) {
 
 //service center api routes
 servicecenterRouter.route('/servicecenters').get(function (req,res) {
-	Servicecenter.find(function (error,servicecenters) {
+	// query wiht name 
+	var query={}
+	if (req.query.name) {
+		query.name=req.query.name;
+	}
+
+	//return all service center
+	Servicecenter.find(query,function (error,servicecenters) {
 		if (error) {
 		 	res.status(500).send(error);
 		 } else {
@@ -52,7 +67,15 @@ servicecenterRouter.route('/servicecenters').get(function (req,res) {
 
 //customer api routes 
 customerRouter.route('/customers').get(function (req,res) {
-	Customer.find(function (error,customers) {
+
+	//query with contact number 
+	var query={};
+	if (req.query.contact) {
+		query.contact=req.query.contact;
+	}
+
+	//return all customers 
+	Customer.find(query,function (error,customers) {
 		if (error) {
 		 	res.staus(500).send(error);
 		 } else {
