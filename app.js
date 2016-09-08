@@ -37,13 +37,24 @@ adminRouter.route('/admins').get(function (req,res) {
 	 	query.name=req.query.name;
 	 } 
 
-	//liat all admins
+	//return  all admins
 	Admin.find(query,function (error,admins) {
 		if (error) {
 			res.status(500).send(error);
 		} else {
 			res.json(admins);
 		}
+	});
+});
+
+// get single admin 
+adminRouter.route('/admins/:adminId').get(function (req,res) {
+	Admin.findById(req.params.adminId,function (error,admin) {
+		if (error) {
+		 	res.status(500).send(error);
+		 } else {
+		 	res.json(admin);
+		 } 
 	});
 });
 
@@ -65,6 +76,19 @@ servicecenterRouter.route('/servicecenters').get(function (req,res) {
 	})
 })
 
+//get single service center
+
+servicecenterRouter.route('/servicecenters/:servicecenterId')
+	.get(function (req,res) {
+		Servicecenter.findById(req.params.servicecenterId,function (error,servicecenter) {
+			if (error) {
+				res.status(500).send(error);
+			} else {
+				res.json(servicecenter);
+			}
+		})
+	});
+
 //customer api routes 
 customerRouter.route('/customers').get(function (req,res) {
 
@@ -84,9 +108,22 @@ customerRouter.route('/customers').get(function (req,res) {
 	})
 });
 
+//get single customer 
+customerRouter.route('/customers/:customerId')
+	.get(function (req,res) {
+		Customer.findById(req.params.customerId,function (error,customer) {
+			if (error) {
+				res.status(500).send(error);
+			} else {
+				res.json(customer);
+			}
+		})
+	});
+
 //bike api routes
 
 bikeRouter.route('/bikes').get(function (req,res) {
+	// return all bikes
 	Bike.find(function (error,bikes) {
 		if (error) {
 		 	res.status(500).send(error);
@@ -95,6 +132,17 @@ bikeRouter.route('/bikes').get(function (req,res) {
 		 } 
 	});
 });
+
+bikeRouter.route('/bikes/:bikeId')
+	.get(function (req,res) {
+		Bike.findById(req.params.bikeId,function (error,bike) {
+			if (error) {
+				res.status(500).send(error);
+			} else {
+				res.json(bike);
+			}
+		})
+	});
 
 
 app.get('/',function (req,res) {
