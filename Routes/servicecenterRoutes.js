@@ -27,7 +27,7 @@ var routes = function (Servicecenter) {
 
 	//get single service center
 
-	servicecenterRouter.route('/servicecenters/:servicecenterId')
+	servicecenterRouter.route('/:servicecenterId')
 		.get(function (req,res) {
 			Servicecenter.findById(req.params.servicecenterId,function (error,servicecenter) {
 				if (error) {

@@ -9,15 +9,18 @@ var routes = function (Bike) {
 			res.status(201).send(bike); 
 		})
 		.get(function (req,res) {
-			// return all bikes
+			console.log('inside get');
 			Bike.find(function (error,bikes) {
 				if (error) {
 				 	res.status(500).send(error);
+				 	console.log('inside get');
 				 } else {
 				 	res.json(bikes);
 				 } 
 			});
 		});
+		//middleware for bike 
+
 
 	bikeRouter.route('/bikes/:bikeId')
 		.get(function (req,res) {
