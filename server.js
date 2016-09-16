@@ -40,7 +40,7 @@ app.use('/api',bikeRouter);
 
 
 app.get('/',function (req,res) {
-	res.send('welcome to api'); 
+	res.send('welcome to api this is in the horeku'); 
 });
 
 app.listen(port,function () {
