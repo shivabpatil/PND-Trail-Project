@@ -1,8 +1,14 @@
 {
-  "scripts": {
-    "test": "mocha test.js",
-    "test-kitten": "mocha -R nyan test.js",
-    "watch": "gulp watch"
+  "name": "pndservices",
+  "version": "1.0.0",
+  "description": "pick and drop service for bike servicing",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "engines":{
+      "node":"4.5.0",
+      "npm":"3.10.7"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -13,6 +19,23 @@
     "mocha": "3.0.2",
     "mongodb": "~2.2.9",
     "mongoose": "4.6.0",
+    "should": "^11.1.0",
+    "sinon": "^1.17.5",
     "underscore": "1.5.2"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js",
+    "gulp-env": "^0.4.0",
+    "supertest": "^2.0.0"
+  },
+  "scripts": {
+    "test": "mocha test.js",
+    "test-kitten": "mocha -R nyan test.js",
+    "watch": "gulp watch"
+  },
+
+  "author": "Shivanand",
+  "license": "ISC"
 }
