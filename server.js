@@ -44,5 +44,5 @@ app.get('/',function (req,res) {
 });
 
 app.listen(port,function () {
-	console.log('Gulp is running on port',+port);
+	console.log('Server is running on port',+port);
 });
