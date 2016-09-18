@@ -29,7 +29,7 @@
     "supertest": "^2.0.0"
   },
   "scripts": {
-    "start":"node server.js",
+    "start": "node server.js",
     "test": "mocha test.js",
     "gulp-env": "^0.4.0",
     "supertest": "^2.0.0",
