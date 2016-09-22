@@ -42,12 +42,15 @@ var routes = function (Admin) {
 			});
 		})
 		.patch(function(req,res){
+
 			if(req.body._id){
 				delete req.body._id;
 			}
+
 			for(var p in req.body){
 				req.admin[p]=req.body[p];
 			}
+			
 			req.admin.save(function (error) {
 				if (error) {
 					res.status(500).send(error);

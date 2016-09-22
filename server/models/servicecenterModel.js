@@ -1,13 +1,14 @@
 var mongoose = require('mongoose');
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 
-var servicecenterModel = new schema({
+var servicecenterModel = new Schema({
 	name:{
 		type:String,
 		match:/^[a-zA-Z ]{2,50}$/,
 		required:true
 	},
+	_adminId:Schema.Types.ObjectId,
 	brand:[String],
 	email:{
 		type:String,
@@ -49,6 +50,7 @@ var servicecenterModel = new schema({
 			default:"Maharashtra"
 		}
 	},
+	
 	location:{
 		type:String,
 	},
@@ -73,11 +75,12 @@ var servicecenterModel = new schema({
 		required:true
 	},
 	create_at:{
-		type:Date
-	},
-	updated_at:{
 		type:Date,
 		default: Date.now
+	},
+	updated_at:{
+		type:Date
+		
 	}
 	
 });

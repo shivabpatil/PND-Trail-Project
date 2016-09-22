@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-var customerModel = new schema({
+var customerModel = new Schema({
 	name:{
 		type:String,
 		match:/^[a-zA-Z ]{2,50}$/,
@@ -19,6 +19,7 @@ var customerModel = new schema({
 		type:String,
 		match: /.+@.+\..+/,
 	},
+	_serviceCenterId:Schema.Types.ObjectId,
 	address:{
 		house:{
 			type:String,

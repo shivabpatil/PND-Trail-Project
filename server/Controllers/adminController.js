@@ -21,11 +21,12 @@ var adminController = function (Admin) {
 					res.json(admins);
 				}
 			});
-		}
+		};
+
 	return {
 		post:post,
-		get:get,
-	}
-}
+		get:get
+	};
+};
 
 module.exports = adminController;

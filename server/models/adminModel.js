@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-var adminModel = new schema({
+var adminModel = new Schema({
 	name:{
 		type:String,
 		match:/^[a-zA-Z ]{2,50}$/,

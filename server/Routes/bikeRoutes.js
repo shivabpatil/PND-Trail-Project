@@ -2,51 +2,72 @@ var express = require('express');
 
 var routes = function (Bike) {
 	var bikeRouter = express.Router();
-	bikeRouter.route('/bikes')
-		.post(function (req,res) {
-			var bike = new Bike(req.body);
-			bike.save();
-			res.status(201).send(bike); 
-		})
-		.get(function (req,res) {
-			console.log('inside get');
-			Bike.find(function (error,bikes) {
-				if (error) {
-				 	res.status(500).send(error);
-				 	console.log('inside get');
-				 } else {
-				 	res.json(bikes);
-				 } 
-			});
-		});
-		//middleware for bike 
 
+	var bikeController = require('../Controllers/bikeController')(Bike);
+	bikeRouter.route('/bikes')
+		.post(bikeController.post)
+		.get(bikeController.get);
+
+
+		//middleware for bike 
+	bikeRouter.use('/bikes/:bikeId',function (req,res,next) {
+
+		Bike.findById(req.params.bikeId,function (error,bike) {
+			if (error) {
+				res.status(500).send(error);
+			} else if (bike) {
+				req.bike = bike;
+				next();
+			} else {
+				res.status(400).send('bike not found');
+			}
+		})
+	})
 
 	bikeRouter.route('/bikes/:bikeId')
 		.get(function (req,res) {
-			Bike.findById(req.params.bikeId,function (error,bike) {
+			res.json(req.bike);
+		})
+		.put(function (req,res) {
+			req.bike.brand = req.body.brand;
+			req.bike.passing = req.body.passing;
+			req.bike.bikenumber = req.body.bikenumber;
+			req.bike.reading = req.body.reading;
+			req.bike.save(function (error) {
 				if (error) {
 					res.status(500).send(error);
 				} else {
-					res.json(bike);
+					res.json(req.bike);
+				}
+			});
+
+		})
+		.patch(function (req,res) {	
+			if(req.body._id){
+				delete req.body._id;
+			}
+			for(var p in req.body){
+				req.bike[p] = req.body[p];
+			}
+
+			req.bike.save(function (error) {
+				if (error) {
+					res.status(500).send(error);
+				} else {
+					res.json(req.bike);
 				}
 			});
 		})
-		.put(function (req,res) {
-			Bike.findById(req.params.bikeId,function (error,bike) {
+		.delete(function (req,res) {
+			req.bike.remove(function (error) {
 				if (error) {
-					res.status(500).send(error);
+					res.status(500).send(error);		
 				} else {
-					bike.brand = req.body.brand;
-					bike.passing = req.body.passing;
-					bike.bikenumber = req.body.bikenumber;
-					bike.reading = req.body.reading;
-					console.log(bike);
-					bike.save();
-					res.json(bike);
+					res.status(204).send('Removed');
 				}
-			}); 
-		});
+			});
+		})
+		
 	return bikeRouter;
 }
 

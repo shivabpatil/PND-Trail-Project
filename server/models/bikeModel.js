@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-var bikeModel = new schema({
+var bikeModel = new Schema({
 	brand:{
 		type:String,
 		required:true
@@ -14,6 +14,7 @@ var bikeModel = new schema({
 		type:String,
 		required:true
 	},
+	_customerId:Schema.Types.ObjectId,
 	reading:{
 		type:Number	
 	},
