@@ -5,9 +5,21 @@ html
 		link(rel="stylesheet", href="/vendor/toastr/toastr.css")
 		link(rel="stylesheet", href="/css/main.css")
 		base(href="/")
+		title PND Services
 	body(ng-app='pndApp')
+		.navbar.navbar-inverse.navbar-fixed-top
+			.container
+				.navbar-header
+					a.navbar-brand(href="/") PND Services
+				.navbar-collapse.collapse
+					ul.nav.navbar-nav
+						li
+							a(href="/") Home
 		block main-content
 
 		include scripts
+
+		footer.container.text-center
+			p &copy; 2016 PND Service 
 
 

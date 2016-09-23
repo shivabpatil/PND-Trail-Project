@@ -1,2 +1,12 @@
-h1 this is partial
-h2 {{myVar}}
+.container 
+	.jumbotron
+		h1 PND services
+		p The fastest pickup and drop service for your Bike servicing 
+	.row
+		.col-md-6
+			div(ng-include="'/partials/features'")
+
+		.col-md-6
+			div(ng-include="'/partials/how-it-works'")
+	.row(ng-repeat="bike in bikes")
+		{{bike.brand}}
