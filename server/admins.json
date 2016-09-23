@@ -1,0 +1,24 @@
+{
+	"admins":[
+		{
+			"name":"Vijay",
+			"lname":"Kadam",
+			"contact":9090909090,
+			"email":"vijay@pnd.com",
+			"position":"CEO"
+		},
+		{
+			"name":"Ganesh",
+			"contact":8080808080,
+			"email":"ganesh@pnd.com",
+			"position":"CFO"
+		},
+		{
+			"name":"Tushar",
+			"contact":7070709090,
+			"email":"tushar@pnd.com",
+			"position":"Metor"
+
+		},
+	]
+}

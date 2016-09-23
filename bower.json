@@ -1,0 +1,39 @@
+{
+  "name": "pndjs",
+  "version": "0.0.0",
+  "authors": [
+    "shivabpatil <shivanandpatil@live.in>"
+  ],
+  "description": "pick up and drop service for client",
+  "main": "server.js",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "keywords": [
+    "pickup",
+    "drop",
+    "bike",
+    "servicing"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-1.11.1": "~3.1.0",
+    "toastr": "~2.1.3",
+    "angular": "~1.5.8",
+    "angular-route": "~1.5.8",
+    "angular-resource": "~1.5.8"
+  }
+}
