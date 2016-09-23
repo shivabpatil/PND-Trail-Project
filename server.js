@@ -35,9 +35,9 @@ app.use(stylus.middleware({
 app.use(express.static(__dirname + '/public'));
 
 
-app.get('/partials/:partialsPath',function (req,res) {
+app.get('/partials/*',function (req,res) {
 	console.log('inside server route')
-	res.render('partials/' + req.params.partialsPath); 
+	res.render('../../public/app/' + req.params[0]); 
 })
 
 var port = process.env.PORT || 4000;
