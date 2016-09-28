@@ -15,9 +15,17 @@ var adminModel = new Schema({
 		type:Number,
 		required:true
 	},
+	userName:{
+		type:String,
+		
+	},
 	email:{
 		type:String,
 		match: /.+@.+\..+/,
+	},
+	password:{
+		type:String,
+		
 	},
 	position:{
 		type:String,

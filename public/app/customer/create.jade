@@ -1,0 +1,78 @@
+.container
+
+	form(name="create-customer" method="post")
+		.row 
+			.col-md-6
+				.panel.panel-default
+					.panel-heading Customer Details
+					.panel-body 
+						.form-group
+							label(for="name") Name*
+							input.form-control(placeholder="Name", ng-model="customer.name")
+						.form-group
+							label(for="lname") Last Name
+							input.form-control(placeholder="Last Name", ng-model="customer.lname")
+						.form-group
+							label(for="contact") Contact*
+							input.form-control(placeholder="Contact", ng-model="customer.contact")
+			.col-md-6
+				.panel.panel-default
+					.panel-heading Bike Details
+					.panel-body 
+						.form-group
+							label(for="brand") Brand*
+							input.form-control(placeholder="Brand", ng-model="bike.brand")
+						.form-group
+							label(for="passing") Passing*
+							input.form-control(placeholder="Passing", ng-model="bike.passing")
+						.form-group
+							label(for="bikenumber") Bike Number*
+							input.form-control(placeholder="Bike Number", ng-model="bike.bikenumber")
+						.form-group
+							label(for="reading") Reading
+							input.form-control(placeholder="Reading", ng-model="bike.reading")
+		.row
+			.col-md-6
+				.panel.panel-default
+					.panel-heading Schedule Details
+					.panel-body 
+						.form-group
+							label(for="pickupDate") Pickup Date
+							input.form-control(type="date", ng-model="schedule.pickup_date")
+						.form-group
+							label(for="pickupTime") Pickup Time
+							input.form-control(type="time", ng-model="schedule.pickup_time")
+						.form-group
+							label(for="dropTime") Drop Time
+							input.form-control(type="time", ng-model="schedule.drop_time")
+			.col-md-6
+				.panel.panel-default
+					.panel-heading Address Details
+					.panel-body 
+						.form-group
+							label(for="house") House
+							input.form-control(placeholder="House", ng-model="customer.address.house")
+						.form-group
+							label(for="society") Scoiety
+							input.form-control(placeholder="Society", ng-model="customer.address.society")
+						.form-group
+							label(for="street") Street
+							input.form-control(placeholder="Street", ng-model="customer.address.street")
+						.form-group
+							label(for="landmark") Landmark
+							input.form-control(placeholder="Landmark", ng-model="customer.address.landmark")
+						.form-group
+							label(for="area") Area*
+							input.form-control(placeholder="Area", ng-model="customer.address.area")
+						.form-group
+							label(for="ciry") City*
+							input.form-control(placeholder="City", ng-model="customer.address.city")
+						.form-group
+							label(for="state") State*
+							input.form-control(placeholder="State", ng-model="customer.address.state")
+		.row
+			button.btn.btn-primary.btn-block(ng-click="create(customer,bike,schedule)") Submit
+		
+
+
+

@@ -1,0 +1,17 @@
+.container
+	table.table.table-striped
+		tr
+			th Pickup Time
+			th Drop Time
+			th Date
+			th Address
+			th Name
+			th Contact
+			
+		tr(ng-repeat="schedule in schedules")
+			td {{schedule.pickup_time}}
+			td {{schedule.drop_time}}
+			td {{schedule.pickup_date}}
+			td {{schedule.pickup_address}}
+
+	

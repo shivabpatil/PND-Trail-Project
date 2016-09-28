@@ -24,7 +24,6 @@ var customerModel = new Schema({
 		house:{
 			type:String,
 			match:/^[a-zA-Z0-9\s,'-]*$/,
-			required:true
 		},
 		society:{
 			type:String,
@@ -57,11 +56,12 @@ var customerModel = new Schema({
 		}
 	},
 	create_at:{
-		type:Date
-	},
-	updated_at:{
 		type:Date,
 		default: Date.now
+	},
+	updated_at:{
+		type:Date
+		
 	},
 });
 

@@ -23,23 +23,7 @@ module.exports = function (app,config) {
 
 	app.use(express.static(config.rootPath + '/public'));
 	
-	var Admin = require('../models/adminModel'); 
-	var Servicecenter = require('../models/servicecenterModel');
-	var Customer = require('../models/customerModel');
-	var Bike = require('../models/bikeModel');
-	var Rate = require('../models/rateModel');
-
-	adminRouter = require('../Routes/adminRoutes')(Admin);
-	servicecenterRouter = require('../Routes/servicecenterRoutes')(Servicecenter);
-	customerRouter = require('../Routes/customerRoutes')(Customer);
-	bikeRouter = require('../Routes/bikeRoutes')(Bike);
-	rateRouter = require('../Routes/rateRoutes')(Rate);
-
-	app.use('/api1',adminRouter);
-	app.use('/api2',servicecenterRouter);
-	app.use('/api3',customerRouter);
-	app.use('/api4',bikeRouter);
-	app.use('/api5',rateRouter);
+	
 }
 
 
