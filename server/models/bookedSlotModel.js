@@ -1,17 +1,17 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var slotModel = new Schema({
-	slot_time:{
-		type:String,
-		required:true
-	},
-	slot_capacity:{
+var bookedSlotModel = new Schema({
+	booking_count:{
 		type:Number,
 		required:true
 	},
-	_servicecenterId:Schema.Types.ObjectId,
-	
+	booking_date:{
+		type:Date,
+		required:true
+	},
+	_slotId:Schema.Types.ObjectId,
+
 	create_at:{
 		type:Date,
 		default: Date.now
@@ -20,4 +20,5 @@ var slotModel = new Schema({
 		type:Date,	
 	},
 });
-module.exports = mongoose.model('Slot',slotModel);
+
+module.exports = mongoose.model('BookedSlot',bookedSlotModel);
