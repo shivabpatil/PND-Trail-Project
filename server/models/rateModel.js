@@ -20,7 +20,15 @@ var rateModel = new Schema({
 				required:true
 			}
 		}
-	]
+	],
+	create_at:{
+		type:Date,
+		default: Date.now
+	},
+	updated_at:{
+		type:Date
+		
+	},
 });
 
 module.exports = mongoose.model('Rate',rateModel);

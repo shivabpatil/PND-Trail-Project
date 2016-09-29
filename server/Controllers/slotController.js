@@ -7,8 +7,17 @@ var slotController = function (Slot) {
 		};
 
 	var get = function (req,res) {
+			var query={};
+			console.log(req.query);
+
+
+			if (req.query) {
+				
+			 	query = req.query;
+			 	console.log(query);
+			 } 
 			
-			Slot.find(function (error,slots) {
+			Slot.find(query,function (error,slots) {
 				if (error) {
 				 	res.status(500).send(error);
 				 

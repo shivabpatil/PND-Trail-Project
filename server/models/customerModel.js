@@ -21,17 +21,10 @@ var customerModel = new Schema({
 	},
 	_serviceCenterId:Schema.Types.ObjectId,
 	address:{
-		house:{
+		line1:{
 			type:String,
 			match:/^[a-zA-Z0-9\s,'-]*$/,
-		},
-		society:{
-			type:String,
-			match:/^[a-zA-Z0-9\s,'-]*$/i	
-		},
-		street:{
-			type:String,
-			match:/^[a-zA-Z0-9\s,'-]*$/i
+			
 		},
 		landmark:{
 			type:String,

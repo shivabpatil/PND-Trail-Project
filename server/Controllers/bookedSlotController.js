@@ -7,6 +7,10 @@ var bookedSlotController = function (BookedSlot) {
 		};
 
 	var get = function (req,res) {
+			// var query={};
+			// if (req.query.pick_date || req.query.) {
+			//  	query.name=req.query.name;
+			//  } 
 			
 			BookedSlot.find(function (error,bookedSlots) {
 				if (error) {

@@ -7,6 +7,10 @@
 					.panel-heading Customer Details
 					.panel-body 
 						.form-group
+							label(for="servicecenter") Service Center*
+							select.form-control(ng-model="schedule._servicecenterId", ng-options="serviceCenter as serviceCenter.name for serviceCenter in serviceCenters track by serviceCenter._id", ng-change="selectSlots(schedule._servicecenterId)")
+							
+						.form-group
 							label(for="name") Name*
 							input.form-control(placeholder="Name", ng-model="customer.name")
 						.form-group
@@ -28,9 +32,7 @@
 						.form-group
 							label(for="bikenumber") Bike Number*
 							input.form-control(placeholder="Bike Number", ng-model="bike.bikenumber")
-						.form-group
-							label(for="reading") Reading
-							input.form-control(placeholder="Reading", ng-model="bike.reading")
+					
 		.row
 			.col-md-6
 				.panel.panel-default
@@ -40,24 +42,18 @@
 							label(for="pickupDate") Pickup Date
 							input.form-control(type="date", ng-model="schedule.pickup_date")
 						.form-group
-							label(for="pickupTime") Pickup Time
-							input.form-control(type="time", ng-model="schedule.pickup_time")
-						.form-group
-							label(for="dropTime") Drop Time
-							input.form-control(type="time", ng-model="schedule.drop_time")
+							label(for="slot_time") Time slot*
+							select.form-control(ng-model="schedule.pickup_time", ng-options="slot as slot.slot_time for slot in slots track by slot._id ")
+
+						
 			.col-md-6
 				.panel.panel-default
 					.panel-heading Address Details
 					.panel-body 
 						.form-group
-							label(for="house") House
-							input.form-control(placeholder="House", ng-model="customer.address.house")
-						.form-group
-							label(for="society") Scoiety
-							input.form-control(placeholder="Society", ng-model="customer.address.society")
-						.form-group
-							label(for="street") Street
-							input.form-control(placeholder="Street", ng-model="customer.address.street")
+							label(for="house") Address Line 1
+							textarea.form-control(placeholder="Address", ng-model="customer.address.line1")
+				
 						.form-group
 							label(for="landmark") Landmark
 							input.form-control(placeholder="Landmark", ng-model="customer.address.landmark")

@@ -15,15 +15,14 @@ var bikeModel = new Schema({
 		required:true
 	},
 	_customerId:Schema.Types.ObjectId,
-	reading:{
-		type:Number	
-	},
+
 	create_at:{
-		type:Date
+		type:Date,
+		default: Date.now
 	},
 	updated_at:{
 		type:Date,
-		default: Date.now
+		
 	},
 });
 module.exports = mongoose.model('Bike',bikeModel);

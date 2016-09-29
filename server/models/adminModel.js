@@ -32,11 +32,12 @@ var adminModel = new Schema({
 		required:true
 	},
 	create_at:{
-		type:Date
-	},
-	updated_at:{
 		type:Date,
 		default: Date.now
+	},
+	updated_at:{
+		type:Date
+		
 	},
 });
 

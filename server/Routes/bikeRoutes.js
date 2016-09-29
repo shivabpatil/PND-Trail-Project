@@ -32,7 +32,6 @@ var routes = function (Bike) {
 			req.bike.brand = req.body.brand;
 			req.bike.passing = req.body.passing;
 			req.bike.bikenumber = req.body.bikenumber;
-			req.bike.reading = req.body.reading;
 			req.bike.save(function (error) {
 				if (error) {
 					res.status(500).send(error);

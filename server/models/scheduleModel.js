@@ -3,13 +3,7 @@ var Schema = mongoose.Schema;
 
 var scheduleModel = new Schema({
 	pickup_address:{
-		house:{
-			type:String
-		},
-		society:{
-			type:String		
-		},
-		street:{
+		line1:{
 			type:String
 		},
 		landmark:{
@@ -29,13 +23,7 @@ var scheduleModel = new Schema({
 		}
 	},
 	drop_address:{
-		house:{
-			type:String
-		},
-		society:{
-			type:String		
-		},
-		street:{
+		line1:{
 			type:String
 		},
 		landmark:{
@@ -63,11 +51,11 @@ var scheduleModel = new Schema({
 		required:true
 	},
 	pickup_time:{
-		type:Date,
+		type:String,
 		required:true
 	},
 	drop_time:{
-		type:Date,
+		type:String,
 		
 	},
 	_serviceCenterId:Schema.Types.ObjectId,

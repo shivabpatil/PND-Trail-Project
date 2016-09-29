@@ -19,15 +19,12 @@ var servicecenterModel = new Schema({
 		required:true
 	},
 	address:{
-		building:{
+		line1:{
 			type:String,
 			match:/^[a-zA-Z0-9\s,'-]*$/,
 			required:true
 		},
-		street:{
-			type:String,
-			match:/^[a-zA-Z0-9\s,'-]*$/i
-		},
+		
 		landmark:{
 			type:String,
 			match:/^[a-zA-Z0-9\s,'-]*$/i
