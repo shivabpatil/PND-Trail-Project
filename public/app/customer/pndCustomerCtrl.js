@@ -1,4 +1,4 @@
-angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$window,$rootScope,$http,getcustomerService){
+angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$window,$rootScope,$http,getcustomerService){
 	
 	var scheduleId;
     //$scope.serviceCenters = {};
@@ -22,22 +22,37 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$window,$
 	
 
 
-	$scope.create = function (customer,bike,schedule) {
+	$scope.create = function (customer,bike,schedule,serviceCenterDetails,slotDetails) {
 		
 		var bookedSlot = {} ;
-		bookedSlot.pickup_date = schedule.pickup_date;
-		bookedSlot._servicecenterId = schedule._servicecenterId._id;
-		bookedSlot.pickup_time = schedule.pickup_time.slot_time;
+		bookedSlot._slotId = slotDetails._id;
+		bookedSlot.booking_date =  $filter('date')(schedule.pickup_date, "yyyy-MM-dd HH:mm:ss");		
 
-		console.log(bookedSlot.pickup_date);
-		console.log(bookedSlot._servicecenterId);
-		console.log(bookedSlot.pickup_time);
+		console.log(bookedSlot.booking_date);
+		console.log(bookedSlot._slotId);
 
-		// $http.get("http://localhost:8000/api8/bookedSlots").success(function(res){
-		// 	$scope.bookedsSlots = res;
-		// 	console.log(res);
-		// 	console.log($scope.serviceCenters);
-		// });
+		$http.get("http://localhost:8000/api8/bookedSlots?_slotId=" + bookedSlot._slotId + "&booking_date=" + bookedSlot.booking_date ).success(function(res){
+			$scope.bookedSlots = res;
+			console.log($scope.bookedSlots);
+			console.log($scope.bookedSlots.length);
+			console.log(bookedSlot);
+			if ($scope.bookedSlots.length < slotDetails.slot_capacity){
+				bookedSlot.booking_count = $scope.bookedSlots.length + 1;
+				$http.post("http://localhost:8000/api8/bookedSlots",bookedSlot).success(function(res){
+				
+					console.log(res);
+					// console.log($scope.serviceCenters);
+				});
+			}
+			else{
+				console.log("Slot full");
+			}
+
+		});
+	
+
+		
+		
 
 		// $http.post("http://localhost:8000/api8/bookedSlots",).success(function(res){
 		// 	$scope.serviceCenters = res;
