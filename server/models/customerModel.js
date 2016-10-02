@@ -15,6 +15,10 @@ var customerModel = new Schema({
 		type:Number,
 		required:true
 	},
+	alternate_contact:{
+		type:Number,
+		
+	},
 	email:{
 		type:String,
 		match: /.+@.+\..+/,

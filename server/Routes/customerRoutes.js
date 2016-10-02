@@ -31,6 +31,7 @@ var routes = function (Customer) {
 				req.customer.name = req.body.name;
 				req.customer.lname = req.body.lname;
 				req.customer.contact = req.body.contact;
+				req.customer.alternate_contact = req.body.alternate_contact;
 				req.customer.email = req.body.email;
 				req.customer.address = req.body.address;
 				req.customer.save(function (error) {

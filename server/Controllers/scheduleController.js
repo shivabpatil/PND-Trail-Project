@@ -8,7 +8,14 @@ var scheduleController = function(Schedule) {
 			// }
 
 			//return all customers 
-			Schedule.find(function (error,schedules) {
+			// Schedule.find(function (error,schedules) {
+			// 	if (error) {
+			// 	 	res.staus(500).send(error);
+			// 	 } else {
+			// 	 	res.json(schedules);
+			// 	 } 
+			// })
+			Schedule.find({}).sort('-pickup_time').exec(function (error,schedules) {
 				if (error) {
 				 	res.staus(500).send(error);
 				 } else {

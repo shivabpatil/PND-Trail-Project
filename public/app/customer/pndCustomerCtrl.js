@@ -26,10 +26,24 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 		
 		var bookedSlot = {} ;
 		bookedSlot._slotId = slotDetails._id;
-		bookedSlot.booking_date =  $filter('date')(schedule.pickup_date, "yyyy-MM-dd HH:mm:ss");		
-
+		schedule.pickup_date = new Date($filter('date')(schedule.pickup_date, "yyyy-MM-dd")); 
+		bookedSlot.booking_date = schedule.pickup_date;	
+		schedule.customer_name = customer.name;
+		schedule.customer_contact = customer.contact;
+		schedule.customer_alternate_contact = customer.alternate_contact;
+		schedule.drop_date = schedule.pickup_date;
+		schedule.drop_address = customer.address;
+		schedule.pickup_address = customer.address;
+		schedule.bike_passing = bike.passing;
+		schedule.bike_number = bike.bikenumber;
+		schedule._serviceCenterId = serviceCenterDetails._id;
+		schedule.pickup_time= slotDetails.slot_time;
+		schedule.drop_time= slotDetails.slot_time;
 		console.log(bookedSlot.booking_date);
 		console.log(bookedSlot._slotId);
+		console.log(schedule);
+		console.log(customer);
+		console.log(bike);
 
 		$http.get("http://localhost:8000/api8/bookedSlots?_slotId=" + bookedSlot._slotId + "&booking_date=" + bookedSlot.booking_date ).success(function(res){
 			$scope.bookedSlots = res;
@@ -43,6 +57,20 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 					console.log(res);
 					// console.log($scope.serviceCenters);
 				});
+				
+				$http.post("http://localhost:8000/api3/customers",customer).success(function(res){			
+						bike._customerId = res._id;
+					});
+
+				$http.post("http://localhost:8000/api4/bikes",bike).success(function(res){
+					});
+
+				$http.post("http://localhost:8000/api6/schedules",schedule).success(function(res){
+						scheduleId = res._Id;
+						console.log(res);
+						//$window.location.href = '/schedules';
+					});
+				
 			}
 			else{
 				console.log("Slot full");
@@ -61,25 +89,13 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 		// });
 
 		// console.log(customer)
-		// schedule.drop_date = schedule.pickup_date;
-		// schedule.drop_address = customer.address;
-		// schedule.pickup_address = customer.address
+		
 
 
 
-		// $http.post("http://localhost:8000/api3/customers",customer).success(function(res){			
-		// 		bike._customerId = res._id;
-		// 		schedule._customerId = res._id;
-		// 	});
-
-		// $http.post("http://localhost:8000/api4/bikes",bike).success(function(res){
-		// 		schedule._bikeId = res._id;
-		// 	});
+	
 		// schedule._servicecenterId = "57e378e79965cb131cb3d33b";
-	 //   	$http.post("http://localhost:8000/api6/schedules",schedule).success(function(res){
-		// 		scheduleId = res._Id;
-		// 		$window.location.href = '/schedules';
-		// 	});
+	   
 	}
 
 	// $scope.jump = function () {

@@ -2,16 +2,29 @@
 	table.table.table-striped
 		tr
 			th Pickup Time
-			th Drop Time
 			th Date
-			th Address
-			th Name
-			th Contact
+			th Customer Name & Contact
+			th Customer Address 
+			th Bike Number
 			
 		tr(ng-repeat="schedule in schedules")
 			td {{schedule.pickup_time}}
-			td {{schedule.drop_time}}
-			td {{schedule.pickup_date}}
-			td {{schedule.pickup_address}}
-
-	
+			td {{schedule.pickup_date| date:'dd-MMM-yy'}}
+			td 
+				ul
+					li {{schedule.customer_name}}
+					li {{schedule.customer_contact}}
+					li {{schedule.customer_alternate_contact}}
+			td 
+				ul
+					li 
+						b Address :
+						{{schedule.pickup_address.line1}}
+					li 
+						b LandMark :
+						{{schedule.pickup_address.landmark}}
+					li 
+						b Area :
+						{{schedule.pickup_address.area}}
+				
+			td {{schedule.bike_passing}} {{schedule.bike_number}}	

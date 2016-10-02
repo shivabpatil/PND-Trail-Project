@@ -2,6 +2,26 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var scheduleModel = new Schema({
+
+	customer_name:{
+		type:String,
+		required:true
+	},
+	customer_contact:{
+		type:Number,
+		required:true
+	},
+	customer_alternate_contact:{
+		type:Number
+	},
+	bike_passing:{
+		type:String,
+		required:true
+	},
+	bike_number:{
+		type:String,
+		required:true
+	},
 	pickup_address:{
 		line1:{
 			type:String
@@ -59,8 +79,7 @@ var scheduleModel = new Schema({
 		
 	},
 	_serviceCenterId:Schema.Types.ObjectId,
-	_customerId:Schema.Types.ObjectId,
-	_bikeId:Schema.Types.ObjectId,
+	
 	create_at:{
 		type:Date,
 		default: Date.now
