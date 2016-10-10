@@ -7,6 +7,9 @@
 					.panel-heading Customer Details
 					.panel-body 
 						.form-group
+							label(for="brand") Brand*
+							input.form-control(placeholder="Brand", ng-model="bike.brand")
+						.form-group
 							label(for="servicecenter") Service Center*
 							select.form-control(ng-model="serviceCenterDetails", ng-options="serviceCenter as serviceCenter.name for serviceCenter in serviceCenters track by serviceCenter._id", ng-change="selectSlots(serviceCenterDetails)")
 							
@@ -26,9 +29,7 @@
 				.panel.panel-default
 					.panel-heading Bike Details
 					.panel-body 
-						.form-group
-							label(for="brand") Brand*
-							input.form-control(placeholder="Brand", ng-model="bike.brand")
+						
 						.form-group
 							label(for="passing") Passing*
 							input.form-control(placeholder="Passing", ng-model="bike.passing")

@@ -28,3 +28,15 @@
 						{{schedule.pickup_address.area}}
 				
 			td {{schedule.bike_passing}} {{schedule.bike_number}}	
+			td 
+				form(name="assign-dperson" method="patch")
+					.form-group
+						label(for="name") Name
+						input.form-control(placeholder="Last Name")
+					.form-group
+						label(for="contact") Contact*
+						input.form-control(placeholder="Contact")
+					button.btn.btn-primary() Assign 
+
+
+	

@@ -1,0 +1,17 @@
+.container
+	table.table.table-striped
+		tr
+			th Area
+			th No. of Service Centers
+			th No. of Delivery Persons
+			
+		tr(ng-repeat="area in areas")
+			td {{area.name}}
+			td {{area.no_service_centers}}
+			td {{area.no_dpersons}}
+			td 
+				button.btn.btn-primary(ng-click="edit(area._id")
+					span.glyphicon.glyphicon-pencil
+				button.btn.btn-primary(ng-click="delete(area._id)")
+					span.glyphicon.glyphicon-remove
+				

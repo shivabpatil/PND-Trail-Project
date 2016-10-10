@@ -9,6 +9,7 @@ module.exports = function (app) {
 	var Schedule = require('../models/scheduleModel');
 	var Slot = require('../models/slotModel');
 	var BookedSlot = require('../models/bookedSlotModel');
+	var Area = require('../models/areaModel');
 
 	adminRouter = require('../Routes/adminRoutes')(Admin);
 	servicecenterRouter = require('../Routes/servicecenterRoutes')(Servicecenter);
@@ -18,6 +19,7 @@ module.exports = function (app) {
 	scheduleRouter = require('../Routes/scheduleRoutes')(Schedule);
 	slotRouter = require('../Routes/slotRoutes')(Slot);
 	bookedSlotRouter = require('../Routes/bookedSlotRoutes')(BookedSlot);
+	areaRouter = require('../Routes/areaRoutes')(Area);
 
 	app.use('/api1',adminRouter);
 	app.use('/api2',servicecenterRouter);
@@ -27,6 +29,7 @@ module.exports = function (app) {
 	app.use('/api6',scheduleRouter);
 	app.use('/api7',slotRouter);
 	app.use('/api8',bookedSlotRouter);
+	app.use('/api9',areaRouter);
 	
 	app.get('/partials/*',function (req,res) {
 		res.render('../../public/app/' + req.params[0]); 

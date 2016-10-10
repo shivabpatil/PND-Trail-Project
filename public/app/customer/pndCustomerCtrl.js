@@ -9,11 +9,11 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 			//console.log($scope.serviceCenters);
 		});
 	$scope.selectSlots = function (servicecenter) {
-		console.log(servicecenter._id);
+		// console.log(servicecenter._id);
 
 		$http.get("http://localhost:8000/api7/slots?_servicecenterId=" + servicecenter._id ).success(function(res){
 			$scope.slots = res;
-		    console.log(res);
+		    // console.log(res);
 			//console.log($scope.slots);
 		});
 		
@@ -26,8 +26,9 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 		
 		var bookedSlot = {} ;
 		bookedSlot._slotId = slotDetails._id;
-		schedule.pickup_date = new Date($filter('date')(schedule.pickup_date, "yyyy-MM-dd")); 
-		bookedSlot.booking_date = schedule.pickup_date;	
+		bookedSlot.booking_date = $filter('date')(schedule.pickup_date, "yyyy-MM-dd HH:mm:ss");
+		schedule.pickup_date = new Date($filter('date')(schedule.pickup_date, "yyyy-MM-dd HH:mm:ss")); 
+			
 		schedule.customer_name = customer.name;
 		schedule.customer_contact = customer.contact;
 		schedule.customer_alternate_contact = customer.alternate_contact;
@@ -39,11 +40,12 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 		schedule._serviceCenterId = serviceCenterDetails._id;
 		schedule.pickup_time= slotDetails.slot_time;
 		schedule.drop_time= slotDetails.slot_time;
-		console.log(bookedSlot.booking_date);
-		console.log(bookedSlot._slotId);
-		console.log(schedule);
-		console.log(customer);
-		console.log(bike);
+		// console.log(bookedSlot.booking_date);
+		// console.log(schedule.pickup_date);
+		// console.log(bookedSlot._slotId);
+		//console.log(schedule);
+		//console.log(customer);
+		//console.log(bike);
 
 		$http.get("http://localhost:8000/api8/bookedSlots?_slotId=" + bookedSlot._slotId + "&booking_date=" + bookedSlot.booking_date ).success(function(res){
 			$scope.bookedSlots = res;
@@ -68,7 +70,7 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 				$http.post("http://localhost:8000/api6/schedules",schedule).success(function(res){
 						scheduleId = res._Id;
 						console.log(res);
-						//$window.location.href = '/schedules';
+						$window.location.href = '/schedules';
 					});
 				
 			}

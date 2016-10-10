@@ -22,6 +22,12 @@ var scheduleModel = new Schema({
 		type:String,
 		required:true
 	},
+	dperson_name:{
+		type:String
+	},
+	dpaerson_contact:{
+		type:Number
+	},
 	pickup_address:{
 		line1:{
 			type:String
@@ -69,6 +75,10 @@ var scheduleModel = new Schema({
 	drop_date:{
 		type:Date,
 		required:true
+	},
+	status:{
+		type:String
+		
 	},
 	pickup_time:{
 		type:String,
