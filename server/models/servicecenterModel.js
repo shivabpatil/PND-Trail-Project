@@ -9,7 +9,12 @@ var servicecenterModel = new Schema({
 		required:true
 	},
 	_adminId:Schema.Types.ObjectId,
-	brand:[String],
+	_areaId:Schema.Types.ObjectId,
+	_brandId:Schema.Types.ObjectId,
+
+	brand:{
+		type:String,
+	},
 	email:{
 		type:String,
 		match: /.+@.+\..+/,
@@ -48,28 +53,28 @@ var servicecenterModel = new Schema({
 		}
 	},
 	
-	location:{
+	area_group:{
 		type:String,
 	},
 	capacity:{
 		type:Number,
-		required:true
+		
 	},
 	slotcapacity:{
 		type:Number,
-		required:true
+	
 	},
 	deliverypersons:{
 		type:Number,
-		required:true
+		
 	},
 	start_time:{
 		type:Date,
-		required:true
+		
 	},
 	end_time:{
 		type:Date,
-		required:true
+		
 	},
 	create_at:{
 		type:Date,

@@ -10,6 +10,7 @@ module.exports = function (app) {
 	var Slot = require('../models/slotModel');
 	var BookedSlot = require('../models/bookedSlotModel');
 	var Area = require('../models/areaModel');
+	var Brand = require('../models/brandModel');
 
 	adminRouter = require('../Routes/adminRoutes')(Admin);
 	servicecenterRouter = require('../Routes/servicecenterRoutes')(Servicecenter);
@@ -20,6 +21,7 @@ module.exports = function (app) {
 	slotRouter = require('../Routes/slotRoutes')(Slot);
 	bookedSlotRouter = require('../Routes/bookedSlotRoutes')(BookedSlot);
 	areaRouter = require('../Routes/areaRoutes')(Area);
+	brandRouter = require('../Routes/brandRoutes')(Brand);
 
 	app.use('/api1',adminRouter);
 	app.use('/api2',servicecenterRouter);
@@ -30,6 +32,7 @@ module.exports = function (app) {
 	app.use('/api7',slotRouter);
 	app.use('/api8',bookedSlotRouter);
 	app.use('/api9',areaRouter);
+	app.use('/api10',brandRouter);
 	
 	app.get('/partials/*',function (req,res) {
 		res.render('../../public/app/' + req.params[0]); 

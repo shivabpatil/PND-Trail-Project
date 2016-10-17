@@ -1,0 +1,70 @@
+.container
+	form(name="create-servicecenter" method="")
+		.row 
+			.col-md-6
+				.form-group
+					label(for="area") Area*
+					input.form-control(placeholder="Area", ng-model="ServiceCenter.area_group")
+				.form-group
+					label(for="brand") Brand*
+					input.form-control(placeholder="Brand", ng-model="ServiceCenter.brand")
+				.form-group
+					label(for="name") Name*
+					input.form-control(placeholder="Name", ng-model="ServiceCenter.name")
+				.form-group
+					label(for="email") Email
+					input.form-control(placeholder="Email", ng-model="ServiceCenter.email")
+				.form-group
+					label(for="contact") Contact*
+					input.form-control(placeholder="Contact", ng-model="ServiceCenter.contact")
+				.form-group
+					label(for="house") Address Line 1
+					textarea.form-control(placeholder="Address", ng-model="ServiceCenter.address.line1")
+				.form-group
+					label(for="landmark") Landmark
+					input.form-control(placeholder="Landmark", ng-model="ServiceCenter.address.landmark")
+				.form-group
+					label(for="area") Area*
+					input.form-control(placeholder="Area", ng-model="ServiceCenter.address.area")
+				.form-group
+					label(for="ciry") City*
+					input.form-control(placeholder="City", ng-model="ServiceCenter.address.city")
+				.form-group
+					label(for="state") State*
+					input.form-control(placeholder="State", ng-model="ServiceCenter.address.state")
+				.form-group
+					label(for="capacity") Capacity
+					input.form-control(placeholder="Capacity", ng-model="ServiceCenter.capacity",disabled)
+				.form-group
+					label(for="slotcapacity")Slot Capacity
+					input.form-control(placeholder="Slot Capacity", ng-model="ServiceCenter.slotcapacity",disabled)
+				.form-group
+					label(for="deliverypersons")Deliverypersons*
+					input.form-control(placeholder="Deliverypersons", ng-model="ServiceCenter.deliverypersons",disabled)
+				.form-group
+					label(for="start_time") Start time
+					input.form-control(type="time", ng-model="ServiceCenter.start_time")
+				.form-group
+					label(for="end_time") End time
+					input.form-control(type="time", ng-model="ServiceCenter.end_time")
+		.row
+			.col-md-6.col-sm-6
+				button.btn.btn-primary.btn-block(ng-click="create(ServiceCenter)") Submit
+			.col-md-6.col-sm-6
+				button.btn.btn-primary.btn-block(ng-click="edit(ServiceCenter._id,ServiceCenter)") Edit
+		.row 
+			table.table.table-striped
+				tr
+					th ServiceCenter
+					th ServiceCenter info
+					
+				tr(ng-repeat="ServiceCenter in ServiceCenters", data-ng-click="bindSelectedData(ServiceCenter)")
+					td {{ServiceCenter.name}}
+					td {{ServiceCenter.ServiceCenter_info}}
+					td 
+						button.btn.btn-primary(ng-click="delete(ServiceCenter._id)")
+							span.glyphicon.glyphicon-remove
+				
+
+
+

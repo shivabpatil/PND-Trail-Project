@@ -14,6 +14,7 @@ angular.module('pndApp').controller('pndAreaCtrl', function($scope, $route,$filt
 
 	$scope.create = function (area) {
 		console.log(area);
+		delete area._id;
 		$http.post("http://localhost:8000/api9/areas",area).success(function (res) {
 			$scope.area1 = res;
 			console.log($scope.area1);
@@ -52,9 +53,6 @@ angular.module('pndApp').controller('pndAreaCtrl', function($scope, $route,$filt
 			$route.reload();
 			// $window.location.href = '/areas/index';
 		})
-	}
-
-	
-	
+	}	
 
 })

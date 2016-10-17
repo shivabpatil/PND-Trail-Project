@@ -1,0 +1,32 @@
+.container
+	form(name="create-brand" method="")
+		.row 
+			.col-md-6
+				.form-group
+					label(for="brand") Brand*
+					input.form-control(placeholder="Brand", ng-model="brand.name")
+				.form-group
+					label(for="brand_info") Brand Info.
+					input.form-control(placeholder="Brand Info", ng-model="brand.brand_info")
+						
+		.row
+			.col-md-6.col-sm-6
+				button.btn.btn-primary.btn-block(ng-click="create(brand)") Submit
+			.col-md-6.col-sm-6
+				button.btn.btn-primary.btn-block(ng-click="edit(brand._id,brand)") Edit
+		.row 
+			table.table.table-striped
+				tr
+					th Brand
+					th Brand info
+					
+				tr(ng-repeat="brand in brands", data-ng-click="bindSelectedData(brand)")
+					td {{brand.name}}
+					td {{brand.brand_info}}
+					td 
+						button.btn.btn-primary(ng-click="delete(brand._id)")
+							span.glyphicon.glyphicon-remove
+				
+
+
+

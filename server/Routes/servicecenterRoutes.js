@@ -34,10 +34,14 @@ var routes = function (Servicecenter) {
 				req.servicecenter.email = req.body.email;
 				req.servicecenter.contact = req.body.contact;
 				req.servicecenter.address = req.body.address;
-				req.servicecenter.location = req.body.location;
+				req.servicecenter.area_group = req.body.area_group ;
 				req.servicecenter.capacity = req.body.capacity;
 				req.servicecenter.slotcapacity = req.body.slotcapacity;
 				req.servicecenter.deliverypersons = req.body.deliverypersons;
+				req.servicecenter.start_time = req.body.start_time;
+				req.servicecenter.end_time = req.body.end_time;
+				req.servicecenter._areaId = req.body._areaId;
+				req.servicecenter._brandId = req.body._brandId;
 				req.servicecenter.save(function (error) {
 					if (error) {
 						res.status(500).send(error);

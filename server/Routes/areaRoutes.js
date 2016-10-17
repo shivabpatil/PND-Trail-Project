@@ -29,8 +29,8 @@ var routes = function (Area) {
 			res.json(req.area);
 		})
 		.put(function (req,res) {
-			req.area.name = req.body.brand;
-			reaq.area.no_service_centers = req.body.no_service_centers;
+			req.area.name = req.body.name;
+			req.area.no_service_centers = req.body.no_service_centers;
 			req.area.no_dpersons = req.body.no_dpersons;
 			req.area.service_center_id = req.body.service_center_id;
 			req.area.dperson_id = req.body.dperson_id;
