@@ -35,6 +35,8 @@ module.exports = function (app) {
 	app.use('/api10',brandRouter);
 	
 	app.get('/partials/*',function (req,res) {
+
+		console.log(req.params);
 		res.render('../../public/app/' + req.params[0]); 
 	});
 

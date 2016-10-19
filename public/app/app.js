@@ -1,4 +1,4 @@
-angular.module('pndApp',['ngResource','ngRoute','ui.bootstrap','pndApp.customerServices']);
+angular.module('pndApp',['ngResource','ngRoute','ui.bootstrap','pndApp.customerServices','pndApp.serviceCenterServices']);
 
 angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 	$locationProvider.html5Mode(true);
@@ -8,7 +8,7 @@ angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 		.when('/schedules',{templateUrl:'partials/schedule/index',controller:'pndScheduleCtrl'})
 		.when('/areas',{templateUrl:'partials/area/create',controller:'pndAreaCtrl'})
 		.when('/brands',{templateUrl:'partials/brand/create',controller:'pndBrandCtrl'})
-		.when('/serviceCenters',{templateUrl:'partials/servicecenter/create',controller:'pndServiceCenterCtrl'})
+		.when('/serviceCenters',{templateUrl:'partials/serviceCenter/create',controller:'pndServiceCenterCtrl'})
 })
 
 

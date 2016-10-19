@@ -1,14 +1,42 @@
-angular.module('pndApp').controller('pndServiceCenterCtrl', function($scope, $route,$filter,$window,$rootScope,$http){
-	
-	// $scope.brand = {
-	// 	_id:'',
-	// 	name: '',
-	// 	brand_info:''
-	// };
+angular.module('pndApp').controller('pndServiceCenterCtrl', function($scope, $route,$filter,$window,$rootScope,$http,serviceCenterService){
+	$scope.temp = "dshgfdjhghdfsg";
+	$scope.serviceCenter = {
+		_id:'',
+		_adminId:'',
+		_areaId:'',
+		_brandId:'',
+		name: '',
+		brand:'',
+		email:'',
+		contact:0,
+		address : [],
+		area_group:'',
+		capacity:0,
+		slotcapacity:0,
+		deliverypersons:0,
+		start_time:'',
+		end_time:''
+	};
+	console.log($scope.serviceCenter);
+  	
+    serviceCenterService.getServiceCenters().then(function (res) {
+  		$scope.serviceCenters = res;
+  		console.log($scope.serviceCenters);
+  	});
+  	console.log($scope.serviceCenters);
 
-	// $http.get("http://localhost:8000/api10/brands").success(function(res){
-	// 			$scope.brands = res;
-	// 			console.log($scope.brands);
+  	$scope.create = function (serviceCenter) {
+  		delete serviceCenter._id;
+  		delete serviceCenter._adminId;
+  		delete serviceCenter._brandId;
+  		delete serviceCenter._areaId;
+  		console.log(serviceCenter);
+  		serviceCenterService.postServiceCenter(serviceCenter);
+  	};
+
+	// $http.get("http://localhost:8000/api2/servicecenters").success(function(res){
+	// 			$scope.serviceCenters = res;
+	// 			console.log($scope.serviceCenters);
 	// 		});	
 
 	// $scope.create = function (brand) {
