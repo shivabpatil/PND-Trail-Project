@@ -41,7 +41,7 @@
     "test-kitten": "mocha -R nyan test.js",
     "watch": "gulp watch",
     "postinstall": "./node_modules/bower/bin/bower install"
-}
+
   },
   "author": "Shivanand",
   "license": "ISC"
