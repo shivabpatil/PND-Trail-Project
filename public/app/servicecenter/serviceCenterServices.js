@@ -15,9 +15,26 @@ angular.module('pndApp.serviceCenterServices', [])
 		this.postServiceCenter = function(serviceCenter){
 
 			//console.log(serviceCenter)
-			return $.post("http://localhost:8000/api2/servicecenters",serviceCenter).then(function(res){
+			return $http.post("http://localhost:8000/api2/servicecenters",serviceCenter).then(function(res){
 				console.log(res);
 				return res; 
 			});
+		}
+
+		this.editServiceCenter = function(id,serviceCenter){
+			
+			return $http.patch("http://localhost:8000/api2/servicecenters/" + id,serviceCenter).then(function(res){
+				console.log(res);
+				return res; 
+			});
+
+		}
+
+		this.deleteServiceCenter = function(id){
+			return $http.delete("http://localhost:8000/api2/servicecenters/" + id).then(function(res){
+				console.log(res);
+				return res; 
+			});
+
 		}
 	}])

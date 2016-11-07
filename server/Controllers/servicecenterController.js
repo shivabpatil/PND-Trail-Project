@@ -8,10 +8,15 @@ var servicecenterController = function (Servicecenter) {
 		};
 	var get = function (req,res) {
 			// query wiht name 
-			var query={}
-			if (req.query.name) {
-				query.name=req.query.name;
-			}
+			var query={};
+			console.log(req.query);
+
+
+			if (req.query) {
+				
+			 	query = req.query;
+			 	console.log(query);
+			 } 
 
 			//return all service center
 			Servicecenter.find(query,function (error,servicecenters) {

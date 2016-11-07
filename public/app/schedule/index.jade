@@ -32,11 +32,15 @@
 				form(name="assign-dperson" method="patch")
 					.form-group
 						label(for="name") Name
-						input.form-control(placeholder="Last Name")
+						select.from-control(ng-model="name")
+							option A
+							option B
+							option c
+
 					.form-group
 						label(for="contact") Contact*
-						input.form-control(placeholder="Contact")
-					button.btn.btn-primary() Assign 
+						input.form-control(placeholder="Contact" ng-model="contact")
+					button.btn.btn-primary(ng-click="assignDPerson(schedule._id,name,contact)" ) Assign 
 
 
 	

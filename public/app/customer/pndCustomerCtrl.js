@@ -2,27 +2,37 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 	
 	var scheduleId;
     //$scope.serviceCenters = {};
+	$http.get("http://localhost:8000/api9/areas").success(function(res){
+				$scope.areas = res;
+				//console.log($scope.areas);
+			});	
+  	
 	
-	$http.get("http://localhost:8000/api2/servicecenters").success(function(res){
+	$scope.selectServiceCenter =function (area) {
+		//console.log(area._id)
+		$http.get("http://localhost:8000/api2/servicecenters?_areaId="+ area._id).success(function(res){
 			$scope.serviceCenters = res;
 			//console.log(res);
 			//console.log($scope.serviceCenters);
 		});
-	$scope.selectSlots = function (servicecenter) {
-		// console.log(servicecenter._id);
 
-		$http.get("http://localhost:8000/api7/slots?_servicecenterId=" + servicecenter._id ).success(function(res){
+		$http.get("http://localhost:8000/api7/slots?_areaId=" + area._id ).success(function(res){
 			$scope.slots = res;
 		    // console.log(res);
 			//console.log($scope.slots);
 		});
-		
 	}
+	// $scope.selectSlots = function (area) {
+	// 	// console.log(servicecenter._id);
+
+		
+		
+	// }
    
 	
 
 
-	$scope.create = function (customer,bike,schedule,serviceCenterDetails,slotDetails) {
+	$scope.create = function (customer,bike,schedule,serviceCenterDetails,slotDetails,area) {
 		
 		var bookedSlot = {} ;
 		bookedSlot._slotId = slotDetails._id;
@@ -70,7 +80,7 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 				$http.post("http://localhost:8000/api6/schedules",schedule).success(function(res){
 						scheduleId = res._Id;
 						console.log(res);
-						$window.location.href = '/schedules';
+						//$window.location.href = '/schedules';
 					});
 				
 			}

@@ -10,7 +10,7 @@ var slotModel = new Schema({
 		type:Number,
 		required:true
 	},
-	_servicecenterId:Schema.Types.ObjectId,
+	_areaId:Schema.Types.ObjectId,
 	
 	create_at:{
 		type:Date,

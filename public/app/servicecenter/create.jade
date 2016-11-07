@@ -4,7 +4,7 @@
 			.col-md-6
 				.form-group
 					label(for="area") Area*
-					input.form-control(placeholder="Area", ng-model="serviceCenter.area_group")
+					select.form-control(ng-model="serviceCenter._areaId", ng-options="area as area.name for area in areas track by area._id")
 				.form-group
 					label(for="brand") Brand*
 					input.form-control(placeholder="Brand", ng-model="serviceCenter.brand")
@@ -62,11 +62,14 @@
 
 					td {{serviceCenter.name}}
 					td {{serviceCenter.address.line1}},{{serviceCenter.address.landmark}},{{serviceCenter.address.area}},{{serviceCenter.address.city}},{{serviceCenter.address.state}}
-					td {{serviceCenter.location}}
+					td {{serviceCenter.area_group}}
 					
 						button.btn.btn-primary(ng-click="delete(serviceCenter._id)")
 							span.glyphicon.glyphicon-remove
 				
-
-
+		.row
+			div(ng-repeat="serviceCenter in serviceCenters", data-ng-click="bindSelectedData(serviceCenter)")
+				div {{serviceCenter.name}}
+				div {{serviceCenter.address.line1}},{{serviceCenter.address.landmark}},{{serviceCenter.address.area}},{{serviceCenter.address.city}},{{serviceCenter.address.state}}
+				div {{serviceCenter.area_group}}
 
