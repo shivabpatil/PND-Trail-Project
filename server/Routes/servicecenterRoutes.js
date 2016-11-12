@@ -12,7 +12,7 @@ var routes = function (Servicecenter) {
 	servicecenterRouter.use('/servicecenters/:servicecenterId',function (req,res,next) {
 		Servicecenter.findById(req.params.servicecenterId,function (error,servicecenter) {
 			if (error) {
-				res.satus(500).send(error);		
+				res.status(500).send(error);		
 			} else if (servicecenter) {
 				req.servicecenter = servicecenter;
 				next();		
@@ -28,7 +28,8 @@ var routes = function (Servicecenter) {
 		.get(function (req,res) {
 			res.json(req.servicecenter);
 		})
-		.put(function (req,res) {		
+		.put(function (req,res) {	
+				console.log(req.body);	
 				req.servicecenter.name = req.body.name;
 				req.servicecenter.brand = req.body.brand;
 				req.servicecenter.email = req.body.email;
@@ -45,12 +46,15 @@ var routes = function (Servicecenter) {
 				req.servicecenter.save(function (error) {
 					if (error) {
 						res.status(500).send(error);
+						console.log(error);
 					} else {
 						res.json(req.servicecenter);
 					}
 				});	
 			})
 		.patch(function (req,res) {
+
+			console.log(req.body);
 
 			if(req.body._id){
 				delete req.body._id;

@@ -15,7 +15,7 @@ var scheduleController = function(Schedule) {
 			// 	 	res.json(schedules);
 			// 	 } 
 			// })
-			Schedule.find({}).sort('-pickup_time').exec(function (error,schedules) {
+			Schedule.find({}).sort({pickup_date: -1,pickup_time: -1}).exec(function (error,schedules) {
 				if (error) {
 				 	res.staus(500).send(error);
 				 } else {

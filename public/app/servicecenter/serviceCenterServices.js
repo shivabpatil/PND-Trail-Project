@@ -22,8 +22,9 @@ angular.module('pndApp.serviceCenterServices', [])
 		}
 
 		this.editServiceCenter = function(id,serviceCenter){
-			
-			return $http.patch("http://localhost:8000/api2/servicecenters/" + id,serviceCenter).then(function(res){
+			console.log("id:"+id);
+			console.log(serviceCenter);
+			return $http.put("http://localhost:8000/api2/servicecenters/" + id,serviceCenter).then(function(res){
 				console.log(res);
 				return res; 
 			});

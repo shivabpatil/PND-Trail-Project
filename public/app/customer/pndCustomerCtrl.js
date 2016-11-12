@@ -47,6 +47,8 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 		schedule.pickup_address = customer.address;
 		schedule.bike_passing = bike.passing;
 		schedule.bike_number = bike.bikenumber;
+		schedule.dperson_name  = "";
+		schedule.dpaerson_contact= 0;
 		schedule._serviceCenterId = serviceCenterDetails._id;
 		schedule.pickup_time= slotDetails.slot_time;
 		schedule.drop_time= slotDetails.slot_time;

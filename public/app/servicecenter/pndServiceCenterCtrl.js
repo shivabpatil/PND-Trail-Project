@@ -23,6 +23,11 @@ angular.module('pndApp').controller('pndServiceCenterCtrl', function($scope,$fil
 				$scope.areas = res;
 				console.log($scope.areas);
 			});	
+
+  	$http.get("http://localhost:8000/api10/brands").success(function(res){
+				$scope.brands = res;
+				console.log($scope.brands);
+			});	
   	
     serviceCenterService.getServiceCenters().then(function (res) {
   		$scope.serviceCenters = res;
@@ -47,7 +52,7 @@ angular.module('pndApp').controller('pndServiceCenterCtrl', function($scope,$fil
   	$scope.bindSelectedData = function (serviceCenter) {
 		$scope.serviceCenter._id = serviceCenter._id;
 		$scope.serviceCenter.name = serviceCenter.name;
-		$scope.serviceCenter.brand = serviceCenter.brand;
+		//$scope.serviceCenter.brand = serviceCenter.brand.name;
 		$scope.serviceCenter.email = serviceCenter.email;
 		$scope.serviceCenter.contact = serviceCenter.contact;
 		$scope.serviceCenter.address = serviceCenter.address;
@@ -62,6 +67,8 @@ angular.module('pndApp').controller('pndServiceCenterCtrl', function($scope,$fil
 		console.log(serviceCenterId);
 		console.log(serviceCenter);
 		delete serviceCenter._id;
+		delete serviceCenter.start_time;
+		delete serviceCenter.end_time;
 		console.log(serviceCenter);
 		serviceCenterService.editServiceCenter(serviceCenterId,serviceCenter);
 		

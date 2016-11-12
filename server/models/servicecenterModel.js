@@ -5,7 +5,6 @@ var Schema = mongoose.Schema;
 var servicecenterModel = new Schema({
 	name:{
 		type:String,
-		
 		required:true
 	},
 	_adminId:Schema.Types.ObjectId,
@@ -70,10 +69,12 @@ var servicecenterModel = new Schema({
 	},
 	start_time:{
 		type:Date,
+		default:4
 		
 	},
 	end_time:{
 		type:Date,
+		default:4
 		
 	},
 	create_at:{

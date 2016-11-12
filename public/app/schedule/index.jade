@@ -6,7 +6,7 @@
 			th Customer Name & Contact
 			th Customer Address 
 			th Bike Number
-			
+			th Delivery Person
 		tr(ng-repeat="schedule in schedules")
 			td {{schedule.pickup_time}}
 			td {{schedule.pickup_date| date:'dd-MMM-yy'}}
@@ -28,19 +28,25 @@
 						{{schedule.pickup_address.area}}
 				
 			td {{schedule.bike_passing}} {{schedule.bike_number}}	
-			td 
-				form(name="assign-dperson" method="patch")
-					.form-group
-						label(for="name") Name
-						select.from-control(ng-model="name")
-							option A
-							option B
-							option c
+			
+			td
+				div(ng-if="schedule.dpaerson_contact === 0")
+					form(name="assign-dperson" method="patch")
+						.form-group
+							label(for="name") Name
+							select.from-control(ng-model="name")
+								option A
+								option B
+								option c
 
-					.form-group
-						label(for="contact") Contact*
-						input.form-control(placeholder="Contact" ng-model="contact")
-					button.btn.btn-primary(ng-click="assignDPerson(schedule._id,name,contact)" ) Assign 
+						.form-group
+							label(for="contact") Contact*
+							input.form-control(placeholder="Contact" ng-model="contact")
+						button.btn.btn-primary(ng-click="assignDPerson(schedule._id,name,contact)" ) Assign
+				div(ng-if="schedule.dpaerson_contact !== 0")
+					ul
+						li {{schedule.dperson_name}}
+						li {{schedule.dpaerson_contact}}
 
 
 	
