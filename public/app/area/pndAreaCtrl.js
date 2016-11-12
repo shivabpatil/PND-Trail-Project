@@ -7,7 +7,7 @@ angular.module('pndApp').controller('pndAreaCtrl', function($scope, $route,$filt
 		no_dpersons:0
 	};
 
-	$http.get("http://localhost:8000/api9/areas").success(function(res){
+	$http.get("https://pndservices.herokuapp.com/api9/areas").success(function(res){
 				$scope.areas = res;
 				console.log($scope.areas);
 			});	
@@ -15,7 +15,7 @@ angular.module('pndApp').controller('pndAreaCtrl', function($scope, $route,$filt
 	$scope.create = function (area) {
 		console.log(area);
 		delete area._id;
-		$http.post("http://localhost:8000/api9/areas",area).success(function (res) {
+		$http.post("https://pndservices.herokuapp.com/api9/areas",area).success(function (res) {
 			$scope.area1 = res;
 			console.log($scope.area1);
 			$route.reload();
@@ -24,7 +24,7 @@ angular.module('pndApp').controller('pndAreaCtrl', function($scope, $route,$filt
 	}
 
 	$scope.delete = function (areaId) {
-		$http.delete("http://localhost:8000/api9/areas/" + areaId).success(function(res){
+		$http.delete("https://pndservices.herokuapp.com/api9/areas/" + areaId).success(function(res){
 				// $scope.msg = res;
 				// console.log($scope.msg);
 				$route.reload();
@@ -47,7 +47,7 @@ angular.module('pndApp').controller('pndAreaCtrl', function($scope, $route,$filt
 		delete area._id;
 			console.log(area);
 
-		$http.patch("http://localhost:8000/api9/areas/" + areaId,area).success(function (res) {
+		$http.patch("https://pndservices.herokuapp.com/api9/areas/" + areaId,area).success(function (res) {
 			$scope.area2 = res;
 			console.log($scope.area2);
 			$route.reload();

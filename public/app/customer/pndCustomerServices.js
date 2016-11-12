@@ -8,7 +8,7 @@ angular.module('pndApp.customerServices', [])
 		
 		this.getCustomers = function(){
 			
-			return $http.get("http://localhost:8000/api3/customers").then(function(res){
+			return $http.get("https://pndservices.herokuapp.com/api3/customers").then(function(res){
 				return res;
 			});
 			
