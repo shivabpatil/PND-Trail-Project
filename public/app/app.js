@@ -8,7 +8,7 @@ angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 		.when('/schedules',{templateUrl:'partials/schedule/index',controller:'pndScheduleCtrl'})
 		.when('/areas',{templateUrl:'partials/area/create',controller:'pndAreaCtrl'})
 		.when('/brands',{templateUrl:'partials/brand/create',controller:'pndBrandCtrl'})
-		.when('/serviceCenters',{templateUrl:'partials/serviceCenter/create',controller:'pndServiceCenterCtrl'})
+		.when('/serviceCenters',{templateUrl:'partials/servicec/create',controller:'pndServiceCenterCtrl'})
 })
 
 
