@@ -17,7 +17,20 @@ html
 						li
 							a(href="/") Home
 						li 
-							a(href="/customer") Customer
+							a(href="/schedules") Schedule
+						li.dropdown
+							a.dropdown-toggle(href="#",data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false") Admin Pages
+								span.caret
+							ul.dropdown-menu
+								li 
+									a(href="/customer") Customer
+								li 
+									a(href="/brands") Brands
+								li 
+									a(href="/areas") Area Groups 
+								li 
+									a(href="/serviceCenters") Service Centers
+
 					div(ng-include="'/partials/account/navbar-login'")
 					
 		block main-content
