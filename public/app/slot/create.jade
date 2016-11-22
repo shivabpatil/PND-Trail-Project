@@ -4,13 +4,20 @@
 			.col-md-6
 				.form-group
 					label(for="slot_time") Slot Time*
-					input.form-control(placeholder="", ng-model="slot.slot_time")
+					select.form-control( ng-model="slot.slot_time")
+						option(value="8-9") 8-9
+						option(value="9-10") 9-10
+						option(value="10-11") 10-11
+						option(value="11-12") 11-12
+						option(value="13-14") 13-14
+						option(value="14-15") 14-15
+						option(value="15-16") 15-16
 				.form-group
-					label(for="slot_capacity") Slot Capacity
+					label(for="slot_capacity") Slot Capacity*
 					input.form-control(placeholder="", ng-model="slot.slot_capacity")
 				.form-group
 					label(for="area") Area
-					input.form-control(placeholder="", ng-model="area")
+					select.form-control(ng-model="area", ng-options="area as area.name for area in areas track by area._id")
 				
 				.form-group
 					label(for="slot_number") Slot numbar
@@ -18,9 +25,9 @@
 						
 		.row
 			.col-md-6.col-sm-6
-				button.btn.btn-primary.btn-block(ng-click="create(area)") Submit
+				button.btn.btn-primary.btn-block(ng-click="create(slot,area)") Submit
 			.col-md-6.col-sm-6
-				button.btn.btn-primary.btn-block(ng-click="edit(area._id,area)") Edit
+				button.btn.btn-primary.btn-block(ng-click="edit(slot._id,slot)") Edit
 		.row 
 			table.table.table-striped
 				tr

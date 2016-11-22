@@ -1,32 +1,41 @@
 angular.module('pndApp').controller('pndSlotCtrl', function($scope,$location, $route,$filter,$window,$rootScope,$http){
 	
-	$scope.area = {
+	$scope.slot = {
 		_id:'',
-		name: '',
-		no_service_centers:0,
-		no_dpersons:0
+		slot_time: '',
+		slot_capacity:0,
+		_areaId:''
 	};
-
-
 
 	$http.get("/api9/areas").success(function(res){
 				$scope.areas = res;
-				console.log($scope.areas);
+				// console.log($scope.areas);
 			});	
 
-	$scope.create = function (area) {
-		console.log(area);
-		delete area._id;
-		$http.post("/api9/areas",area).success(function (res) {
-			$scope.area1 = res;
-			console.log($scope.area1);
+
+
+	$http.get("/api7/slots").success(function(res){
+				$scope.slots = res;
+				// console.log($scope.slots);
+			});	
+
+	$scope.create = function (slot,area) {
+		console.log(slot);
+		delete slot._id;
+		slot._areaId = area._id;
+
+		// console.log(slot);
+
+		$http.post("/api7/slots",slot).success(function (res) {
+			$scope.slot1 = res;
+			console.log($scope.slot1);
 			$route.reload();
-			// $window.location.href = '/areas/index';
+			// $window.location.href = '/slots/index';
 		})
 	}
 
-	$scope.delete = function (areaId) {
-		$http.delete("/api9/areas/" + areaId).success(function(res){
+	$scope.delete = function (slotId) {
+		$http.delete("/api7/slots/" + slotId).success(function(res){
 				// $scope.msg = res;
 				// console.log($scope.msg);
 				$route.reload();
@@ -34,26 +43,25 @@ angular.module('pndApp').controller('pndSlotCtrl', function($scope,$location, $r
 	
 	}
 
-	$scope.bindSelectedData = function (area) {
-		$scope.area._id = area._id;
-		$scope.area.name = area.name;
-		$scope.area.no_service_centers = area.no_service_centers;
-		$scope.area.no_dpersons = area.no_dpersons;
+	$scope.bindSelectedData = function (slot) {
+		$scope.slot._id = slot._id;
+		$scope.slot.slot_time = slot.slot_time;
+		$scope.slot.slot_capacity = slot.slot_capacity;
+		$scope.slot._areaId = slot._areaId;
+		console.log($scope.slot);
 
 	}
 
-	$scope.edit = function (areaId,area) {
-		console.log(areaId);
-		console.log(area);
+	$scope.edit = function (slotId,slot) {
+		console.log(slotId);
+		console.log(slot);
+		delete slot._id;
 
-		delete area._id;
-			console.log(area);
-
-		$http.patch("/api9/areas/" + areaId,area).success(function (res) {
-			$scope.area2 = res;
-			console.log($scope.area2);
+		$http.patch("/api7/slots/" + slotId,slot).success(function (res) {
+			$scope.slot2 = res;
+			console.log($scope.slot2);
 			$route.reload();
-			// $window.location.href = '/areas/index';
+			// $window.location.href = '/slots/index';
 		})
 	}	
 
