@@ -34,11 +34,7 @@
 					form(name="assign-dperson" method="patch")
 						.form-group
 							label(for="name") Name
-							select.from-control(ng-model="name")
-								option A
-								option B
-								option c
-
+							input.form-control(placeholder="Name", ng-model="name")
 						.form-group
 							label(for="contact") Contact*
 							input.form-control(placeholder="Contact" ng-model="contact")
