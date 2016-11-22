@@ -1,4 +1,4 @@
-angular.module('pndApp').controller('pndAreaCtrl', function($scope,$location, $route,$filter,$window,$rootScope,$http){
+angular.module('pndApp').controller('pndSlotCtrl', function($scope,$location, $route,$filter,$window,$rootScope,$http){
 	
 	$scope.area = {
 		_id:'',

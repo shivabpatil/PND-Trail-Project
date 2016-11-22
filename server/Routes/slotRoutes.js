@@ -31,6 +31,7 @@ var routes = function (Slot) {
 		.put(function (req,res) {
 			req.slot.slot_time= req.body.slot_time;
 			req.slot.slot_capacity = req.body.slot_capacity ;
+			req.slot.slot_number = req.body.slot_number;
 			req.slot.save(function (error) {
 				if (error) {
 					res.status(500).send(error);

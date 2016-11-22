@@ -19,12 +19,12 @@ angular.module('pndApp').controller('pndServiceCenterCtrl', function($scope,$fil
 	};
 	// console.log($scope.serviceCenter);
 
-	$http.get("https://pndservices.herokuapp.com/api9/areas").success(function(res){
+	$http.get("/api9/areas").success(function(res){
 				$scope.areas = res;
 				console.log($scope.areas);
 			});	
 
-  	$http.get("https://pndservices.herokuapp.com/api10/brands").success(function(res){
+  	$http.get("/api10/brands").success(function(res){
 				$scope.brands = res;
 				console.log($scope.brands);
 			});	
@@ -82,7 +82,7 @@ angular.module('pndApp').controller('pndServiceCenterCtrl', function($scope,$fil
   		$route.reload();
 	}
 
-	// $http.get("https://pndservices.herokuapp.com/api2/servicecenters").success(function(res){
+	// $http.get("/api2/servicecenters").success(function(res){
 	// 			$scope.serviceCenters = res;
 	// 			console.log($scope.serviceCenters);
 	// 		});	
@@ -91,7 +91,7 @@ angular.module('pndApp').controller('pndServiceCenterCtrl', function($scope,$fil
 	// 	delete brand._id;
 	// 	console.log(brand);
 
-	// 	$http.post("https://pndservices.herokuapp.com/api10/brands",brand).success(function (res) {
+	// 	$http.post("/api10/brands",brand).success(function (res) {
 	// 		$scope.brand1 = res;
 	// 		console.log($scope.brand1);
 	// 		$route.reload();

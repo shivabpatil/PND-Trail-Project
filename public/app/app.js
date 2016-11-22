@@ -9,6 +9,7 @@ angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 		.when('/areas',{templateUrl:'partials/area/create',controller:'pndAreaCtrl'})
 		.when('/brands',{templateUrl:'partials/brand/create',controller:'pndBrandCtrl'})
 		.when('/serviceCenters',{templateUrl:'partials/servicec/create',controller:'pndServiceCenterCtrl'})
+		.when('/slots',{templateUrl:'partials/slot/create',controller:'pndSlotCtrl'})
 })
 
 

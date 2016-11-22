@@ -2,7 +2,7 @@ angular.module('pndApp').controller('pndScheduleCtrl',function($scope, $route,$w
 
 	var schedule = {};
 
-	$http.get("https://pndservices.herokuapp.com/api6/schedules").success(function(res){
+	$http.get("/api6/schedules").success(function(res){
 				$scope.schedules = res;
 				console.log(res);
 			});	
@@ -14,7 +14,7 @@ angular.module('pndApp').controller('pndScheduleCtrl',function($scope, $route,$w
 		schedule.dperson_name = name;
 		schedule.dpaerson_contact = contact;
 
-		$http.patch("https://pndservices.herokuapp.com/api6/schedules/" + scheduleId,schedule).success(function (res) {
+		$http.patch("/api6/schedules/" + scheduleId,schedule).success(function (res) {
 			$scope.sched = res;
 			console.log($scope.sched);
 			$route.reload();

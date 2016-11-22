@@ -1,0 +1,41 @@
+.container
+	form(name="create-slot" method="post")
+		.row 
+			.col-md-6
+				.form-group
+					label(for="slot_time") Slot Time*
+					input.form-control(placeholder="", ng-model="slot.slot_time")
+				.form-group
+					label(for="slot_capacity") Slot Capacity
+					input.form-control(placeholder="", ng-model="slot.slot_capacity")
+				.form-group
+					label(for="area") Area
+					input.form-control(placeholder="", ng-model="area")
+				
+				.form-group
+					label(for="slot_number") Slot numbar
+					input.form-control(placeholder="", ng-model="slot.slot_numbaer", disabled)
+						
+		.row
+			.col-md-6.col-sm-6
+				button.btn.btn-primary.btn-block(ng-click="create(area)") Submit
+			.col-md-6.col-sm-6
+				button.btn.btn-primary.btn-block(ng-click="edit(area._id,area)") Edit
+		.row 
+			table.table.table-striped
+				tr
+					th Slot
+					th Slot Capacity
+					th Slot Area
+					
+				tr(ng-repeat="slot in slots", data-ng-click="bindSelectedData(slot)")
+					td {{slot.slot_time}}
+					td {{slot.slot_capacity}}
+					td {{slot._areaId}}
+					td 
+						button.btn.btn-primary(ng-click="delete(slot._id)")
+							span.glyphicon.glyphicon-remove
+				
+
+
+

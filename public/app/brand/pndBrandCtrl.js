@@ -6,7 +6,7 @@ angular.module('pndApp').controller('pndBrandCtrl', function($scope, $route,$fil
 		brand_info:''
 	};
 
-	$http.get("https://pndservices.herokuapp.com/api10/brands").success(function(res){
+	$http.get("/api10/brands").success(function(res){
 				$scope.brands = res;
 				console.log($scope.brands);
 			});	
@@ -15,7 +15,7 @@ angular.module('pndApp').controller('pndBrandCtrl', function($scope, $route,$fil
 		delete brand._id;
 		console.log(brand);
 
-		$http.post("https://pndservices.herokuapp.com/api10/brands",brand).success(function (res) {
+		$http.post("/api10/brands",brand).success(function (res) {
 			$scope.brand1 = res;
 			console.log($scope.brand1);
 			$route.reload();
@@ -24,7 +24,7 @@ angular.module('pndApp').controller('pndBrandCtrl', function($scope, $route,$fil
 	}
 
 	$scope.delete = function (brandId) {
-		$http.delete("https://pndservices.herokuapp.com/api10/brands/" + brandId).success(function(res){
+		$http.delete("/api10/brands/" + brandId).success(function(res){
 				// $scope.msg = res;
 				// console.log($scope.msg);
 				$route.reload();
@@ -46,7 +46,7 @@ angular.module('pndApp').controller('pndBrandCtrl', function($scope, $route,$fil
 		delete brand._id;
 			console.log(brand);
 
-		$http.put("https://pndservices.herokuapp.com/api10/brands/" + brandId,brand).success(function (res) {
+		$http.put("/api10/brands/" + brandId,brand).success(function (res) {
 			$scope.brand2 = res;
 			console.log($scope.brand2);
 			$route.reload();
