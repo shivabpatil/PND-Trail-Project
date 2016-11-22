@@ -22,4 +22,17 @@ angular.module('pndApp').controller('pndScheduleCtrl',function($scope, $route,$w
 		})
 		
 	}
+	$scope.assignStatus = function (scheduleId,status) {
+		console.log(scheduleId);
+		console.log(status);
+		schedule.status = status;
+
+		$http.patch("/api6/schedules/" + scheduleId,schedule).success(function (res) {
+			$scope.sched = res;
+			console.log($scope.sched);
+			$route.reload();
+			// $window.location.href = '/areas/index';
+		})
+		
+	}
 })

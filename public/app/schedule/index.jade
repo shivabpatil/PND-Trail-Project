@@ -1,13 +1,21 @@
 .container
-	table.table.table-striped
+	table.table.table-bordered
 		tr
+			th Status
 			th Pickup Time
 			th Date
 			th Customer Name & Contact
 			th Customer Address 
 			th Bike Number
 			th Delivery Person
+			th Set Status
 		tr(ng-repeat="schedule in schedules")
+			td 
+				button.btn.btn-success( ng-if="schedule.status == 'Processing'") Processing
+				button.btn.btn-warning( ng-if="schedule.status == 'Postponed'") Postponed
+				button.btn.btn-danger( ng-if="schedule.status == 'Canceled'") Canceled
+				button.btn.btn-default( ng-if="schedule.status == ''") None
+
 			td {{schedule.pickup_time}}
 			td {{schedule.pickup_date| date:'dd-MMM-yy'}}
 			td 
@@ -18,14 +26,11 @@
 			td 
 				ul
 					li 
-						b Address :
-						{{schedule.pickup_address.line1}}
+						b Address : {{schedule.pickup_address.line1}}
 					li 
-						b LandMark :
-						{{schedule.pickup_address.landmark}}
+						b LandMark : {{schedule.pickup_address.landmark}}
 					li 
-						b Area :
-						{{schedule.pickup_address.area}}
+						b Area : {{schedule.pickup_address.area}}
 				
 			td {{schedule.bike_passing}} {{schedule.bike_number}}	
 			
@@ -43,6 +48,9 @@
 					ul
 						li {{schedule.dperson_name}}
 						li {{schedule.dpaerson_contact}}
-
+			td
+				button.btn.btn-success( ng-if="schedule.status !== 'Processing'",ng-click="assignStatus(schedule._id,'Processing')") Processing
+				button.btn.btn-warning(ng-if="schedule.status !== 'Postponed'",ng-click="assignStatus(schedule._id,'Postponed')") Postponed
+				button.btn.btn-danger(ng-if="schedule.status !== 'Canceled'",ng-click="assignStatus(schedule._id,'Canceled')") Canceled 
 
 	
