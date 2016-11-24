@@ -1,6 +1,7 @@
 angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$window,$rootScope,$http,getcustomerService){
 	
 	var scheduleId;
+	
     //$scope.serviceCenters = {};
 	$http.get("/api9/areas").success(function(res){
 				$scope.areas = res;
@@ -90,36 +91,26 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 						console.log(res);
 						//$window.location.href = '/schedules';
 					});
+				$scope.scheduleCreated();
 				
 			}
 			else{
 				console.log("Slot full");
+				$scope.slotFull();
 			}
 
 		});
-	
-
-		
-		
-
-		// $http.post("/api8/bookedSlots",).success(function(res){
-		// 	$scope.serviceCenters = res;
-		// 	console.log(res);
-		// 	console.log($scope.serviceCenters);
-		// });
-
-		// console.log(customer)
-		
-
-
-
-	
-		// schedule._servicecenterId = "57e378e79965cb131cb3d33b";
-	   
 	}
-
-	// $scope.jump = function () {
-	// 	$window.location.href = '/schedules';
-	// }
+	
+	$scope.jump = function () {
+		$window.location.href = '/schedules';
+	}
+	$scope.scheduleCreated = function() {
+        $window.alert("The schedule is created for this entry");
+        //$scope.jump();
+      };
+    $scope.slotFull = function() {
+        $window.alert("The selected slot is full");
+      };
 
 })
