@@ -8,7 +8,7 @@
 					.panel-body 
 						.form-group
 							label(for="brand") Brand*
-							input.form-control(placeholder="Brand", ng-model="bike.brand")
+							select.form-control(ng-model="brand", ng-options="brand as brand.name for brand in brands track by brand.name")
 						.form-group
 							label(for="area") Area*
 							select.form-control(ng-model="area", ng-options="area as area.name for area in areas track by area._id",ng-change="selectServiceCenter(area)")
@@ -73,7 +73,7 @@
 							label(for="state") State*
 							input.form-control(placeholder="State", ng-model="customer.address.state")
 		.row
-			button.btn.btn-primary.btn-block(ng-click="create(customer,bike,schedule,serviceCenterDetails,slotDetails,area)") Submit
+			button.btn.btn-primary.btn-block(ng-click="create(customer,bike,schedule,serviceCenterDetails,slotDetails,area,brand)") Submit
 		
 
 

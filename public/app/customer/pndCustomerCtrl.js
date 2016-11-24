@@ -6,6 +6,10 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 				$scope.areas = res;
 				//console.log($scope.areas);
 			});	
+	$http.get("/api10/brands").success(function(res){
+				$scope.brands = res;
+				console.log($scope.brands);
+			});	
   	
 	
 	$scope.selectServiceCenter =function (area) {
@@ -32,7 +36,7 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 	
 
 
-	$scope.create = function (customer,bike,schedule,serviceCenterDetails,slotDetails,area) {
+	$scope.create = function (customer,bike,schedule,serviceCenterDetails,slotDetails,area,brand) {
 		
 		var bookedSlot = {} ;
 		bookedSlot._slotId = slotDetails._id;
@@ -52,12 +56,13 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 		schedule._serviceCenterId = serviceCenterDetails._id;
 		schedule.pickup_time= slotDetails.slot_time;
 		schedule.drop_time= slotDetails.slot_time;
+		bike.brand = brand.name;
 		// console.log(bookedSlot.booking_date);
 		// console.log(schedule.pickup_date);
 		// console.log(bookedSlot._slotId);
 		//console.log(schedule);
 		//console.log(customer);
-		//console.log(bike);
+		console.log(bike);
 
 		$http.get("/api8/bookedSlots?_slotId=" + bookedSlot._slotId + "&booking_date=" + bookedSlot.booking_date ).success(function(res){
 			$scope.bookedSlots = res;
@@ -77,6 +82,7 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 					});
 
 				$http.post("/api4/bikes",bike).success(function(res){
+							console.log(res);
 					});
 
 				$http.post("/api6/schedules",schedule).success(function(res){
