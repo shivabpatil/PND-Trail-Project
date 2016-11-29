@@ -1,4 +1,11 @@
 .container
+	.row 
+		.col.col-3
+			.form-group
+				label(for="filterDate") Date Filter
+				input.form-control(type="date", ng-model="fDate")
+			
+
 	table.table.table-bordered
 		tr
 			th Status
@@ -8,8 +15,8 @@
 			th Customer Address 
 			th Bike Number
 			th Delivery Person
-			th Set Status
-		tr(ng-repeat="schedule in schedules")
+			th Set Status 
+		tr(ng-repeat="schedule in schedules | dateFilter:fDate" ng-if="schedule.status != 'Postponed' && schedule.status != 'Canceled' ")
 			td 
 				button.btn.btn-success( ng-if="schedule.status == 'Processing'") Processing
 				button.btn.btn-warning( ng-if="schedule.status == 'Postponed'") Postponed

@@ -30,7 +30,7 @@ var routes = function (Brand) {
 		})
 		.put(function (req,res) {
 			req.brand.name = req.body.name;
-			req.brand_info = req.body.brand_info;
+			req.brand.brand_info = req.body.brand_info;
 			
 			req.brand.save(function (error) {
 				if (error) {
