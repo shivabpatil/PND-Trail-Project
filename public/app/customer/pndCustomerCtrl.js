@@ -40,7 +40,9 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 	$scope.create = function (customer,bike,schedule,serviceCenterDetails,slotDetails,area,brand) {
 		
 		var bookedSlot = {} ;
+		console.log(schedule);
 		bookedSlot._slotId = slotDetails._id;
+		console.log(schedule.pickup_date)
 		bookedSlot.booking_date = $filter('date')(schedule.pickup_date, "yyyy-MM-dd HH:mm:ss");
 		schedule.pickup_date = new Date($filter('date')(schedule.pickup_date, "yyyy-MM-dd HH:mm:ss")); 
 			
@@ -114,3 +116,26 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
       };
 
 })
+
+.directive('datepicker', function() {
+    return {
+
+      restrict: 'A',
+      // Always use along with an ng-model
+      require: '?ngModel',
+
+      link: function(scope, element, attrs, ngModel) {
+        if (!ngModel) return;
+
+        ngModel.$render = function() { //This will update the view with your model in case your model is changed by another code.
+           element.datepicker('update', ngModel.$viewValue || '');
+        };
+
+        element.datepicker().on("changeDate",function(event){
+            scope.$apply(function() {
+               ngModel.$setViewValue(event.date);//This will update the model property bound to your ng-model whenever the datepicker's date changes.
+            });
+        });
+      }
+    };
+});

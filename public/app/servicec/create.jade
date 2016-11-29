@@ -44,10 +44,18 @@
 					input.form-control(placeholder="Deliverypersons", ng-model="serviceCenter.deliverypersons",disabled)
 				.form-group
 					label(for="start_time") Start time
-					input.form-control(type="time", ng-model="serviceCenter.start_time")
+					#datetimepicker3.input-group.date
+						input.form-control(type='text',ng-model="serviceCenter.start_time")
+						span.input-group-addon
+							span.glyphicon.glyphicon-time
+				
 				.form-group
 					label(for="end_time") End time
-					input.form-control(type="time", ng-model="serviceCenter.end_time")
+					#datetimepicker3.input-group.date
+						input.form-control(type='text', ng-model="serviceCenter.end_time")
+						span.input-group-addon
+							span.glyphicon.glyphicon-time
+					
 		.row
 			.col-md-6.col-sm-6
 				button.btn.btn-primary.btn-block(ng-click="create(serviceCenter)") Submit
@@ -67,5 +75,11 @@
 					
 						button.btn.btn-primary(ng-click="delete(serviceCenter._id)")
 							span.glyphicon.glyphicon-trash
-				
+script(type='text/javascript').
+	$(function () {
+	$('#datetimepicker3').datetimepicker({
+	format: 'LT'
+	});
+	});
+
 		

@@ -47,9 +47,10 @@
 						.form-group
 							label(for="pickupDate") Pickup Date'
 							#datetimepicker11.input-group.date
-								input.form-control(type='text',ng-model="schedule.pickup_date")
+								input.form-control(type='text', datepickerng-model="schedule.pickup_date")
 								span.input-group-addon
 									span.glyphicon.glyphicon-calendar
+							div {{schedule.pickup_date}}
 						.form-group
 							label(for="slot_time") Time slot*
 							select.form-control(ng-model="slotDetails", ng-options="slot as slot.slot_time for slot in slots track by slot._id ")
@@ -80,7 +81,8 @@
 	script(type='text/javascript').
 		$(function () {
 		$('#datetimepicker11').datetimepicker({
-		daysOfWeekDisabled: [0, 6]
+		daysOfWeekDisabled: [0, 6],
+
 		});
 		});
 		
