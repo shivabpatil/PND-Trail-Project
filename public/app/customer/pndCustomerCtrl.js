@@ -1,4 +1,4 @@
-angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$window,$rootScope,$http,getcustomerService){
+angular.module('pndApp').controller('pndCustomerCtrl', function($scope, $route,$filter,$window,$rootScope,$http,getcustomerService){
 	
 	var scheduleId;
 	
@@ -37,14 +37,14 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 	
 
 
-	$scope.create = function (customer,bike,schedule,serviceCenterDetails,slotDetails,area,brand) {
+	$scope.create = function (customer,bike,dt,serviceCenterDetails,slotDetails,area,brand) {
 		
 		var bookedSlot = {} ;
-		console.log(schedule);
+		var schedule = {};
 		bookedSlot._slotId = slotDetails._id;
-		console.log(schedule.pickup_date)
-		bookedSlot.booking_date = $filter('date')(schedule.pickup_date, "yyyy-MM-dd HH:mm:ss");
-		schedule.pickup_date = new Date($filter('date')(schedule.pickup_date, "yyyy-MM-dd HH:mm:ss")); 
+		console.log(dt)
+		bookedSlot.booking_date = $filter('date')(dt, "yyyy-MM-dd HH:mm:ss");
+		schedule.pickup_date = new Date($filter('date')(dt, "yyyy-MM-dd HH:mm:ss")); 
 			
 		schedule.customer_name = customer.name;
 		schedule.customer_contact = customer.contact;
@@ -91,9 +91,11 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
 				$http.post("/api6/schedules",schedule).success(function(res){
 						scheduleId = res._Id;
 						console.log(res);
+
 						//$window.location.href = '/schedules';
 					});
 				$scope.scheduleCreated();
+				$route.reload();
 				
 			}
 			else{
@@ -114,28 +116,99 @@ angular.module('pndApp').controller('pndCustomerCtrl', function($scope,$filter,$
     $scope.slotFull = function() {
         $window.alert("The selected slot is full");
       };
+    $scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+
+  $scope.clear = function() {
+    $scope.dt = null;
+  };
+
+  $scope.inlineOptions = {
+    customClass: getDayClass,
+    minDate: new Date(),
+    showWeeks: true
+  };
+
+  $scope.dateOptions = {
+    dateDisabled: disabled,
+    formatYear: 'yy',
+    maxDate: new Date(2020, 5, 22),
+    minDate: new Date(),
+    startingDay: 1
+  };
+
+  // Disable weekend selection
+  function disabled(data) {
+    var date = data.date,
+      mode = data.mode;
+    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+  }
+
+  $scope.toggleMin = function() {
+    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+    $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
+  };
+
+  $scope.toggleMin();
+
+  $scope.open1 = function() {
+    $scope.popup1.opened = true;
+  };
+
+  $scope.open2 = function() {
+    $scope.popup2.opened = true;
+  };
+
+  $scope.setDate = function(year, month, day) {
+    $scope.dt = new Date(year, month, day);
+  };
+
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[0];
+  $scope.altInputFormats = ['M!/d!/yyyy'];
+
+  $scope.popup1 = {
+    opened: false
+  };
+
+  $scope.popup2 = {
+    opened: false
+  };
+
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  var afterTomorrow = new Date();
+  afterTomorrow.setDate(tomorrow.getDate() + 1);
+  $scope.events = [
+    {
+      date: tomorrow,
+      status: 'full'
+    },
+    {
+      date: afterTomorrow,
+      status: 'partially'
+    }
+  ];
+
+  function getDayClass(data) {
+    var date = data.date,
+      mode = data.mode;
+    if (mode === 'day') {
+      var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+      for (var i = 0; i < $scope.events.length; i++) {
+        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+        if (dayToCheck === currentDay) {
+          return $scope.events[i].status;
+        }
+      }
+    }
+
+    return '';
+  }
 
 })
 
-.directive('datepicker', function() {
-    return {
-
-      restrict: 'A',
-      // Always use along with an ng-model
-      require: '?ngModel',
-
-      link: function(scope, element, attrs, ngModel) {
-        if (!ngModel) return;
-
-        ngModel.$render = function() { //This will update the view with your model in case your model is changed by another code.
-           element.datepicker('update', ngModel.$viewValue || '');
-        };
-
-        element.datepicker().on("changeDate",function(event){
-            scope.$apply(function() {
-               ngModel.$setViewValue(event.date);//This will update the model property bound to your ng-model whenever the datepicker's date changes.
-            });
-        });
-      }
-    };
-});

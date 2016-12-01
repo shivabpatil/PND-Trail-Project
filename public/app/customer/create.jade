@@ -45,12 +45,12 @@
 					.panel-heading Schedule Details
 					.panel-body 
 						.form-group
-							label(for="pickupDate") Pickup Date'
-							#datetimepicker11.input-group.date
-								input.form-control(type='text', datepickerng-model="schedule.pickup_date")
-								span.input-group-addon
-									span.glyphicon.glyphicon-calendar
-							div {{schedule.pickup_date}}
+							label(for="pickupDate") Pickup Date
+							p.input-group
+								input.form-control(type='text',uib-datepicker-popup='',ng-model='dt',is-open='popup2.opened', datepicker-options='dateOptions', ng-required='true', close-text='Close')
+								span.input-group-btn
+									button.btn.btn-default(type='button', ng-click='open2()')
+										i.glyphicon.glyphicon-calendar
 						.form-group
 							label(for="slot_time") Time slot*
 							select.form-control(ng-model="slotDetails", ng-options="slot as slot.slot_time for slot in slots track by slot._id ")
@@ -77,7 +77,7 @@
 							label(for="state") State*
 							input.form-control(placeholder="State", ng-model="customer.address.state")
 		.row
-			button.btn.btn-primary.btn-block(ng-click="create(customer,bike,schedule,serviceCenterDetails,slotDetails,area,brand)") Submit
+			button.btn.btn-primary.btn-block(ng-click="create(customer,bike,dt,serviceCenterDetails,slotDetails,area,brand)") Submit
 	script(type='text/javascript').
 		$(function () {
 		$('#datetimepicker11').datetimepicker({
