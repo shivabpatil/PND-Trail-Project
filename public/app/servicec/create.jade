@@ -51,7 +51,7 @@
 				
 				.form-group
 					label(for="end_time") End time
-					#datetimepicker3.input-group.date
+					#datetimepicker4.input-group.date
 						input.form-control(type='text', ng-model="serviceCenter.end_time")
 						span.input-group-addon
 							span.glyphicon.glyphicon-time
@@ -78,6 +78,9 @@
 script(type='text/javascript').
 	$(function () {
 	$('#datetimepicker3').datetimepicker({
+	format: 'LT'
+	});
+	$('#datetimepicker4').datetimepicker({
 	format: 'LT'
 	});
 	});
