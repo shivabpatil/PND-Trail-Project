@@ -1,62 +1,63 @@
-form(name="create-servicecenter" method="")
-		.row 
-			.col-md-6
-				.form-group
-					label(for="name") Name*
-					input.form-control(placeholder="Name", ng-model="receipt.name")
-				.form-group
-					label(for="lname") Last Name
-					input.form-control(placeholder="Last name", ng-model="receipt.lname")
-				.form-group
-					label(for="contact") Contact*
-					input.form-control(placeholder="Contact", ng-model="receipt.contact")
-				.form-group
-					label(for="brand") Brand*
-					select.form-control(ng-model="brand", ng-options="brand as brand.name for brand in brands track by brad.name")
-				.form-group
-					label(for="serviceCenter") Service Center*
-					select.form-control(ng-model="serviceCenter", ng-options="serviceCenter as serviceCenter.name for serviceCenter in serviceCenters track by serviceCenter.name")
-				.form-group
-					label(for="passing") Passing
-					input.form-control(placeholder="Passing", ng-model="receipt.passing")
-				.form-group
-					label(for="bikenumber") Bike number*
-					input.form-control(placeholder="Bike number", ng-model="receipt.bikenumber")
-				.form-group
-					label(for="chassis_number") Chassis number *
-					input.form-control(placeholder="Chassis number", ng-model="receipt.chassis_number")
-				.form-group
-					label(for="receipt_number") Receipt number*
-					input.form-control(placeholder="Receipt number", ng-model="receipt.receipt_number")
-					
-		.row
-			.col-md-6.col-sm-6
-				button.btn.btn-primary.btn-block(ng-click="create(receipt,brand,serviceCenter)") Submit
-			.col-md-6.col-sm-6
-				button.btn.btn-primary.btn-block(ng-click="edit(receipt._id,receipt)") Edit
-		.row 
-			table.table.table-striped
-				tr
-					th Name
-					th Contact 
-					th Brand
-					th Service Center
-					th Chassis Number
-					th Passing
-					th Receipt Number
+.container
+	form(name="create-servicecenter" method="")
+			.row 
+				.col-md-6
+					.form-group
+						label(for="name") Name*
+						input.form-control(placeholder="Name", ng-model="receipt.name")
+					.form-group
+						label(for="lname") Last Name
+						input.form-control(placeholder="Last name", ng-model="receipt.lname")
+					.form-group
+						label(for="contact") Contact*
+						input.form-control(placeholder="Contact", ng-model="receipt.contact")
+					.form-group
+						label(for="brand") Brand*
+						select.form-control(ng-model="brand", ng-options="brand as brand.name for brand in brands track by brad.name")
+					.form-group
+						label(for="serviceCenter") Service Center*
+						select.form-control(ng-model="serviceCenter", ng-options="serviceCenter as serviceCenter.name for serviceCenter in serviceCenters track by serviceCenter.name")
+					.form-group
+						label(for="passing") Passing
+						input.form-control(placeholder="Passing", ng-model="receipt.passing")
+					.form-group
+						label(for="bikenumber") Bike number*
+						input.form-control(placeholder="Bike number", ng-model="receipt.bikenumber")
+					.form-group
+						label(for="chassis_number") Chassis number *
+						input.form-control(placeholder="Chassis number", ng-model="receipt.chassis_number")
+					.form-group
+						label(for="receipt_number") Receipt number*
+						input.form-control(placeholder="Receipt number", ng-model="receipt.receipt_number")
+						
+			.row
+				.col-md-6.col-sm-6
+					button.btn.btn-primary.btn-block(ng-click="create(receipt,brand,serviceCenter)") Submit
+				.col-md-6.col-sm-6
+					button.btn.btn-primary.btn-block(ng-click="edit(receipt._id,receipt)") Edit
+			.row 
+				table.table.table-striped
+					tr
+						th Name
+						th Contact 
+						th Brand
+						th Service Center
+						th Chassis Number
+						th Passing
+						th Receipt Number
 
-				tr(ng-repeat="receipt in receipts", data-ng-click="bindSelectedData(receipt)")
+					tr(ng-repeat="receipt in receipts", data-ng-click="bindSelectedData(receipt)")
 
-					td {{receipt.name}} {{receipt.lname}}
-					td {{receipt.contact}}
-					td {{receipt.brad}}
-					td {{receipt.service_center_name}}
-					td {{receipt.chassis_number}}
-					td {{receipt.passing}} {{receipt.bikenumber}}
-					td {{receipt.receipt_number}}
-					td
-						button.btn.btn-primary(ng-click="delete(receipt._id)")
-							span.glyphicon.glyphicon-trash
+						td {{receipt.name}} {{receipt.lname}}
+						td {{receipt.contact}}
+						td {{receipt.brad}}
+						td {{receipt.service_center_name}}
+						td {{receipt.chassis_number}}
+						td {{receipt.passing}} {{receipt.bikenumber}}
+						td {{receipt.receipt_number}}
+						td
+							button.btn.btn-primary(ng-click="delete(receipt._id)")
+								span.glyphicon.glyphicon-trash
 
 
-		
+			
