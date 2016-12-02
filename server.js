@@ -11,7 +11,7 @@ var app = express();
 var config = require('./server/config/config')[env];
 
 require('./server/config/express')(app,config);
-mongoose.Promise = global.Promise;
+//mongoose.Promise = global.Promise;
 mongoose.connect(config.db );
 
 require('./server/config/routes')(app);
