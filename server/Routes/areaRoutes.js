@@ -43,6 +43,8 @@ var routes = function (Area) {
 					start_time:req.body.service_centers[serviceCenter].start_time,
 					end_time:req.body.service_centers[serviceCenter].end_time
 				})
+			req.area.total_service_centers = req.area.service_centers.length;
+
 			for(var slot in req.body.slots)
 				req.area.slots.push({
 					slot_number:req.body.slots[slot].slot_number,

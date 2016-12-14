@@ -2,6 +2,7 @@ var areaController = function (Area) {
 	
 	var post = function (req,res) {
 			var area = new Area(req.body);
+			area.total_service_centers = req.body.service_centers.length;
 			area.save();
 			res.status(201).send(area); 
 		};
