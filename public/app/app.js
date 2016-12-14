@@ -11,6 +11,7 @@ angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 		.when('/serviceCenters',{templateUrl:'partials/servicec/create',controller:'pndServiceCenterCtrl'})
 		.when('/slots',{templateUrl:'partials/slot/create',controller:'pndSlotCtrl'})
 		.when('/receipts',{templateUrl:'partials/receipt/create',controller:'pndReceiptCtrl'})
+		.when('/admin',{templateUrl:'partials/admin/mainPage',controller:''})
 })
 
 

@@ -19,3 +19,6 @@ footer p {
 .navbar-form button {
   margin-left: 10px;
 }
+.panel-body .row {
+  margin: 10px;
+}

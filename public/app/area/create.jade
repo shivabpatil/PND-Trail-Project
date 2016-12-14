@@ -1,42 +1,44 @@
 .container
-	form(name="create-customer" method="post")
-		.row 
-			.col-md-6
-				.form-group
-					label(for="area") Area*
-					input.form-control(placeholder="Area", ng-model="area.name")
-				.form-group
-					label(for="no_service_center") No. of Service Centers
-					input.form-control(placeholder="", ng-model="area.no_service_centers")
-				.form-group
-					label(for="no_dpersons") No. of Delivery Persons
-					input.form-control(placeholder="", ng-model="area.no_dpersons")
-				.form-group
-					label(for="service_center_id") Service Center IDs
-					input.form-control(placeholder="IDs", ng-model="area.service_center_id", disabled)
-				.form-group
-					label(for="dperson_id") Delivery Person IDs
-					input.form-control(placeholder="IDs", ng-model="area.dperson_id", disabled)
-						
-		.row
-			.col-md-6.col-sm-6
-				button.btn.btn-primary.btn-block(ng-click="create(area)") Submit
-			.col-md-6.col-sm-6
-				button.btn.btn-primary.btn-block(ng-click="edit(area._id,area)") Edit
-		.row 
-			table.table.table-striped
-				tr
-					th Area
-					th No. of Service Centers
-					th No. of Delivery Persons
+	.panel.panel-primary
+		.panel-heading Area Details
+		.panel-body
+			.row 
+				.col-md-6
+					.form-group
+						label(for="area") Area Name*
+						input.form-control(placeholder="Area", ng-model="area.name")
+					.form-group
+						label(for="no_service_center") No. of Service Centers **
+						input.form-control(placeholder="", ng-model="area.no_service_centers")
+					.form-group
+						label(for="no_dpersons") Total Delivery Persons
+						input.form-control(placeholder="", ng-model="area.no_dpersons")
+					.form-group
+						label(for="service_center_id") Service Center IDs
+						input.form-control(placeholder="IDs", ng-model="area.service_center_id", disabled)
+					.form-group
+						label(for="dperson_id") Delivery Person IDs
+						input.form-control(placeholder="IDs", ng-model="area.dperson_id", disabled)
+							
+			.row
+				.col-md-6.col-sm-6
+					button.btn.btn-primary.btn-block(ng-click="create(area)") Submit
+				.col-md-6.col-sm-6
+					button.btn.btn-primary.btn-block(ng-click="edit(area._id,area)") Edit
+	.row 
+		table.table.table-striped
+			tr
+				th Area
+				th Total Service Centers
+				th Total Delivery Persons
 					
-				tr(ng-repeat="area in areas", data-ng-click="bindSelectedData(area)")
-					td {{area.name}}
-					td {{area.no_service_centers}}
-					td {{area.no_dpersons}}
-					td 
-						button.btn.btn-primary(ng-click="delete(area._id)")
-							span.glyphicon.glyphicon-remove
+			tr(ng-repeat="area in areas", data-ng-click="bindSelectedData(area)")
+				td {{area.name}}
+				td {{area.no_service_centers}}
+				td {{area.no_dpersons}}
+				td 
+					button.btn.btn-primary(ng-click="delete(area._id)")
+						span.glyphicon.glyphicon-remove
 				
 
 

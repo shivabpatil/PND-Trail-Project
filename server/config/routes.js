@@ -13,6 +13,8 @@ module.exports = function (app) {
 	var Brand = require('../models/brandModel');
 	var Receipt = require('../models/receiptModel');
 
+	var passport = require('passport');
+
 	adminRouter = require('../Routes/adminRoutes')(Admin);
 	servicecenterRouter = require('../Routes/servicecenterRoutes')(Servicecenter);
 	customerRouter = require('../Routes/customerRoutes')(Customer);
@@ -41,6 +43,27 @@ module.exports = function (app) {
 
 		console.log(req.params);
 		res.render('../../public/app/' + req.params[0]); 
+	});
+
+	app.post('/login',function(req,res,next){
+
+		var auth = passport.authenticate('local',function(err,user){
+			console.log('in routes  =>' + user);
+
+			if(err){
+				return next(err);
+			}
+			if(!user){
+				return res.send({success:false})
+			}
+			req.login(user,function(err){
+				if(err){
+					return next(err);
+				}
+				res.send({success:true,user:user})
+			})
+		})
+		auth(req,res,next);
 	});
 
 	app.get('*',function (req,res) {
