@@ -12,13 +12,14 @@ module.exports = function (app,config) {
 	function compile(str,path) {
 		return stylus(str).set('filename',path);
 	}
-
+	//console.log(passport.authenticate('local'));
 	app.set('views',config.rootPath + '/server/views');
 	app.set('view engine','jade');
 	app.use(logger('dev'));
-	app.use(cookieParser());
+	
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(bodyParser.json());
+	app.use(cookieParser());
 	app.use(session({secret:'pnd services',resave:false,saveUninitialized:false}));
 	app.use(passport.initialize());
 	app.use(passport.session());

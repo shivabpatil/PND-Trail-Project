@@ -6,7 +6,7 @@ var userModel = new Schema({
 		type:String,
 		required:true
 	},
-	userName:{
+	username:{
 		type:String,
 	},
 	email:{
@@ -16,14 +16,7 @@ var userModel = new Schema({
 		type:String,
 		
 	},
-	create_at:{
-		type:Date,
-		default: Date.now
-	},
-	updated_at:{
-		type:Date
-		
-	},
+	
 });
 
 module.exports = mongoose.model('User',userModel);

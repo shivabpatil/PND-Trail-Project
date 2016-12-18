@@ -22,3 +22,9 @@ footer p {
 .panel-body .row {
   margin: 10px;
 }
+.toast-top-right {
+  top: 70px;
+}
+.toast-success {
+  background-color: #13987e;
+}

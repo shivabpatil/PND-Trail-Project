@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 module.exports = function(config){
 	mongoose.connect(config.db );
@@ -7,4 +8,23 @@ module.exports = function(config){
 	db.once('open',function callback(){
 		console.log('Pnd data connected....');
 	});
+
+	var userModel = new Schema({
+		name:{
+			type:String,
+		},
+		username:{
+			type:String,
+		},
+		email:{
+			type:String,
+		},
+		password:{
+			type:String,
+			
+		},
+		
+	});
+
+	var User = mongoose.model('User',userModel);
 }

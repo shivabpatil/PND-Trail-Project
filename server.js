@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
 	express = require('express'),
 	passport = require('passport'),
-	LocalStrategy = require('passport-local').Strategy; //passport has differernt strategies.
+	LocalStrategy = require('passport-local').Strategy; //passport has differernt strategies.stragtegies how passport does login
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 //databse connection 
@@ -16,40 +16,51 @@ require('./server/config/express')(app,config);
 require('./server/config/mongoose')(config);
 //mongoose.Promise = global.Promise;
 
+// var Account = require('./server/models/accountModel');
+// passport.use(new LocalStrategy(Account.authenticate()));
+// passport.serializeUser(Account.serializeUser());
+// passport.deserializeUser(Account.deserializeUser());
 
-//implement local strategy 
-// var User = require('./server/models/userModel');
-// console.log(User);
-// passport.use(new LocalStrategy(
-// 	function(userName,passowrd,done){
-// 		console.log(userName);
-// 		User.findOne({userName:userName}).exec(function(error,user){
-// 			if(user){
-// 				return done(null,user);
-// 			}
-// 			else{
-// 				return done(null,false);
-// 			}
-// 		})
-// 	})
-// );
+var User = mongoose.model('User');
 
-// passport.serializeUser(function(user,done){
-// 	if(user){
-// 		done(null,user._id);
-// 	}
-// });
+passport.use(new LocalStrategy(
+	function(username,passowrd,done){
+		process.nextTick(function() {
+	    User.findOne({username:username}, function(err, user) {
+	      if (err) {
+	        return done(err);
+	      }
 
-// passport.deserializeUser(function(id,done){
-// 	User.findOne({_id:id}).exec(function(error,user){
-// 		if(user){
-// 			return done(null,user);
-// 		}
-// 		else{
-// 			return done(null,false);
-// 		}
-// 	});
-// });
+	      if (!user) {
+	        return done(null, false);
+	      }
+
+	      // if (user.password != password) {
+	      //   return done(null, false);
+	      // }
+
+	      return done(null, user);
+	    });
+	  });
+		// console.log("hello");
+		// User.findOne({username:username}).exec(function(error,user){
+		// 	if(user){
+		// 		return done(null,user);
+		// 	}
+		// 	else{
+		// 		console.log("hello");
+		// 		return done(null,false);
+		// 	}
+// 		// })
+	})
+);
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 require('./server/config/routes')(app);
 

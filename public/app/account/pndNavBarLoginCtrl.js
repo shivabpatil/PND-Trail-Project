@@ -3,18 +3,15 @@
 *
 * Description
 */
-angular.module('pndApp').controller('pndNavBarLoginCtrl',function ($scope,$http) {
-	$scope.signin = function (username,password) {
-		console.log(username);
-		$http.post('/login',{userName:username,password:password}).then(function(response){
-			if(response.data.success){
-				console.log('logged in ');
+angular.module('pndApp').controller('pndNavBarLoginCtrl',function ($scope,$http,myIdentity,myNotifire,myAuth) {
+	$scope.identity = myIdentity;
+	$scope.signin = function (user) {
+		myAuth.authenticateUser(user).then(function(success){
+			if(success){
+				myNotifire.notify('You have successfully loged in!!');
 			}else{
-				console.log('logging failed');
+				myNotifire.notify('User name & password combination incorrect!!');
 			}
-		})
-		console.log('this is fun');
-	};
-
-	$scope.myVar = 'yoyoy';
+		});
+	};	
 })
