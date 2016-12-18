@@ -1,0 +1,67 @@
+.container
+	.panel.panel-primary
+		.panel-heading Area Details
+		.panel-body
+			form(data-toggle="validator",role="form")
+				.row 
+					.col-md-6
+						.form-group
+							label(for="areaName") Area Name*
+							select.form-control(ng-model="area._areaId", ng-options="area as area.name for area in areas track by area._id", required)
+						.form-group
+							label(for="serviceCenterName") Service Center Name*
+							input.form-control(placeholder="Name",type="text",id="serviceCenterName" ng-model="area.service_centers[0].name", required)
+						.form-group
+							label(for="serviceCenterBrand") Brand*
+							input.form-control(placeholder="Brand",id="serviceCenterBrand" ng-model="area.service_centers[0].brand", required)
+						.form-group
+							label(for="serviceCenterEmail") Email*
+							input.form-control(placeholder="Email",type="email",id="serviceCenterEmail" ng-model="area.service_centers[0].email",data-error="Email address is invalid")
+							.help-block.with-errors
+						.form-group
+							label(for="serviceCenterContact") Contact*
+							input.form-control(placeholder="Contact",type="number",id="serviceCenterContact" ng-model="area.service_centers[0].contact", maxlength="10")
+						.form-group
+							label(for="serviceCenterAddressLine") Address Line 1*
+							input.form-control(placeholder="Address",id="serviceCenterAddressLine" ng-model="area.service_centers[0].address.line1", maxlength="100",required)
+						.form-group
+							label(for="serviceCenterAddressLandmark") Address Landmark
+							input.form-control(placeholder="Landmark",id="serviceCenterAddressLandmark" ng-model="area.service_centers[0].address.landmark", maxlength="100")
+						.form-group
+							label(for="serviceCenterAddressArea") Address Area
+							input.form-control(placeholder="Area",id="serviceCenterAddressArea" ng-model="area.service_centers[0].address.area", maxlength="100",required)
+						.form-group
+							label(for="serviceCenterAddressCity") Address City*
+							input.form-control(placeholder="City",id="serviceCenterAddressCity" ng-model="area.service_centers[0].address.city", maxlength="100",required)
+						.form-group
+							label(for="serviceCenterAddressState") Address State*
+							input.form-control(placeholder="State",id="serviceCenterAddressState" ng-model="area.service_centers[0].address.state", maxlength="100",required)
+						.form-group
+							label(for="serviceCenterCapacity") Capacity
+							input.form-control(placeholder="Capacity",type="number",id="serviceCenterCapacity" ng-model="area.service_centers[0].capacity")
+						.form-group
+							label(for="serviceCenterStratTime") Start Time 
+							input.form-control(placeholder="9:00 AM",id="serviceCenterStratTime" ng-model="area.service_centers[0].start_time")
+						.form-group
+							label(for="serviceCenterEndTime") End Time 
+							input.form-control(placeholder="9:00 PM",id="serviceCenterEndTime" ng-model="area.service_centers[0].end_time")
+				.row
+					.col-md-12.col-sm-12
+						button.btn.btn-primary.btn-block(ng-click="create(area,area._areaId)") Add Service Center
+	.row 
+		table.table.table-striped
+			tr
+				th Area 
+				th Serive Centers
+				th Total Service center 
+
+				div
+				tr(ng-repeat="area in areas")
+					td {{area.name}}
+					td 
+						ul
+							li(ng-repeat="serviceCenter in area.service_centers") {{serviceCenter.name }}
+
+					td {{area.total_service_centers}}
+				
+

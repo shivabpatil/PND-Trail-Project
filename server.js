@@ -13,8 +13,9 @@ var app = express();
 var config = require('./server/config/config')[env];
 
 require('./server/config/express')(app,config);
+require('./server/config/mongoose')(config);
 //mongoose.Promise = global.Promise;
-mongoose.connect(config.db );
+
 
 //implement local strategy 
 // var User = require('./server/models/userModel');

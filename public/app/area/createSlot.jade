@@ -1,0 +1,38 @@
+.container
+	.panel.panel-primary
+		.panel-heading Area Details
+		.panel-body
+			form(data-toggle="validator",role="form")
+				.row 
+					.col-md-6
+						.form-group
+							label(for="areaName") Area Name*
+							select.form-control(ng-model="area._areaId", ng-options="area as area.name for area in areas track by area._id", required)
+						.form-group
+							label(for="slotTime") Slot Time*
+							select.form-control(ng-model="area.slots[0].slot_time")
+								option(ng-repeat="option in options",value="{{option}}"){{option}}
+						.form-group
+							label(for="slotCapacity") Slot Capacity*
+							input.form-control(placeholder="Slot Capacity",id="slotCapacity" ng-model="area.slots[0].slot_capacity", required)
+						
+				.row
+					.col-md-12.col-sm-12
+						button.btn.btn-primary.btn-block(ng-click="create(area,area._areaId)") Add Slot
+	.row 
+		table.table.table-striped
+			tr
+				th Area 
+				th Slots
+				th Total Service center 
+
+				div
+				tr(ng-repeat="area in areas")
+					td {{area.name}}
+					td 
+						ul
+							li(ng-repeat="slot in area.slots") {{slot.slot_time }}
+
+					td {{area.total_service_centers}}
+				
+

@@ -47,10 +47,11 @@ var routes = function (Area) {
 
 			for(var slot in req.body.slots)
 				req.area.slots.push({
-					slot_number:req.body.slots[slot].slot_number,
+					slot_number:slotNumber(req.body.slots[slot].slot_time),
 					slot_time:req.body.slots[slot].slot_time,
 					slot_capacity:req.body.slots[slot].slot_capacity,		
 				})
+
 			req.area.save(function (error) {
 				if (error) {
 					res.status(500).send(error);
@@ -85,6 +86,60 @@ var routes = function (Area) {
 				}
 			});
 		})
+
+		function slotNumber(val){
+			var val1=0;
+			console.log(val);
+			switch(val){
+				case '6-7':
+							val1= 1;
+							break;
+				case '7-8':
+							val1= 2;
+							break;	
+				case '8-9':
+							val1= 3;
+							break;
+				case '9-10':
+							val1= 4;
+							break;	
+				case '10-11':
+							val1= 5;
+							break;
+				case '11-12':
+							val1= 6;
+							break;
+				case '12-13':
+							val1= 7;
+							break;
+				case '13-14':
+							val1= 8;
+							break;	
+				case '14-15':
+							val1= 9;
+							break;
+				case '15-16':
+							val1= 10;
+							break;
+				case '16-17':
+							val1= 11;
+							break;
+				case '17-18':
+							val1= 12;
+							break;
+				case '18-19':
+							val1= 13;
+							break;
+				case '19-20':
+							val1= 14;
+							break;
+				case '20-21':
+							val1= 15;
+							break;
+			}
+			console.log(val1);
+			return val1;
+		}
 		
 	return areaRouter;
 }

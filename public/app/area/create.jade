@@ -2,20 +2,21 @@
 	.panel.panel-primary
 		.panel-heading Area Details
 		.panel-body
-			.row 
-				.col-md-6
-					.form-group
-						label(for="area") Area Name*
-						input.form-control(placeholder="Area", ng-model="area.name")
-					.form-group
-						label(for="no_dpersons") Total Delivery Persons
-						input.form-control(placeholder="", ng-model="area.no_dpersons")
-							
-			.row
-				.col-md-6.col-sm-6
-					button.btn.btn-primary.btn-block(ng-click="create(area)") Create
-				.col-md-6.col-sm-6
-					button.btn.btn-primary.btn-block(ng-click="edit(area._id,area)") Edit
+			form(data-toggle="validator",role="form")
+				.row 
+					.col-md-6
+						.form-group
+							label(for="areaName") Area Name*
+							input.form-control(placeholder="Area",id="areaName" ng-model="area.name", required)
+						.form-group
+							label(for="no_dpersons") Total Delivery Persons
+							input.form-control(type="number",placeholder="",ng-model="area.total_dpersons")
+								
+				.row
+					.col-md-6.col-sm-6
+						button.btn.btn-primary.btn-block(ng-click="create(area)") Create
+					.col-md-6.col-sm-6
+						button.btn.btn-primary.btn-block(data-toggle="modal",data-target="#myModal") Edit
 	.row 
 		table.table.table-striped
 			tr
@@ -25,12 +26,24 @@
 					
 			tr(ng-repeat="area in areas", data-ng-click="bindSelectedData(area)")
 				td {{area.name}}
-				td {{area.no_service_centers}}
-				td {{area.no_dpersons}}
+				td {{area.total_service_centers}}
+				td {{area.total_dpersons}}
 				td 
 					button.btn.btn-primary(ng-click="delete(area._id)")
 						span.glyphicon.glyphicon-trash
 				
 
-
+.modal.fade.modal-sm-12(tabindex='-1', role='dialog', id="myModal")
+	.modal-dialog(role='document')
+		.modal-content
+			.modal-header
+				button.close(type='button', data-dismiss='modal', aria-label='Close')
+					span(aria-hidden='true')
+				h4.modal-title Area Created
+			.modal-body
+				p The Area is added to database
+			.modal-footer
+				button.btn.btn-defalut(type='button', data-dismiss='modal') Close
+				//button.btn.btn-primary(type='button') Save changes
+  
 

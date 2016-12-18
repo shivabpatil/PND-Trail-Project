@@ -6,37 +6,28 @@
 angular.module('pndApp.pndAppServices', [])
 	.service('areaService', ['$http','$q',function($http,$q){
 		
-		// this.getServiceCenters = function(){
-		// 	 var deferred=$q.defer();
-		// 	return $.get("/api2/servicecenters").then(function(res){
-		// 		return res;
-		// 	});	
-		// }
+		this.getAreas = function(){
+			return $http.get("/api9/areas");
+		}
 
-		// this.postServiceCenter = function(serviceCenter){
+		this.postArea = function(area){
+			return $http.post("/api9/areas",area);
+		}
 
-		// 	//console.log(serviceCenter)
-		// 	return $http.post("/api2/servicecenters",serviceCenter).then(function(res){
-		// 		console.log(res);
-		// 		return res; 
-		// 	});
-		// }
+		this.editArea = function(id,area){
+			console.log("id:"+id);
+			console.log(area);
+			return $http.put("/api9/areas/" + id,area).then(function(res){
+				console.log(res);
+				return res; 
+			});
 
-		// this.editServiceCenter = function(id,serviceCenter){
-		// 	console.log("id:"+id);
-		// 	console.log(serviceCenter);
-		// 	return $http.put("/api2/servicecenters/" + id,serviceCenter).then(function(res){
-		// 		console.log(res);
-		// 		return res; 
-		// 	});
+		}
 
-		// }
+		this.deleteArea = function(id){
+			return $http.delete("/api9/areas/" + id).then(function(res){
+				return res; 
+			});
 
-		// this.deleteServiceCenter = function(id){
-		// 	return $http.delete("/api2/servicecenters/" + id).then(function(res){
-		// 		console.log(res);
-		// 		return res; 
-		// 	});
-
-		// }
+		}
 	}])
