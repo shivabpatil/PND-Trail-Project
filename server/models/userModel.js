@@ -6,16 +6,21 @@ var userModel = new Schema({
 		type:String,
 		required:true
 	},
-	username:{
-		type:String,
-	},
 	email:{
 		type:String,
 	},
+	contact:{
+		type:Number
+	},
+	username:{
+		type:String,
+	},
+	
 	password:{
 		type:String,
 		
 	},
+	roles:[type:String]
 	
 });
 

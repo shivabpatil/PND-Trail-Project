@@ -16,51 +16,36 @@ require('./server/config/express')(app,config);
 require('./server/config/mongoose')(config);
 //mongoose.Promise = global.Promise;
 
-// var Account = require('./server/models/accountModel');
-// passport.use(new LocalStrategy(Account.authenticate()));
-// passport.serializeUser(Account.serializeUser());
-// passport.deserializeUser(Account.deserializeUser());
 
-var User = mongoose.model('User');
 
-passport.use(new LocalStrategy(
-	function(username,passowrd,done){
-		process.nextTick(function() {
-	    User.findOne({username:username}, function(err, user) {
-	      if (err) {
-	        return done(err);
-	      }
+// var User = mongoose.model('User');
 
-	      if (!user) {
-	        return done(null, false);
-	      }
+// passport.use('local',new LocalStrategy(
+// 		function(username,password,done){
+// 			console.log(username);
+// 			User.findOne({username:username},function(err,user){
+// 				console.log(user);
+// 				if(err){
+// 					return done(err);
+// 				}
+// 				if(!user){
+// 					return done(null,false);
+// 				}
+// 				if(user){
+// 					return done(null,done);
+// 				}
+// 			});
+// 		}
+// 	));
+// passport.serializeUser(function(user, done) {
+//   done(null, user.id);
+// });
 
-	      // if (user.password != password) {
-	      //   return done(null, false);
-	      // }
-
-	      return done(null, user);
-	    });
-	  });
-		// console.log("hello");
-		// User.findOne({username:username}).exec(function(error,user){
-		// 	if(user){
-		// 		return done(null,user);
-		// 	}
-		// 	else{
-		// 		console.log("hello");
-		// 		return done(null,false);
-		// 	}
-// 		// })
-	})
-);
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
+// passport.deserializeUser(function(id, done) {
+//   User.findById(id, function(err, user) {
+//     done(err, user);
+//   });
+// });
 
 require('./server/config/routes')(app);
 

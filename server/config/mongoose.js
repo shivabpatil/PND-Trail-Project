@@ -10,20 +10,13 @@ module.exports = function(config){
 	});
 
 	var userModel = new Schema({
-		name:{
-			type:String,
-		},
+	
 		username:{
-			type:String,
-		},
-		email:{
 			type:String,
 		},
 		password:{
 			type:String,
-			
-		},
-		
+		}
 	});
 
 	var User = mongoose.model('User',userModel);
