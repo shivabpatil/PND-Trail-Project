@@ -1,6 +1,9 @@
-doctype 
+doctype
 html
 	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
 		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
 		link(rel="stylesheet", href="/vendor/angular-bootstrap/ui-bootstrap-csp.css")
 		link(rel="stylesheet", href="/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css")
@@ -14,39 +17,50 @@ html
 		.navbar.navbar-inverse.navbar-fixed-top
 			.container
 				.navbar-header
+					button.navbar-toggle.collapsed(type="button",data-toggle="collapse", data-target="#myNav")
+						span.sr-only Toggle Navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
 					a.navbar-brand(href="/") PND Services
-				.navbar-collapse.collapse
+				.navbar-collapse.collapse(id="myNav")
 					ul.nav.navbar-nav
 						li
-							a(href="/") Home
-						li 
+							a.active(href="/") Home
+						li
+							a(href="#") Anual Packages
+						li
+							a(href="#") About
+						li
+							a(href='#') Blog
+						li
+							a(href="#") How we did?
+						li
 							a(href="/admin") Admin
-						li 
+						li
 							a(href="/schedules") Schedule
 						li.dropdown
 							a.dropdown-toggle(href="#",data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false") Admin Pages
 								span.caret
 							ul.dropdown-menu
-								li 
+								li
 									a(href="/customer") Customer
-								li 
+								li
 									a(href="/brands") Brands
-								li 
-									a(href="/areas") Area Groups 
-								li 
+								li
+									a(href="/areas") Area Groups
+								li
 									a(href="/slots") Slots
-								li 
+								li
 									a(href="/serviceCenters") Service Centers
 								li
 									a(href="/receipts") Create Receipt
 
 					div(ng-include="'/partials/account/navbar-login'")
-					
+
 		block main-content
 
 		include scripts
 
 		footer.container.text-center
-			p &copy; 2016 PND Services 
-
-
+			p &copy; 2016 PND Services

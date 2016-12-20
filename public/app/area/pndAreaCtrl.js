@@ -1,4 +1,4 @@
-angular.module('pndApp').controller('pndAreaCtrl', function($scope,ngDialog,areaService,$location,$route,$filter,$window,$rootScope){
+angular.module('pndApp').controller('pndAreaCtrl', function($scope,ngDialog,myNotifire,areaService,$location,$route,$filter,$window,$rootScope){
 	
 	// get the list of the Areas 
 
@@ -23,7 +23,8 @@ angular.module('pndApp').controller('pndAreaCtrl', function($scope,ngDialog,area
 	$scope.create = function (area) {
 		delete area._id;
 		console.log(area);
-		var suceeful = areaService.postArea(area);
+		var sucessful = areaService.postArea(area);
+		myNotifire.notify('Area created !!');
 	    $route.reload();
 	}
 
@@ -31,6 +32,7 @@ angular.module('pndApp').controller('pndAreaCtrl', function($scope,ngDialog,area
 	
 	$scope.delete = function (areaId) {
 		areaService.deleteArea(areaId);
+		myNotifire.notify('Area deleted !!');
 		$route.reload();
 	}
 
