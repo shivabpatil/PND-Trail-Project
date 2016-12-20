@@ -11,6 +11,7 @@ html
 		link(rel="stylesheet", href="/vendor/ng-dailog/css/ngDialog-theme-default.min.css")
 		link(rel="stylesheet", href="/vendor/toastr/toastr.css")
 		link(rel="stylesheet", href="/css/main.css")
+		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Roboto")
 		base(href="/")
 		title PND Services
 	body(ng-app='pndApp')
@@ -62,5 +63,7 @@ html
 
 		include scripts
 
-		footer.container.text-center
-			p &copy; 2016 PND Services
+		.container-fluid.cd-color-footer
+			footer.footer
+				.container.text-center
+					p &copy; 2016 PND Services
