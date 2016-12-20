@@ -3,28 +3,14 @@
 *
 * Description
 */
-angular.module('pndApp').controller('pndNavBarLoginCtrl',function ($scope,$http) {
+angular.module('pndApp').controller('pndNavBarLoginCtrl',function ($scope,$http, myAuth, myNotifire) {
 	//$scope.identity = myIdentity;
-	$scope.signin = function (username,password) {
-		console.log(username);
-		console.log(password);
-		// $http.post('/auth/login',{username:username,password:password}).then(function(response){
-		// 	console.log(response.data);
-		// 	if(response.data.success){
-		// 		console.log('sucess')
-		// 	}
-		// 	else{
-		// 		console.log('fail')
-		// 	}
-		// myAuth.authenticateUser(user).then(function(success){
-		// 	if(success){
-		// 		myNotifire.notify('You have successfully loged in!!');
-		// 	}else{
-		// 		myNotifire.notify('User name & password combination incorrect!!');
-		// 	}
-		// });
+	$scope.signin = function (user) {
+		myAuth.authenticateUser(user).then(function(success) {
+            myNotifire.notify('You have successfully loged in!!');
+        }, function(error) {
+            myNotifire.errorNotify('User name & password combination incorrect!!');
+        });
+	}
 
-
-	//})	
-}
 })
