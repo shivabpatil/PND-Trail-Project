@@ -1,4 +1,4 @@
-angular.module('pndApp',['ngResource','ngDialog','ngRoute','ui.bootstrap','pndApp.pndAppServices','pndApp.customerServices','pndApp.serviceCenterServices','pndApp.receiptServices']);
+angular.module('pndApp',['ngResource','ngRoute','ui.bootstrap','pndApp.pndAppServices','pndApp.customerServices','pndApp.serviceCenterServices','pndApp.receiptServices']);
 
 angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 	$locationProvider.html5Mode(true);
