@@ -39,6 +39,10 @@ html,
 main {
   height: 100%;
 }
+width 100%,
+margin 0px,
+padding 0px,
+overflow-x hidden,
 .cd-fixed-log {
   min-height: 100%;
   background-size: cover;
@@ -114,4 +118,49 @@ main {
   padding-bottom: 18px;
   padding-left: 8px;
   padding-right: 8px;
+}
+.boxText {
+  border: solid 2px rgba(205,208,207,0.48);
+  margin: 15px;
+  padding: 10px;
+}
+.logoSize {
+  font-size: 76px;
+  display: block;
+  text-align: center;
+}
+.labelText {
+  font-size: 22px;
+}
+.testimonialText {
+  font-size: 24px;
+  color: rgba(63,54,54,0.48);
+}
+.clrText1 {
+  color: rgba(63,54,54,0.48);
+}
+.logoBox {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+  height: 250px;
+  width: 250px;
+  margin: 20px;
+  padding: 20px;
+}
+.logoBox1 {
+  background-image: url("../img/tvs.png");
+}
+.logoBox2 {
+  background-image: url("../img/honda.png");
+}
+.logoBox3 {
+  background-image: url("../img/suzuli.png");
+}
+.logoBox4 {
+  background-image: url("../img/bajaj.png");
+}
+.logoBox5 {
+  background-image: url("../img/royalef.png");
 }
