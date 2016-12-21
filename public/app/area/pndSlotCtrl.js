@@ -1,13 +1,13 @@
-angular.module('pndApp').controller('pndSlotCtrl', function($scope,ngDialog,areaService,$location,$route,$filter,$window,$rootScope){
-	
-	// get the list of the Areas 
+angular.module('pndApp').controller('pndSlotCtrl', function($scope,areaService,$location,$route,$filter,$window,$rootScope){
+
+	// get the list of the Areas
     $scope.options = ['6-7','7-8','8-9','9-10','10-11','11-12','12-13','13-14','14-15','15-16','16-17','17-18','18-19','19-20','20-21']
 	areaService.getAreas().then(function(res){
 		$scope.areas = res.data;
 		console.log("$scope.areas");
 	});
 
-	//initialize the area to blank 
+	//initialize the area to blank
 
 	// $scope.area = {
 	// 	_id:'',
@@ -18,7 +18,7 @@ angular.module('pndApp').controller('pndSlotCtrl', function($scope,ngDialog,area
 	// 	slots:[]
 	// };
 
-	//create the area 
+	//create the area
 
 	$scope.create = function (area,areaSelected) {
 		//delete area._id;
@@ -27,14 +27,14 @@ angular.module('pndApp').controller('pndSlotCtrl', function($scope,ngDialog,area
 
 		area.name = areaSelected.name;
 		area.total_service_centers = areaSelected.total_service_centers;
-		area.total_dpersons = areaSelected.total_dpersons;	
+		area.total_dpersons = areaSelected.total_dpersons;
 		area.service_centers = [];
 		areaService.editArea(areaSelected._id,area);
 	    $route.reload();
 	}
 
-	// //delete the area 
-	
+	// //delete the area
+
 	// $scope.delete = function (areaId) {
 	// 	areaService.deleteArea(areaId);
 	// 	$route.reload();
