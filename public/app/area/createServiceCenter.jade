@@ -16,29 +16,40 @@
 							.alert.alert-danger(ng-show="serviceCenterForm.name.$invalid && !serviceCenterForm.name.$pristine && !serviceCenterForm.name.$error.pattern") Name is required
 						.form-group
 							label(for="serviceCenterBrand") Brand*
-							input.form-control(placeholder="Brand",id="serviceCenterBrand" ng-model="area.service_centers[0].brand", required)
+							input.form-control(placeholder="Brand",name="brand",id="serviceCenterBrand",ng-pattern="/^[a-zA-Z ]{1,25}$/", ng-model="area.service_centers[0].brand", required)
+							.alert.alert-danger(ng-show="serviceCenterForm.brand.$error.pattern") Brand can not have number or special characters
+							.alert.alert-danger(ng-show="serviceCenterForm.brand.$invalid && !serviceCenterForm.brand.$pristine && !serviceCenterForm.brand.$error.pattern") Brand is required
 						.form-group
-							label(for="serviceCenterEmail") Email*
-							input.form-control(placeholder="Email",type="email",id="serviceCenterEmail" ng-model="area.service_centers[0].email",data-error="Email address is invalid")
-							.help-block.with-errors
+							label(for="serviceCenterEmail") Email
+							input.form-control(placeholder="Email",type="email",id="serviceCenterEmail",name="email" ng-model="area.service_centers[0].email",data-error="Email address is invalid")
+							.alert.alert-danger(ng-show="serviceCenterForm.email.$invalid && !serviceCenterForm.email.$pristine") Email is not valid
 						.form-group
-							label(for="serviceCenterContact") Contact*
-							input.form-control(placeholder="Contact",type="number",id="serviceCenterContact" ng-model="area.service_centers[0].contact", maxlength="10")
+							label(for="serviceCenterContact") Contact
+							input.form-control(placeholder="Contact",type="number",id="serviceCenterContact",name="contact", ng-model="area.service_centers[0].contact", maxlength="10",minlength="10")
+							.alert.alert-danger(ng-show="serviceCenterForm.contact.$invalid && !serviceCenterForm.contact.$pristine") Contact must have 10 digits
 						.form-group
 							label(for="serviceCenterAddressLine") Address Line 1*
-							input.form-control(placeholder="Address",id="serviceCenterAddressLine" ng-model="area.service_centers[0].address.line1", maxlength="100",required)
+							input.form-control(placeholder="Address",id="serviceCenterAddressLine",name="line1" ng-model="area.service_centers[0].address.line1", maxlength="100",required)
+							.alert.alert-danger(ng-show="serviceCenterForm.line1.$invalid && !serviceCenterForm.line1.$pristine") Address line is required
 						.form-group
 							label(for="serviceCenterAddressLandmark") Address Landmark
 							input.form-control(placeholder="Landmark",id="serviceCenterAddressLandmark" ng-model="area.service_centers[0].address.landmark", maxlength="100")
 						.form-group
 							label(for="serviceCenterAddressArea") Address Area
-							input.form-control(placeholder="Area",id="serviceCenterAddressArea" ng-model="area.service_centers[0].address.area", maxlength="100",required)
+							input.form-control(placeholder="Area",name="addressArea",id="serviceCenterAddressArea" ng-model="area.service_centers[0].address.area", maxlength="100",required)
+							.alert.alert-danger(ng-show="serviceCenterForm.addressArea.$invalid  && !serviceCenterForm.addressArea.$pristine") Area is required
 						.form-group
 							label(for="serviceCenterAddressCity") Address City*
-							input.form-control(placeholder="City",id="serviceCenterAddressCity" ng-model="area.service_centers[0].address.city", maxlength="100",required)
+							input.form-control(placeholder="City",name="city",id="serviceCenterAddressCity",ng-pattern="/^[a-zA-Z ]{1,25}$/" ng-model="area.service_centers[0].address.city", maxlength="100",required)
+							.alert.alert-danger(ng-show="serviceCenterForm.city.$invalid && !serviceCenterForm.city.$pristine && !serviceCenterForm.city.$error.pattern") City is required
+							.alert.alert-danger(ng-show="serviceCenterForm.city.$error.pattern") City can not have number or special characters
+
 						.form-group
 							label(for="serviceCenterAddressState") Address State*
-							input.form-control(placeholder="State",id="serviceCenterAddressState" ng-model="area.service_centers[0].address.state", maxlength="100",required)
+							input.form-control(placeholder="State",name="state",id="serviceCenterAddressState",ng-pattern="/^[a-zA-Z ]{1,25}$/" ng-model="area.service_centers[0].address.state", maxlength="100",required)
+							.alert.alert-danger(ng-show="serviceCenterForm.state.$invalid && !serviceCenterForm.state.$pristine && !serviceCenterForm.state.$error.pattern") State is required
+							.alert.alert-danger(ng-show="serviceCenterForm.state.$error.pattern") State can not have number or special characters
+
 						.form-group
 							label(for="serviceCenterCapacity") Capacity
 							input.form-control(placeholder="Capacity",type="number",id="serviceCenterCapacity" ng-model="area.service_centers[0].capacity")
