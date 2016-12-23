@@ -20,17 +20,18 @@ angular.module('pndApp').controller('pndServiceCenterCtrl', function($scope,area
 
 	//create the area
 
-	$scope.create = function (area,areaSelected) {
+	$scope.create = function (area,areaSelected,serviceCenterForm) {
 		//delete area._id;
 		//console.log(areaId);
 		console.log(area);
-
 		area.name = areaSelected.name;
 		area.total_service_centers = areaSelected.total_service_centers;
 		area.total_dpersons = areaSelected.total_dpersons;
 		area.slots = [];
-		areaService.editArea(areaSelected._id,area);
-	 //    $route.reload();
+		if(serviceCenterForm.$valid){
+			areaService.editArea(areaSelected._id,area);
+		}
+	  $route.reload();
 	}
 
 	// //delete the area

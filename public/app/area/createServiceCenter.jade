@@ -2,15 +2,18 @@
 	.panel.panel-primary
 		.panel-heading Area Details
 		.panel-body
-			form(data-toggle="validator",role="form")
-				.row 
+			form(data-toggle="validator",role="form",name="serviceCenterForm")
+				.row
 					.col-md-6
 						.form-group
 							label(for="areaName") Area Name*
-							select.form-control(ng-model="area._areaId", ng-options="area as area.name for area in areas track by area._id", required)
+							select.form-control(ng-model="area._areaId",name="area", ng-options="area as area.name for area in areas track by area._id", required)
+							.alert.alert-danger(ng-show="serviceCenterForm.area.$error.required") Can not be blank
 						.form-group
 							label(for="serviceCenterName") Service Center Name*
-							input.form-control(placeholder="Name",type="text",id="serviceCenterName" ng-model="area.service_centers[0].name", required)
+							input.form-control(placeholder="Name",name="name",type="text",id="serviceCenterName",ng-pattern="/^[a-zA-Z ]{1,25}$/",ng-model="area.service_centers[0].name", required)
+							.alert.alert-danger(ng-show="serviceCenterForm.name.$error.pattern") Name can not have number or special characters
+							.alert.alert-danger(ng-show="serviceCenterForm.name.$invalid && !serviceCenterForm.name.$pristine && !serviceCenterForm.name.$error.pattern") Name is required
 						.form-group
 							label(for="serviceCenterBrand") Brand*
 							input.form-control(placeholder="Brand",id="serviceCenterBrand" ng-model="area.service_centers[0].brand", required)
@@ -40,28 +43,26 @@
 							label(for="serviceCenterCapacity") Capacity
 							input.form-control(placeholder="Capacity",type="number",id="serviceCenterCapacity" ng-model="area.service_centers[0].capacity")
 						.form-group
-							label(for="serviceCenterStratTime") Start Time 
+							label(for="serviceCenterStratTime") Start Time
 							input.form-control(placeholder="9:00 AM",id="serviceCenterStratTime" ng-model="area.service_centers[0].start_time")
 						.form-group
-							label(for="serviceCenterEndTime") End Time 
+							label(for="serviceCenterEndTime") End Time
 							input.form-control(placeholder="9:00 PM",id="serviceCenterEndTime" ng-model="area.service_centers[0].end_time")
 				.row
 					.col-md-12.col-sm-12
-						button.btn.btn-primary.btn-block(ng-click="create(area,area._areaId)") Add Service Center
-	.row 
+						button.btn.btn-primary.btn-block(ng-disabled="serviceCenterForm.$invalid",ng-click="create(area,area._areaId,serviceCenterForm)") Add Service Center
+	.row
 		table.table.table-striped
 			tr
-				th Area 
+				th Area
 				th Serive Centers
-				th Total Service center 
+				th Total Service center
 
 				div
 				tr(ng-repeat="area in areas")
 					td {{area.name}}
-					td 
+					td
 						ul
 							li(ng-repeat="serviceCenter in area.service_centers") {{serviceCenter.name }}
 
 					td {{area.total_service_centers}}
-				
-

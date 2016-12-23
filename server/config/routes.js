@@ -8,11 +8,12 @@ module.exports = function (app,passport) {
 	var Bike = require('../models/bikeModel');
 	var Rate = require('../models/rateModel');
 	var Schedule = require('../models/scheduleModel');
-	var Slot = require('../models/slotModel');
+
 	var BookedSlot = require('../models/bookedSlotModel');
 	var Area = require('../models/areaModel');
 	var Brand = require('../models/brandModel');
 	var Receipt = require('../models/receiptModel');
+  // var User = require('../models/userModel');
 
 
 	adminRouter = require('../Routes/adminRoutes')(Admin);
@@ -21,11 +22,12 @@ module.exports = function (app,passport) {
 	bikeRouter = require('../Routes/bikeRoutes')(Bike);
 	rateRouter = require('../Routes/rateRoutes')(Rate);
 	scheduleRouter = require('../Routes/scheduleRoutes')(Schedule);
-	slotRouter = require('../Routes/slotRoutes')(Slot);
+
 	bookedSlotRouter = require('../Routes/bookedSlotRoutes')(BookedSlot);
 	areaRouter = require('../Routes/areaRoutes')(Area);
 	brandRouter = require('../Routes/brandRoutes')(Brand);
 	receiptRouter = require('../Routes/receiptRoutes')(Receipt);
+	// userRouter =  require('../Routes/userRoutes')(User);
 
 	app.use('/api1',adminRouter);
 	app.use('/api2',servicecenterRouter);
@@ -33,7 +35,7 @@ module.exports = function (app,passport) {
 	app.use('/api4',bikeRouter);
 	app.use('/api5',rateRouter);
 	app.use('/api6',scheduleRouter);
-	app.use('/api7',slotRouter);
+
 	app.use('/api8',bookedSlotRouter);
 	app.use('/api9',areaRouter);
 	app.use('/api10',brandRouter);
@@ -58,6 +60,36 @@ module.exports = function (app,passport) {
 		res.render('index');
 	});
 
+	 	// catch 404 and forward to error handler
+		// app.use(function(req, res, next) {
+		//     var err = new Error('Not Found');
+		//     err.status = 404;
+		//     next(err);
+		// });
+
+
+		// development error handler
+		// will print stacktrace
+		// if (app.get('env') === 'development') {
+		//     app.use(function(err, req, res, next) {
+		//         res.status(err.status || 500);
+		//         res.render('error', {
+		//             message: err.message,
+		//             error: err
+		//         });
+		//     });
+		// }
+		//
+
+		// production error handler
+		// no stacktraces leaked to user
+		// app.use(function(err, req, res, next) {
+		//     res.status(err.status || 500);
+		//     res.render('error', {
+		//         message: err.message,
+		//         error: {}
+		//     });
+		// });
 
 
 

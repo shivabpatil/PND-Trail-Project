@@ -2,36 +2,40 @@
 	.panel.panel-primary
 		.panel-heading Area Details
 		.panel-body
-			form(data-toggle="validator",role="form")
-				.row 
+			form(data-toggle="validator",role="form",name="areaForm")
+				.row
 					.col-md-6
 						.form-group
 							label(for="areaName") Area Name*
-							input.form-control(placeholder="Area",id="areaName" ng-model="area.name", required)
+							input.form-control(placeholder="Area",id="areaName",name="area",ng-pattern="/^[a-zA-Z ]{1,25}$/" ng-model="area.name", required)
+							.alert.alert-danger(ng-show="areaForm.area.$error.pattern") Name can not have number or special characters
+							.alert.alert-danger(ng-show="areaForm.area.$invalid && !areaForm.area.$pristine && !areaForm.area.$error.pattern") Name is required
+
 						.form-group
 							label(for="no_dpersons") Total Delivery Persons
-							input.form-control(type="number",placeholder="",ng-model="area.total_dpersons")
-								
+							input.form-control(type="number",name="dperson",placeholder="",ng-model="area.total_dpersons",ng-pattern="/^[0-9]{1,2}$/" required)
+							.alert.alert-danger(ng-show="areaForm.dperson.$error.pattern") Delivery person should be less than 100
+							.alert.alert-danger(ng-show="areaForm.area.$invalid && !areaForm.area.$pristine && !areaForm.area.$error.pattern") Total Delivery Persons is required
 				.row
 					.col-md-6.col-sm-6
-						button.btn.btn-primary.btn-block(ng-click="create(area)") Create
+						button.btn.btn-primary.btn-block(ng-disabled="areaForm.$invalid",ng-click="create(area,areaForm)") Create
 					.col-md-6.col-sm-6
-						button.btn.btn-primary.btn-block(data-toggle="modal",data-target="#myModal") Edit
-	.row 
+						//button.btn.btn-primary.btn-block(data-toggle="modal",data-target="#myModal") Edit
+	.row
 		table.table.table-striped
 			tr
 				th Area
 				th Total Service Centers
 				th Total Delivery Persons
-					
+
 			tr(ng-repeat="area in areas", data-ng-click="bindSelectedData(area)")
 				td {{area.name}}
 				td {{area.total_service_centers}}
 				td {{area.total_dpersons}}
-				td 
+				td
 					button.btn.btn-primary(ng-click="delete(area._id)")
 						span.glyphicon.glyphicon-trash
-				
+
 
 .modal.fade.modal-sm-12(tabindex='-1', role='dialog', id="myModal")
 	.modal-dialog(role='document')
@@ -45,5 +49,3 @@
 			.modal-footer
 				button.btn.btn-defalut(type='button', data-dismiss='modal') Close
 				//button.btn.btn-primary(type='button') Save changes
-  
-

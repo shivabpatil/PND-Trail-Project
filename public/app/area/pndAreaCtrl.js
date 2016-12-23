@@ -20,11 +20,13 @@ angular.module('pndApp').controller('pndAreaCtrl', function($scope,myNotifire,ar
 
 	//create the area
 
-	$scope.create = function (area) {
+	$scope.create = function (area,areaForm) {
 		delete area._id;
-		console.log(area);
-		var sucessful = areaService.postArea(area);
-		myNotifire.notify('Area created !!');
+		console.log(areaForm);
+		if(areaForm.$valid){
+			areaService.postArea(area);
+			myNotifire.notify('Area created !!');
+		}
 	    $route.reload();
 	}
 

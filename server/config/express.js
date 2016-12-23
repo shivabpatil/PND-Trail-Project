@@ -4,7 +4,7 @@ var express = require('express'),
 	stylus = require('stylus'),
 	cookieParser = require('cookie-parser'),
 	session = require('express-session'),
-	passport = require('passport');
+	passport = require('passport'),
 	logger =require('morgan');
 
 module.exports = function (app,config) {
@@ -32,8 +32,7 @@ module.exports = function (app,config) {
 	));
 
 	app.use(express.static(config.rootPath + '/public'));
-	
-	
+
+
+
 }
-
-
