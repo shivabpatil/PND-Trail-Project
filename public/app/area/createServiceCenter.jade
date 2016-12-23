@@ -8,7 +8,7 @@
 						.form-group
 							label(for="areaName") Area Name*
 							select.form-control(ng-model="area._areaId",name="area", ng-options="area as area.name for area in areas track by area._id", required)
-							.alert.alert-danger(ng-show="serviceCenterForm.area.$error.required") Can not be blank
+							.alert.alert-danger(ng-show="serviceCenterForm.area.$error.required") Area is required
 						.form-group
 							label(for="serviceCenterName") Service Center Name*
 							input.form-control(placeholder="Name",name="name",type="text",id="serviceCenterName",ng-pattern="/^[a-zA-Z ]{1,25}$/",ng-model="area.service_centers[0].name", required)

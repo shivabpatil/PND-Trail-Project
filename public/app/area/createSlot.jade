@@ -1,38 +1,40 @@
 .container
 	.panel.panel-primary
-		.panel-heading Area Details
+		.panel-heading Slot Details
 		.panel-body
-			form(data-toggle="validator",role="form")
-				.row 
+			form(data-toggle="validator",role="form",name="slotForm")
+				.row
 					.col-md-6
 						.form-group
 							label(for="areaName") Area Name*
-							select.form-control(ng-model="area._areaId", ng-options="area as area.name for area in areas track by area._id", required)
+							select.form-control(ng-model="area._areaId",name="area", ng-options="area as area.name for area in areas track by area._id", required)
+							.alert.alert-danger(ng-show="slotForm.area.$error.required") Area is required
 						.form-group
 							label(for="slotTime") Slot Time*
-							select.form-control(ng-model="area.slots[0].slot_time")
-								option(ng-repeat="option in options",value="{{option}}"){{option}}
+							select.form-control(ng-model="area.slots[0].slot_time",name="slotTime" required)
+								option(ng-repeat="option in options",value="{{option}}" ){{option}}
+							.alert.alert-danger(ng-show="slotForm.slotTime.$error.required") Area is required
 						.form-group
 							label(for="slotCapacity") Slot Capacity*
-							input.form-control(placeholder="Slot Capacity",id="slotCapacity" ng-model="area.slots[0].slot_capacity", required)
-						
+							input.form-control(placeholder="Slot Capacity",type="number",id="slotCapacity",name="slotCapacity", ng-model="area.slots[0].slot_capacity",ng-pattern="/^[0-9]{1,2}$/", required)
+							.alert.alert-danger(ng-show="slotForm.slotCapacity.$error.pattern") Slot capacity should be less than 100
+							.alert.alert-danger(ng-show="slotForm.slotCapacity.$invalid && !slotForm.slotCapacity.$pristine && !slotForm.slotCapacity.$error.pattern") Slot capacity is required
+
 				.row
 					.col-md-12.col-sm-12
-						button.btn.btn-primary.btn-block(ng-click="create(area,area._areaId)") Add Slot
-	.row 
+						button.btn.btn-primary.btn-block(ng-disabled="slotForm.$invalid",ng-click="create(area,area._areaId,slotForm)") Add Slot
+	.row
 		table.table.table-striped
 			tr
-				th Area 
+				th Area
 				th Slots
-				th Total Service center 
+				th Total Service center
 
 				div
 				tr(ng-repeat="area in areas")
 					td {{area.name}}
-					td 
+					td
 						ul
 							li(ng-repeat="slot in area.slots") {{slot.slot_time }}
 
 					td {{area.total_service_centers}}
-				
-
