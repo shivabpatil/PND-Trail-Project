@@ -1,0 +1,28 @@
+.container-fluid
+  form(name="addressForm")
+    .row
+      .col-md-6
+        .panel.panel-primary
+          .panel-heading Address Details
+          .panel-body
+            .form-group
+              label(for="address") Address*
+              input.form-control( type="text",name="address",placeholder="Address", ng-model="address.line1", required)
+              .alert.alert-danger(ng-show="addressForm.address.$invalid && !addressForm.address.$pristine") Address is required
+            .form-group
+              label(for="city") City*
+              input.form-control(placeholder="City",name="city",ng-pattern="/^[a-zA-Z ]{1,25}$/" ng-model="address.city", maxlength="100",required)
+              .alert.alert-danger(ng-show="addressForm.city.$invalid && !addressForm.city.$pristine && !addressForm.city.$error.pattern") City is required
+              .alert.alert-danger(ng-show="addressForm.city.$error.pattern") City can not have number or special characters
+            .form-group
+              label(for="state") State*
+              input.form-control(placeholder="State",name="state",ng-pattern="/^[a-zA-Z ]{1,25}$/" ng-model="address.state", maxlength="100",required)
+              .alert.alert-danger(ng-show="addressForm.state.$invalid && !addressForm.state.$pristine && !addressForm.state.$error.pattern") State is required
+              .alert.alert-danger(ng-show="addressForm.state.$error.pattern") State can not have number or special characters
+
+            .form-group
+              .row
+                .col-xs-6
+                  button.btn.btn-block.btn-primary( ng-click="moveBack()") Previous
+                .col-xs-6
+                  button.btn.btn-block.btn-primary( ng-disabled="addressForm.$invalid",ng-click="addAddress(address,addressForm)") Next

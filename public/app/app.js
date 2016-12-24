@@ -9,6 +9,8 @@ angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 		.when('/feedback',{templateUrl:'partials/main/feedback',controller:'pndMainCtrl'})
 		.when('/annual_packages',{templateUrl:'partials/main/annualPackages',controller:'pndMainCtrl'})
 		.when('/customer',{templateUrl:'partials/customer/create',controller:'pndCustomerCtrl'})
+		.when('/bike',{templateUrl:'partials/customer/createBike',controller:'pndBikeCtrl'})
+		.when('/address',{templateUrl:'partials/customer/createAddress',controller:'pndAddressCtrl'})
 		.when('/schedules',{templateUrl:'partials/schedule/index',controller:'pndScheduleCtrl'})
 		.when('/areas',{templateUrl:'partials/area/create',controller:'pndAreaCtrl'})
 		.when('/brands',{templateUrl:'partials/brand/create',controller:'pndBrandCtrl'})

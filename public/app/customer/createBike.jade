@@ -1,7 +1,21 @@
 .container-fluid
-  .row
-    .col-md-6
-      .panel.panel-primary
-        .panel-heading Bike Details
-        .panel-body
-          
+  form(name="bikeForm")
+    .row
+      .col-md-6
+        .panel.panel-primary
+          .panel-heading Bike Details
+          .panel-body
+            .form-group
+              label(for="passing") Passing*
+              input.form-control( type="text",name="passing",placeholder="MH12", ng-model="bike.bike_passing", required)
+              .alert.alert-danger(ng-show="bikeForm.passing.$invalid && !bikeForm.passing.$pristine") Passing is required
+            .form-group
+              label(for="bikenumber") Bike Number*
+              input.form-control(type="text",name="number",placeholder="AB1234", ng-model="bike.bike_number",required)
+              .alert.alert-danger(ng-show="bikeForm.number.$invalid && !bikeForm.number.$pristine") Number is required
+            .form-group
+              .row
+                .col-xs-6
+                  button.btn.btn-block.btn-primary( ng-click="moveBack()") Previous
+                .col-xs-6
+                  button.btn.btn-block.btn-primary( ng-disabled="bikeForm.$invalid",ng-click="addBike(bike,bikeForm)") Next
