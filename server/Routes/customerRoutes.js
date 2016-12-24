@@ -22,20 +22,6 @@ var routes = function (Customer) {
 			}
 		});
 	});
-	customerRouter.use('/customers/address/:customerId/:addressId',function (req,res,next) {
-		Customer.findById(req.params.customerId,function (error,customer) {
-			console.log('in middleare')
-			if (error) {
-				res.status(500).send(error);
-			} else if (customer) {
-				req.customer = customer;
-				next();
-			} else {
-				res.status(400).send('customer not found');
-			}
-		});
-	});
-
 
 	//get single customer
 	customerRouter.route('/customers/:customerId')
@@ -50,7 +36,6 @@ var routes = function (Customer) {
 				req.customer.email = req.body.email;
 				req.customer.display_name = req.body.display_name;
 				for(var address in req.body.addresses){
-					console.log(address);
 					req.customer.addresses.push({
 						line1:req.body.addresses[address].line1,
 						loc:req.body.addresses[address].loc,
@@ -100,20 +85,6 @@ var routes = function (Customer) {
 				}
 			});
 		})
-
-customerRouter.route('/customers/address/:customerId/:addressId')
-	.get(function (req,res) {
-			var address = req.customer.addresses.find(req.params.addressId);
-			if(address._id){
-				res.json(address);
-			}
-			else{
-				res.json('No address found');
-			}
-		})
-
-
 	return customerRouter;
-};
-
+}
 module.exports = routes;

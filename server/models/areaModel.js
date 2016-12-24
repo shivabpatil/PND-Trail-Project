@@ -15,7 +15,7 @@ var areaModel = new Schema({
 	total_dpersons:{
 		type:Number,
 	},
-    
+
     service_centers:[ {
     	name:{
 			type:String,
@@ -39,6 +39,12 @@ var areaModel = new Schema({
 			area:{
 				type:String,
 			},
+			loc:{
+				loc_type:{
+					type:String,
+				},
+				coordinates:[{type:Number}],
+			},
 			city:{
 				type:String,
 				default:"Pune"
@@ -50,7 +56,7 @@ var areaModel = new Schema({
 		},
 		capacity:{
 			type:Number,
-		},	
+		},
 		start_time:{
 			type:String
 		},
@@ -75,7 +81,7 @@ var areaModel = new Schema({
 	},
 	updated_at:{
 		type:Date,
-		
+
 	},
 });
 module.exports = mongoose.model('Area',areaModel);

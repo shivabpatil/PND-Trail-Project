@@ -1,91 +1,32 @@
 .container
-	
-	form(name="create-customer" method="post")
-		.row 
+	form(name="customerForm")
+		.row
 			.col-md-6
-				.panel.panel-default
+				.panel.panel-primary
 					.panel-heading Customer Details
-					.panel-body 
-						.form-group
-							label(for="brand") Brand*
-							select.form-control(ng-model="brand", ng-options="brand as brand.name for brand in brands track by brand.name")
-						.form-group
-							label(for="area") Area*
-							select.form-control(ng-model="area", ng-options="area as area.name for area in areas track by area._id",ng-change="selectServiceCenter(area)")
-						.form-group
-							label(for="servicecenter") Service Center*
-							select.form-control(ng-model="serviceCenterDetails", ng-options="serviceCenter as serviceCenter.name for serviceCenter in serviceCenters track by serviceCenter._id")
+					.panel-body
 						.form-group
 							label(for="name") Name*
-							input.form-control(placeholder="Name", ng-model="customer.name")
+							input.form-control(type="text",name="name",placeholder="Name",ng-pattern="/^[a-zA-Z ]{1,25}$/", ng-model="customer.name", required)
+							.alert.alert-danger(ng-show="customerForm.name.$error.pattern") Name can not have number or special characters
+							.alert.alert-danger(ng-show="customerForm.name.$invalid && !customerForm.name.$pristine && !customerForm.name.$error.pattern") Name is required
 						.form-group
 							label(for="lname") Last Name
-							input.form-control(placeholder="Last Name", ng-model="customer.lname")
+							input.form-control(type="text",name="lname",placeholder="Last Name",ng-pattern="/^[a-zA-Z ]{1,25}$/", ng-model="customer.lname",required)
+							.alert.alert-danger(ng-show="customerForm.lname.$error.pattern") Last name can not have number or special characters
+							.alert.alert-danger(ng-show="customerForm.lname.$invalid && !customerForm.lname.$pristine && !customerForm.lname.$error.pattern") Last name is required
 						.form-group
 							label(for="contact") Contact*
-							input.form-control(placeholder="Contact", ng-model="customer.contact")
+							input.form-control(type="number",name="contact", placeholder="Contact", ng-model="customer.contact",maxlength="10",minlength="10",required)
+							.alert.alert-danger(ng-show="customerForm.contact.$error.pattern") Name can not have special characters or text
+							.alert.alert-danger(ng-show="customerForm.contact.$invalid && !customerForm.contact.$pristine && !customerForm.contact.$error.pattern") Contact is required
 						.form-group
 							label(for="alternate_conatct") Alternate Contact
-							input.form-control(placeholder="Alternate Contact", ng-model="customer.alternate_contact")
-			.col-md-6
-				.panel.panel-default
-					.panel-heading Bike Details
-					.panel-body 
-						
+							input.form-control(type="number",name="alcontact",placeholder="Alternate Contact", ng-model="customer.alternate_contact",maxlength="10",minlength="10")
 						.form-group
-							label(for="passing") Passing*
-							input.form-control(placeholder="Passing", ng-model="bike.passing")
+							label(for="email") Email*
+							input.form-control(type="email",name="email",placeholder="Email", ng-model="customer.email", required)
+							.alert.alert-danger(ng-show="customerForm.email.$error.pattern") Not a valid email
+							.alert.alert-danger(ng-show="customerForm.email.$invalid && !customerForm.email.$pristine && !customerForm.email.$error.pattern") Email is required
 						.form-group
-							label(for="bikenumber") Bike Number*
-							input.form-control(placeholder="Bike Number", ng-model="bike.bikenumber")
-					
-		.row
-			.col-md-6
-				.panel.panel-default
-					.panel-heading Schedule Details
-					.panel-body 
-						.form-group
-							label(for="pickupDate") Pickup Date
-							p.input-group
-								input.form-control(type='text',uib-datepicker-popup='',ng-model='dt',is-open='popup2.opened', datepicker-options='dateOptions', ng-required='true', close-text='Close')
-								span.input-group-btn
-									button.btn.btn-default(type='button', ng-click='open2()')
-										i.glyphicon.glyphicon-calendar
-						.form-group
-							label(for="slot_time") Time slot*
-							select.form-control(ng-model="slotDetails", ng-options="slot as slot.slot_time for slot in slots track by slot._id ")
-
-						
-			.col-md-6
-				.panel.panel-default
-					.panel-heading Address Details
-					.panel-body 
-						.form-group
-							label(for="house") Address Line 1
-							textarea.form-control(placeholder="Address", ng-model="customer.address.line1")
-				
-						.form-group
-							label(for="landmark") Landmark
-							input.form-control(placeholder="Landmark", ng-model="customer.address.landmark")
-						.form-group
-							label(for="area") Area*
-							input.form-control(placeholder="Area", ng-model="customer.address.area")
-						.form-group
-							label(for="ciry") City*
-							input.form-control(placeholder="City", ng-model="customer.address.city")
-						.form-group
-							label(for="state") State*
-							input.form-control(placeholder="State", ng-model="customer.address.state")
-		.row
-			button.btn.btn-primary.btn-block(ng-click="create(customer,bike,dt,serviceCenterDetails,slotDetails,area,brand)") Submit
-	script(type='text/javascript').
-		$(function () {
-		$('#datetimepicker11').datetimepicker({
-		daysOfWeekDisabled: [0, 6],
-
-		});
-		});
-		
-
-
-
+							button.btn.btn-primary.btn-block(ng-disabled="customerForm.$invalid",ng-click="addCustomerData(customer,customerForm)") Next
