@@ -6,22 +6,23 @@
 angular.module('pndApp.customerServices', [])
 	.service('customerService', ['$http','$q',function($http,$q){
 
-		this.getAreas = function(){
-			return $http.get("/api1/areas");
+		this.getCutomers = function(){
+			return $http.get("/api2/customers");
 		}
-		this.postArea = function(area){
-			return $http.post("/api1/areas",area);
+		this.postCustomer = function(customer){
+			console.log(customer);
+			return $http.post("/api2/customers",customer);
 		}
 		this.editArea = function(id,area){
 			console.log("id:"+id);
 			console.log(area);
-			return $http.put("/api1/areas/" + id,area).then(function(res){
+			return $http.put("/api2/customers/" + id,area).then(function(res){
 				console.log(res);
 				return res;
 			});
 		}
 		this.deleteArea = function(id){
-			return $http.delete("/api1/areas/" + id).then(function(res){
+			return $http.delete("/api2/customers/" + id).then(function(res){
 				return res;
 			});
 		}

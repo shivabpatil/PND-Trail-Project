@@ -8,8 +8,8 @@ angular.module('pndApp.customerDataServices', [])
 					alternate_contact:0,
 					email:'',
 					display_name:'',
-					addresses:[{}],
-					bikes:[{}]
+					addresses:[],
+					bikes:[]
 				}
 			}
 

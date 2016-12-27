@@ -1,3 +1,5 @@
+//add all configurations here. already added few here.
+
 
 var express = require('express'),
 	bodyParser = require('body-parser'),

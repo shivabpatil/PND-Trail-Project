@@ -8,11 +8,10 @@ var receiptModel = new Schema({
 	},
 	lname:{
 		type:String,
-		match:/^[a-zA-Z ]{2,50}$/i
 	},
 	contact:{
 		type:Number,
-		required:true
+
 	},
 	brand:{
 		type:String
@@ -22,15 +21,15 @@ var receiptModel = new Schema({
 	},
 	passing:{
 		type:String,
-		required:true
+		
 	},
 	bikenumber:{
 		type:String,
-		required:true
+
 	},
 	chassis_number:{
 		type:String,
-		required:true
+
 	},
 	receipt_number:{
 		type:String
@@ -41,7 +40,7 @@ var receiptModel = new Schema({
 	},
 	updated_at:{
 		type:Date
-		
+
 	},
 });
 
