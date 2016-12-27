@@ -7,7 +7,12 @@ var express = require('express'),
 	cookieParser = require('cookie-parser'),
 	session = require('express-session'),
 	passport = require('passport'),
-	logger =require('morgan');
+	logger =require('morgan'),
+	mongoose = require('mongoose'),
+	flash = require('express-flash'),
+	path = require ('path'),
+	MongoStore = require('connect-mongo/es5')(session);
+
 
 module.exports = function (app,config) {
 	console.log('inside express');
@@ -33,7 +38,7 @@ module.exports = function (app,config) {
 		}
 	));
 
-	app.use(express.static(config.rootPath + '/public'));
+	app.use(express.static(path.join(config.rootPath + '/public')));
 
 
 

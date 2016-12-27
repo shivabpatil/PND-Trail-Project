@@ -17,6 +17,7 @@ require('./server/config/mongoose')(config);
 //
 require('./server/config/routes')(app, passport);
 
-app.listen(config.port,function () {
-	console.log('Server is running on port',+config.port);
+app.listen(config.port,function (err) {
+	if (err) throw err;
+	console.log('Server is running on port ',+config.port);
 });
