@@ -9,6 +9,9 @@ module.exports = function (app,passport) {
 	var Area = require('../models/areaModel');
 	var Receipt = require('../models/receiptModel');
 
+	//user model
+	var User = require('../models/userModel');
+
 //import the routes here and add them to express
 
 	customerRouter = require('../Routes/customerRoutes')(Customer);
@@ -29,6 +32,8 @@ module.exports = function (app,passport) {
 	app.use('/api11',receiptRouter);
 
 	// add router for login and admin here 
+	//userRouter = require('../Routes/userRoutes')(User);
+	//app.use('/api15',userRouter);
 
 	app.get('/partials/*',function (req,res) {
 		console.log(req.params);

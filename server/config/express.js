@@ -30,6 +30,7 @@ module.exports = function (app,config) {
 		secret:'keyboard cat',
 		resave:false,
 		saveUninitialized:false}));
+	app.use(flash());
 	app.use(passport.initialize());
 	app.use(passport.session());
 	app.use(stylus.middleware({
@@ -38,6 +39,10 @@ module.exports = function (app,config) {
 		}
 	));
 
+	app.use(function(req, res, next) {
+	  res.locals.user = req.user;
+	  next();
+	});
 	app.use(express.static(path.join(config.rootPath + '/public')));
 
 
