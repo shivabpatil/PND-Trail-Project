@@ -1,0 +1,12 @@
+.container-fluid
+  .row
+    .col-sm-6.col-md-4.col-sm-offset-2
+      img.img-circle.img-responsive.img-center(ng-src="{{loggedUser.profile.picture}}",alt="loggedUser Profile Picture")
+      .row
+        h3 Name : {{loggedUser.profile.name}}
+        h4 Email : {{loggedUser.email}}
+        h4(ng-hide="loggedUser.address") You have no address
+        h4(ng-show="loggedUser.address") Address: {{loggedUser.address}}
+  .row
+    h3
+      a.btn.btn-primary(href="/edit-profile") Edit profile

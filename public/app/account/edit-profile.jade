@@ -1,0 +1,13 @@
+.container-fluid
+  .form(name="editProfileForm")
+    .row
+      .col-md-6.col-md-offset-3
+        .form-group
+          label(for="name") Name
+          input.form-control(value="{{loggedUser.profile.name}}", ng-model="loggedUser.profile.name")
+        .form-group
+          label(for="address") Address
+          input.form-control( value="{{loggedUser.address}}",ng-model="loggedUser.address")
+
+        .form-group
+          button.btn.btn-primary.btn-block(ng-click="updateUser(loggedUser)") Update
