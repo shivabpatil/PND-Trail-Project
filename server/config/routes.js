@@ -2,58 +2,27 @@
 
 module.exports = function (app,passport) {
 
+	//Models are created
 	var Customer = require('../models/customerModel');
-	var Rate = require('../models/rateModel');
-	var Schedule = require('../models/scheduleModel');
-	var BookedSlot = require('../models/bookedSlotModel');
 	var Area = require('../models/areaModel');
-	var Receipt = require('../models/receiptModel');
 
-	//user model
-	var User = require('../models/userModel');
-
-//import the routes here and add them to express
-
+  //Routes for model are created
 	customerRouter = require('../Routes/customerRoutes')(Customer);
-	rateRouter = require('../Routes/rateRoutes')(Rate);
-	scheduleRouter = require('../Routes/scheduleRoutes')(Schedule);
-
-	bookedSlotRouter = require('../Routes/bookedSlotRoutes')(BookedSlot);
 	areaRouter = require('../Routes/areaRoutes')(Area);
 
-	receiptRouter = require('../Routes/receiptRoutes')(Receipt);
-
-
+  //Routes are assigned to app and created
 	app.use('/api1',areaRouter);
 	app.use('/api2',customerRouter);
-	app.use('/api5',rateRouter);
-	app.use('/api6',scheduleRouter);
-	app.use('/api8',bookedSlotRouter);
-	app.use('/api11',receiptRouter);
 
-	// add router for login and admin here 
-	//userRouter = require('../Routes/userRoutes')(User);
-	//app.use('/api15',userRouter);
-
+  // Get all paths starting with partials and replace them with /public/app + given folder and file
 	app.get('/partials/*',function (req,res) {
 		console.log(req.params);
 		res.render('../../public/app/' + req.params[0]);
 	});
 
-
-	app.get('/loginFailure', function(req, res, next) {
-	  res.send({success:false});
-	});
-
-	app.get('/loginSuccess', function(req, res, next) {
-		res.send({success:true,user:user});
-	});
-
-
+// all path other than defined paths are redirected to landing page
 	app.get('*',function (req,res) {
 		res.render('index');
 	});
-
-
 
 }
