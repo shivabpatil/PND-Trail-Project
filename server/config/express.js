@@ -26,13 +26,6 @@ module.exports = function (app,config) {
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(cookieParser());
-	app.use(session({
-		secret:'keyboard cat',
-		resave:false,
-		saveUninitialized:false}));
-	app.use(flash());
-	app.use(passport.initialize());
-	app.use(passport.session());
 	app.use(stylus.middleware({
 			src: config.rootPath + '/public',
 			compile:compile

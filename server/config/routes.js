@@ -1,6 +1,6 @@
 
 
-module.exports = function (app,passport) {
+module.exports = function (app) {
 
 	//Models are created
 	var Customer = require('../models/customerModel');
