@@ -1,4 +1,3 @@
-//add all configurations here. already added few here.
 
 
 var express = require('express'),
@@ -6,13 +5,11 @@ var express = require('express'),
 	stylus = require('stylus'),
 	cookieParser = require('cookie-parser'),
 	session = require('express-session'),
-	passport = require('passport'),
 	logger =require('morgan'),
 	mongoose = require('mongoose'),
-	flash = require('express-flash'),
 	path = require ('path'),
-	MongoStore = require('connect-mongo/es5')(session);
-
+	passport = require('passport');
+  require('./passport');
 
 module.exports = function (app,config) {
 	console.log('inside express');
@@ -32,12 +29,6 @@ module.exports = function (app,config) {
 		}
 	));
 
-	app.use(function(req, res, next) {
-	  res.locals.user = req.user;
-	  next();
-	});
 	app.use(express.static(path.join(config.rootPath + '/public')));
-
-
-
+	app.use(passport.initialize());
 }

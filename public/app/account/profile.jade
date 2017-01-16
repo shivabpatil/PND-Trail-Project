@@ -1,12 +1,12 @@
 .container-fluid
   .row
     .col-sm-6.col-md-4.col-sm-offset-2
-      img.img-circle.img-responsive.img-center(ng-src="{{loggedUser.profile.picture}}",alt="loggedUser Profile Picture")
+      //img.img-circle.img-responsive.img-center(ng-src="{{user.profile.picture}}",alt="user Profile Picture")
       .row
-        h3 Name : {{loggedUser.profile.name}}
-        h4 Email : {{loggedUser.email}}
-        h4(ng-hide="loggedUser.address") You have no address
-        h4(ng-show="loggedUser.address") Address: {{loggedUser.address}}
+        h3 Name : {{user.name}}
+        h4 Email : {{user.email}}
+        h4(ng-hide="user.address") You have no address
+        h4(ng-show="user.address") Address: {{user.address}}
   .row
     h3
-      a.btn.btn-primary(href="/edit-profile") Edit profile
+      button.btn.btn-primary(ng-click="logOut()") Log Out

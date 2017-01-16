@@ -1,4 +1,4 @@
-angular.module('pndApp',['ngResource','ngRoute','ui.bootstrap','pndApp.pndAppServices','pndApp.customerDataServices','pndApp.customerServices','pndApp.serviceCenterServices','pndApp.receiptServices']);
+angular.module('pndApp',['ngResource','ngRoute','ui.bootstrap','pndApp.pndAuthenticationService','pndApp.pndDataService','pndApp.pndAppServices','pndApp.customerDataServices','pndApp.customerServices','pndApp.serviceCenterServices','pndApp.receiptServices']);
 
 angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 	$locationProvider.html5Mode(true);
@@ -13,9 +13,9 @@ angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 		.when('/address',{templateUrl:'partials/customer/createAddress',controller:'pndAddressCtrl'})
 		.when('/schedules',{templateUrl:'partials/schedule/index',controller:'pndScheduleCtrl'})
 		.when('/login',{templateUrl:'partials/account/login',controller:'pndLoginCtrl'})
-		.when('/profile',{templateUrl:'partials/account/profile',controller:'pndLoginCtrl'})
-		.when('/signup',{templateUrl:'partials/account/signup',controller:'pndLoginCtrl'})
-		.when('/edit-profile',{templateUrl:'partials/account/edit-profile',controller:'pndLoginCtrl'})
+		.when('/profile',{templateUrl:'partials/account/profile',controller:'pndProfileCtrl'})
+		.when('/register',{templateUrl:'partials/account/register',controller:'pndRegisterCtrl'})
+		.when('/edit-profile',{templateUrl:'partials/account/edit-profile',controller:''})
 		.when('/areas',{templateUrl:'partials/area/create',controller:'pndAreaCtrl'})
 		.when('/brands',{templateUrl:'partials/brand/create',controller:'pndBrandCtrl'})
 		// .when('/serviceCenters',{templateUrl:'partials/servicec/create',controller:'pndServiceCenterCtrl'})
@@ -24,4 +24,11 @@ angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 		.when('/admin',{templateUrl:'partials/admin/mainPage',controller:''})
 		.when('/serviceCenters',{templateUrl:'partials/area/createServiceCenter',controller:'pndServiceCenterCtrl'})
 		.when('/slots',{templateUrl:'partials/area/createSlot',controller:'pndSlotCtrl'})
+})
+.run(function($rootScope, $location, authentication){
+	$rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
+      if ($location.path() === '/profile' && !authentication.isLoggedIn()) {
+        $location.path('/');
+      }
+    });
 })

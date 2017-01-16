@@ -1,5 +1,5 @@
 .nav.navbar-right(ng-controller="pndNavBarLoginCtrl")
-	form.navbar-form(ng-hide="identity.isAuthenticated()")
+	form.navbar-form(ng-hide="isLoggedIn")
 		.form-group
 			input.form-control(placeholder="Email", ng-model="user.username")
 		.form-group
