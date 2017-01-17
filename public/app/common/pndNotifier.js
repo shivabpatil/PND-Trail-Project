@@ -5,7 +5,6 @@ angular.module('pndApp').factory('myNotifire',function(myToastr){
 	return{
 		notify:function(msg){
 			myToastr.success(msg);
-			console.log(msg)
 		}
 	}
 });

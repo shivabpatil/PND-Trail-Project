@@ -1,7 +1,16 @@
 .nav.navbar-right(ng-controller="pndNavBarLoginCtrl")
 	form.navbar-form(ng-hide="isLoggedIn")
 		.form-group
-			input.form-control(placeholder="Email", ng-model="user.username")
+			input.form-control(placeholder="Email", ng-model="user.email")
 		.form-group
 			input.form-control(type="password", placeholder="password", ng-model="user.password")
-		button.btn.btn-primary(ng-click="signin(user)") Sign In
+		button.btn.btn-primary(ng-click="onSubmit(user)") Sign In
+	ul.nav.navbar-nav(ng-show="isLoggedIn")
+		li.dropdown
+			a.dropdown-toggle(data-toggle="dropdown",role="button",aria-haspopup="true",aria-expanded="false") {{currentUser.name}}
+				span.caret
+			ul.dropdown-menu
+				li
+					a(href="/profile") Profile
+				li
+					a(ng-click="logOut()") Logout

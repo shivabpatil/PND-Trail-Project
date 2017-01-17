@@ -18,8 +18,8 @@ angular.module('pndApp').controller('pndLoginCtrl',function ($scope,$location,au
           alert(err);
         })
         .then(function(){
-					//alert('it works');
-          $location.path('profile');
+
+          $location.path('/');
         });
     };
 })
