@@ -31,8 +31,24 @@ angular.module('pndApp.pndAuthenticationService',[])
         payload = JSON.parse(payload);
         return {
           email : payload.email,
-          name : payload.name
+          name : payload.name,
+          role:payload.role
         };
+      }
+    };
+
+    isAdmin = function(){
+      if(isLoggedIn()){
+        var token = getToken();
+        var payload = token.split('.')[1];
+        payload = $window.atob(payload);
+        payload = JSON.parse(payload);
+        if(payload.role[0]==="admin"){
+          return true;
+        }
+        else{
+          return false;
+        }
       }
     };
 
@@ -59,6 +75,7 @@ angular.module('pndApp.pndAuthenticationService',[])
       isLoggedIn : isLoggedIn,
       register : register,
       login : login,
-      logout : logout
+      logout : logout,
+      isAdmin : isAdmin
     };
   }]);

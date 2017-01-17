@@ -13,4 +13,8 @@
 				li
 					a(href="/profile") Profile
 				li
+					a(href="/admin",ng-show="admin") Admin
+				li
+					a(href="/schedules",ng-show="admin") Schedule
+				li
 					a(ng-click="logOut()") Logout
