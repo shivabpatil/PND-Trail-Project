@@ -22,14 +22,19 @@ module.exports.register = function(req, res) {
   user.email = req.body.email;
 
   user.setPassword(req.body.password);
-
+  console.log(user);
   user.save(function(err) {
-    var token;
-    token = user.generateJwt();
-    res.status(200);
-    res.json({
-      "token" : token
-    });
+    if(err){
+      res.status(500).send(err);
+    }else{
+      var token;
+      token = user.generateJwt();
+      res.status(200);
+      res.json({
+        "token" : token
+      });
+    }
+
   });
 
 };

@@ -21,7 +21,6 @@ angular.module('pndApp').controller('pndRegisterCtrl',function ($scope,$location
         alert(err);
       })
       .then(function(){
-        //alert('it works');
         $location.path('profile');
       });
   };
