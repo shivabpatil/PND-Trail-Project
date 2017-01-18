@@ -8,6 +8,13 @@ angular.module('pndApp').controller('pndProfileCtrl',function ($scope,$location,
   console.log('inside ctrl');
     // console.log('inside ctrl'+vm);
   $scope.user = {};
+   userData.getUsers()
+    .success(function(data){
+        $scope.users = data;
+    })
+    .error(function (e) {
+      console.log(e);
+    });
    userData.getProfile()
     .success(function(data) {
       $scope.user = data;

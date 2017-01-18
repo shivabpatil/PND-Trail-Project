@@ -39,6 +39,30 @@ module.exports.register = function(req, res) {
 
 };
 
+module.exports.userList = function(req,res){
+  if (!req.payload._id)  {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else if(req.payload.role.indexOf('admin')>-1){
+    console.log(req.payload.role);
+    User.find(function (error,users) {
+      if (error) {
+        res.status(500).send(error);
+
+       } else {
+        res.json(users);
+       }
+    });
+  }else{
+    res.status(401).json({
+      "message" : "UnauthorizedError: admin resource"
+    });
+  }
+
+
+};
+
 module.exports.login = function(req, res) {
 
   // if(!req.body.email || !req.body.password) {

@@ -43,7 +43,7 @@ angular.module('pndApp.pndAuthenticationService',[])
         var payload = token.split('.')[1];
         payload = $window.atob(payload);
         payload = JSON.parse(payload);
-        if(payload.role[0]==="admin"){
+        if(payload.role.indexOf('admin')>-1){
           return true;
         }
         else{
@@ -59,7 +59,7 @@ angular.module('pndApp.pndAuthenticationService',[])
         var payload = token.split('.')[1];
         payload = $window.atob(payload);
         payload = JSON.parse(payload);
-        if(payload.role[0]==="employee"){
+        if(payload.role.indexOf('employee')>-1){
           return true;
         }
         else{
@@ -73,7 +73,7 @@ angular.module('pndApp.pndAuthenticationService',[])
         saveToken(data.token);
       });
     };
-
+    
     login = function(user) {
       return $http.post('/api/login', user).success(function(data) {
         saveToken(data.token);

@@ -13,6 +13,7 @@ angular.module('pndApp').controller('pndNavBarLoginCtrl',function ($scope,$locat
   $scope.admin = authentication.isAdmin();
   $scope.employee = authentication.isEmployee();
   console.log($scope.currentUser);
+  console.log(authentication.getToken());
 	$scope.onSubmit = function (user) {
 		authentication
 			.login(user)

@@ -8,9 +8,16 @@ angular.module('pndApp.pndDataService',[])
         }
       });
     };
-
+    var getUsers = function(){
+      return $http.get('/api/users', {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    };
     return {
-      getProfile : getProfile
+      getProfile : getProfile,
+      getUsers : getUsers
     };
 
   }]);

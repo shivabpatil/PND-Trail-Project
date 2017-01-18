@@ -7,6 +7,7 @@
         h4 Email : {{user.email}}
         h4(ng-hide="user.address") You have no address
         h4(ng-show="user.address") Address: {{user.address}}
+  .row {{users}}
   .row
     h3
       button.btn.btn-primary(ng-click="logOut()") Log Out
