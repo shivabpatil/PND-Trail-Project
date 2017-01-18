@@ -11,6 +11,7 @@ angular.module('pndApp').controller('pndNavBarLoginCtrl',function ($scope,$locat
 	$scope.isLoggedIn = authentication.isLoggedIn();
 	$scope.currentUser = authentication.currentUser();
   $scope.admin = authentication.isAdmin();
+  $scope.employee = authentication.isEmployee();
   console.log($scope.currentUser);
 	$scope.onSubmit = function (user) {
 		authentication

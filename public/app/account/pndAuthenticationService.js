@@ -50,8 +50,24 @@ angular.module('pndApp.pndAuthenticationService',[])
           return false;
         }
       }
+      return false;
     };
 
+    isEmployee = function(){
+      if(isLoggedIn()){
+        var token = getToken();
+        var payload = token.split('.')[1];
+        payload = $window.atob(payload);
+        payload = JSON.parse(payload);
+        if(payload.role[0]==="employee"){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      return false;
+    };
     register = function(user) {
       return $http.post('/api/register', user).success(function(data){
         saveToken(data.token);
@@ -76,6 +92,7 @@ angular.module('pndApp.pndAuthenticationService',[])
       register : register,
       login : login,
       logout : logout,
-      isAdmin : isAdmin
+      isAdmin : isAdmin,
+      isEmployee : isEmployee
     };
   }]);
