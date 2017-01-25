@@ -49,7 +49,6 @@ module.exports.userList = function(req,res){
     User.find(function (error,users) {
       if (error) {
         res.status(500).send(error);
-
        } else {
         res.json(users);
        }
@@ -59,9 +58,9 @@ module.exports.userList = function(req,res){
       "message" : "UnauthorizedError: admin resource"
     });
   }
-
-
 };
+
+
 
 module.exports.login = function(req, res) {
 

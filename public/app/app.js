@@ -17,7 +17,9 @@ angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 		.when('/register',{templateUrl:'partials/account/register',controller:'pndRegisterCtrl'})
 		.when('/edit-profile',{templateUrl:'partials/account/edit-profile',controller:''})
 		.when('/areas',{templateUrl:'partials/area/create',controller:'pndAreaCtrl'})
+		.when('/userList',{templateUrl:'partials/admin/userList',controller:'pndUserListCtrl'})
 		.when('/brands',{templateUrl:'partials/brand/create',controller:'pndBrandCtrl'})
+
 		// .when('/serviceCenters',{templateUrl:'partials/servicec/create',controller:'pndServiceCenterCtrl'})
 		//.when('/slots',{templateUrl:'partials/slot/create',controller:'pndSlotCtrl'})
 		.when('/receipts',{templateUrl:'partials/receipt/create',controller:'pndReceiptCtrl'})

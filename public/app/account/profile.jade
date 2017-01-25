@@ -1,13 +1,35 @@
 .container-fluid
-  .row
-    .col-sm-6.col-md-4.col-sm-offset-2
-      //img.img-circle.img-responsive.img-center(ng-src="{{user.profile.picture}}",alt="user Profile Picture")
-      .row
-        h3 Name : {{user.name}}
-        h4 Email : {{user.email}}
-        h4(ng-hide="user.address") You have no address
-        h4(ng-show="user.address") Address: {{user.address}}
-  .row {{users}}
-  .row
-    h3
-      button.btn.btn-primary(ng-click="logOut()") Log Out
+  div.col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xs-offset-0.col-sm-offset-0.col-md-offset-3.col-lg-offset-3.toppad
+    .panel.panel-info
+      .panel-heading
+        h3.panel-title {{currentUser.name}}
+      .panel-body
+        .row
+          .col-md-3.col-lg-3()
+            img.img-circle.img-responsive(aligen="center",alt="User Pic",src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png")
+          .col-md-9.col-lg-9
+            table.table.table-user-information
+              tbody
+                tr
+                  td Email
+                  td {{currentUser.email}}
+                tr
+                  td Address
+                  td(ng-hide="currentUser.address") You have no address
+                  td(ng-show="currentUser.address") Address: {{currentUser.address}}
+            .form(name="signupForm")
+              .row
+                .col-md-6.col-md-offset-3
+                  .form-group
+                    label(for="name") Name
+                    input.form-control(placeholder="Name", ng-model="user.name")
+                  .form-group
+                    label(for="email") Email
+                    input.form-control(placeholder="Email", ng-model="user.email")
+                  .form-group
+                    label(for="password") Password
+                    input.form-control(type="password", placeholder="password", ng-model="user.password")
+                  .form-group
+                    button.btn.btn-primary.btn-block(type="submit",ng-click="onSubmit(user)") Edit Profile
+
+            button.btn.btn-block.btn-danger(ng-click="logOut()") Log Out

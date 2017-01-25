@@ -1,0 +1,25 @@
+.container-fluid
+  .panel.panel-info
+    .panel-heading
+      h3.panle-title User List
+    .panel-body
+      .row
+        table.table.table-stripped
+          tr
+            th User
+            th Email
+            th Contact
+            th Roles
+            th Add role
+          tr(ng-repeat="user in users")
+            td {{user.name}}
+            td {{user.email}}
+            td {{user.contact}}
+            td
+              ul
+                li(ng-repeat="role in user.role") {{role}}
+            td
+              select(ng-model="userRole")
+                option -Select Roll-
+                option(ng-repeat="role in roles", ng-show="user.role.indexOf(role)===-1" ) {{role}}
+              button.btn.btn-primary.btn-block(type="submit",ng-click="onSubmit(user,userRole)") Update Role
