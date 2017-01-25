@@ -1,0 +1,30 @@
+.container-fluid
+  form(name="slotForm")
+    .row
+      .col-md-6
+        .panel.panel-primary
+          .panel-heading Book slot
+          .panel-body
+            .row
+              .form-group
+                label(for="area") Area *
+                select.form-control(ng-model="areaSelected",name="area", ng-options="area as area.name for area in areas track by area._id", required)
+                .alert.alert-danger(ng-show="slotForm.area.$error.required") Area is required
+              .form-group
+                label(for="serviceCenter") Service Center *
+                select.form-control(ng-model="serviceCenterSelected",name="serviceCenter", ng-options="serviceCenter as serviceCenter.name for serviceCenter in areaSelected.service_centers track by serviceCenter._id ", required)
+                .alert.alert-danger(ng-show="slotForm.serviceCenter.$error.required") Service Center is required
+              .form-group
+                label(for="date") Date *
+                input.form-control(type="date",ng-model="dateSelected",name="date", required)
+                .alert.alert-danger(ng-show="slotForm.slot.$error.required") Date is required
+              .form-group
+                label(for="slot") Slot *
+                select.form-control(ng-model="slotSelected",name="slot", ng-options="slot as slot.slot_time for slot in areaSelected.slots track by slot._id", required)
+                .alert.alert-danger(ng-show="slotForm.slot.$error.required") Slot is required
+              .form-group
+                .row
+                  .col-xs-6
+                    button.btn.btn-block.btn-primary(ng-click="moveBack()") Previous
+                  .col-xs-6
+                    button.btn.btn-block.btn-primary(ng-disabled="slotForm.$invalid",ng-click="addSlot(areaSelected,serviceCenterSelected,slotSelected,dateSelected,slotForm)") Book Slot

@@ -5,17 +5,23 @@ module.exports = function (app) {
 	//Models are created
 	var Customer = require('../models/customerModel');
 	var Area = require('../models/areaModel');
+	var BookedSlot = require('../models/bookedSlotModel');
+	var Schedule = require('../models/scheduleModel');
 
 
   //Routes for model are created
 	customerRouter = require('../Routes/customerRoutes')(Customer);
 	areaRouter = require('../Routes/areaRoutes')(Area);
+	bookedSlotRouter = require('../Routes/bookedSlotRoutes')(BookedSlot);
+	scheduleRouter = require('../Routes/scheduleRoutes')(Schedule);
 	loginApi = require('../Routes/loginRoutes');
 
   //Routes are assigned to app and created
   app.use('/api',loginApi);
 	app.use('/api1',areaRouter);
 	app.use('/api2',customerRouter);
+	app.use('/api3',bookedSlotRouter);
+	app.use('/api4',scheduleRouter);
 
   // Get all paths starting with partials and replace them with /public/app + given folder and file
 	app.get('/partials/*',function (req,res) {

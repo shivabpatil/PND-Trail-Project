@@ -1,5 +1,5 @@
 .container
-	.row 
+	.row
 		.col.col-3
 			.form-group
 				label(for="filterDate") Date Filter
@@ -18,21 +18,18 @@
 				a( href="#canceledSchedule" aria-controls="home" role="tab" data-toggle="tab") Canceled Schedule
 	.tab-content
 		.tab-pane.active(role="tabpanel" id="schedule")
-			
-					
-
 			table.table.table-bordered
 				tr
 					th Status
 					th Pickup Time
 					th Date
 					th Customer Name & Contact
-					th Customer Address 
+					th Customer Address
 					th Bike Number
 					th Delivery Person
-					th Set Status 
+					th Set Status
 				tr(ng-repeat="schedule in schedules | dateFilter:dt" ng-if="schedule.status != 'Postponed' && schedule.status != 'Canceled' ")
-					td 
+					td
 						button.btn.btn-success( ng-if="schedule.status == 'Processing'") Processing
 						button.btn.btn-warning( ng-if="schedule.status == 'Postponed'") Postponed
 						button.btn.btn-danger( ng-if="schedule.status == 'Canceled'") Canceled
@@ -40,22 +37,22 @@
 
 					td {{schedule.pickup_time}}
 					td {{schedule.pickup_date| date:'dd-MMM-yy'}}
-					td 
+					td
 						ul
 							li {{schedule.customer_name}}
 							li {{schedule.customer_contact}}
 							li {{schedule.customer_alternate_contact}}
-					td 
+					td
 						ul
-							li 
+							li
 								b Address : {{schedule.pickup_address.line1}}
-							li 
+							li
 								b LandMark : {{schedule.pickup_address.landmark}}
-							li 
+							li
 								b Area : {{schedule.pickup_address.area}}
-						
-					td {{schedule.bike_passing}} {{schedule.bike_number}}	
-					
+
+					td {{schedule.bike_passing}} {{schedule.bike_number}}
+
 					td
 						div(ng-if="schedule.dpaerson_contact === 0")
 							form(name="assign-dperson" method="patch")
@@ -73,23 +70,20 @@
 					td
 						button.btn.btn-success( ng-if="schedule.status !== 'Processing'",ng-click="assignStatus(schedule._id,'Processing')") Processing
 						button.btn.btn-warning(ng-if="schedule.status !== 'Postponed'",ng-click="assignStatus(schedule._id,'Postponed')") Postponed
-						button.btn.btn-danger(ng-if="schedule.status !== 'Canceled'",ng-click="assignStatus(schedule._id,'Canceled')") Canceled 
+						button.btn.btn-danger(ng-if="schedule.status !== 'Canceled'",ng-click="assignStatus(schedule._id,'Canceled')") Canceled
 		.tab-pane(role="tabpanel" id="postponedSchedule")
-		
-					
-
 			table.table.table-bordered
 				tr
 					th Status
 					th Pickup Time
 					th Date
 					th Customer Name & Contact
-					th Customer Address 
+					th Customer Address
 					th Bike Number
 					th Delivery Person
-					th Set Status 
+					th Set Status
 				tr(ng-repeat="schedule in schedules | dateFilter:dt" ng-if="schedule.status == 'Postponed'")
-					td 
+					td
 						button.btn.btn-success( ng-if="schedule.status == 'Processing'") Processing
 						button.btn.btn-warning( ng-if="schedule.status == 'Postponed'") Postponed
 						button.btn.btn-danger( ng-if="schedule.status == 'Canceled'") Canceled
@@ -97,22 +91,22 @@
 
 					td {{schedule.pickup_time}}
 					td {{schedule.pickup_date| date:'dd-MMM-yy'}}
-					td 
+					td
 						ul
 							li {{schedule.customer_name}}
 							li {{schedule.customer_contact}}
 							li {{schedule.customer_alternate_contact}}
-					td 
+					td
 						ul
-							li 
+							li
 								b Address : {{schedule.pickup_address.line1}}
-							li 
+							li
 								b LandMark : {{schedule.pickup_address.landmark}}
-							li 
+							li
 								b Area : {{schedule.pickup_address.area}}
-						
-					td {{schedule.bike_passing}} {{schedule.bike_number}}	
-					
+
+					td {{schedule.bike_passing}} {{schedule.bike_number}}
+
 					td
 						div(ng-if="schedule.dpaerson_contact === 0")
 							form(name="assign-dperson" method="patch")
@@ -130,10 +124,10 @@
 					td
 						button.btn.btn-success( ng-if="schedule.status !== 'Processing'",ng-click="assignStatus(schedule._id,'Processing')") Processing
 						button.btn.btn-warning(ng-if="schedule.status !== 'Postponed'",ng-click="assignStatus(schedule._id,'Postponed')") Postponed
-						button.btn.btn-danger(ng-if="schedule.status !== 'Canceled'",ng-click="assignStatus(schedule._id,'Canceled')") Canceled 
+						button.btn.btn-danger(ng-if="schedule.status !== 'Canceled'",ng-click="assignStatus(schedule._id,'Canceled')") Canceled
 
 		.tab-pane(role="tabpanel" id="canceledSchedule")
-					
+
 
 			table.table.table-bordered
 				tr
@@ -141,12 +135,12 @@
 					th Pickup Time
 					th Date
 					th Customer Name & Contact
-					th Customer Address 
+					th Customer Address
 					th Bike Number
 					th Delivery Person
-					th Set Status 
+					th Set Status
 				tr(ng-repeat="schedule in schedules | dateFilter:dt" ng-if="schedule.status == 'Canceled' ")
-					td 
+					td
 						button.btn.btn-success( ng-if="schedule.status == 'Processing'") Processing
 						button.btn.btn-warning( ng-if="schedule.status == 'Postponed'") Postponed
 						button.btn.btn-danger( ng-if="schedule.status == 'Canceled'") Canceled
@@ -154,22 +148,22 @@
 
 					td {{schedule.pickup_time}}
 					td {{schedule.pickup_date| date:'dd-MMM-yy'}}
-					td 
+					td
 						ul
 							li {{schedule.customer_name}}
 							li {{schedule.customer_contact}}
 							li {{schedule.customer_alternate_contact}}
-					td 
+					td
 						ul
-							li 
+							li
 								b Address : {{schedule.pickup_address.line1}}
 							li 
 								b LandMark : {{schedule.pickup_address.landmark}}
-							li 
+							li
 								b Area : {{schedule.pickup_address.area}}
-						
-					td {{schedule.bike_passing}} {{schedule.bike_number}}	
-					
+
+					td {{schedule.bike_passing}} {{schedule.bike_number}}
+
 					td
 						div(ng-if="schedule.dpaerson_contact === 0")
 							form(name="assign-dperson" method="patch")
@@ -187,7 +181,4 @@
 					td
 						button.btn.btn-success( ng-if="schedule.status !== 'Processing'",ng-click="assignStatus(schedule._id,'Processing')") Processing
 						button.btn.btn-warning(ng-if="schedule.status !== 'Postponed'",ng-click="assignStatus(schedule._id,'Postponed')") Postponed
-						button.btn.btn-danger(ng-if="schedule.status !== 'Canceled'",ng-click="assignStatus(schedule._id,'Canceled')") Canceled 
-	
-
-	
+						button.btn.btn-danger(ng-if="schedule.status !== 'Canceled'",ng-click="assignStatus(schedule._id,'Canceled')") Canceled

@@ -11,6 +11,7 @@ angular.module('pndApp').config(function($routeProvider,$locationProvider) {
 		.when('/customer',{templateUrl:'partials/customer/create',controller:'pndCustomerCtrl'})
 		.when('/bike',{templateUrl:'partials/customer/createBike',controller:'pndBikeCtrl'})
 		.when('/address',{templateUrl:'partials/customer/createAddress',controller:'pndAddressCtrl'})
+		.when('/bookslot',{templateUrl:'partials/customer/bookSlot',controller:'pndBookSlotCtrl'})
 		.when('/schedules',{templateUrl:'partials/schedule/index',controller:'pndScheduleCtrl'})
 		.when('/login',{templateUrl:'partials/account/login',controller:'pndLoginCtrl'})
 		.when('/profile',{templateUrl:'partials/account/profile',controller:'pndProfileCtrl'})

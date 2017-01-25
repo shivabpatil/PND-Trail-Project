@@ -1,13 +1,13 @@
 angular.module('pndApp').controller('pndScheduleCtrl',function($scope,$filter, $route,$window,$rootScope,$http){
 
 	var schedule = {};
-    
+
 	// $scope.fDate = new Date();
 	// console.log(fDate)
-	$http.get("/api6/schedules").success(function(res){
+	$http.get("/api4/schedules").success(function(res){
 				$scope.schedules = res;
 				//console.log(res);
-			});	
+			});
 
 
 	$scope.assignDPerson = function (scheduleId,name,contact) {
@@ -17,20 +17,20 @@ angular.module('pndApp').controller('pndScheduleCtrl',function($scope,$filter, $
 		schedule.dperson_name = name;
 		schedule.dpaerson_contact = contact;
 
-		$http.patch("/api6/schedules/" + scheduleId,schedule).success(function (res) {
+		$http.patch("/api4/schedules/" + scheduleId,schedule).success(function (res) {
 			$scope.sched = res;
 			//console.log($scope.sched);
 			$route.reload();
 			// $window.location.href = '/areas/index';
 		})
-		
+
 	}
 	$scope.assignStatus = function (scheduleId,status) {
 		// console.log(scheduleId);
 		// console.log(status);
 		schedule.status = status;
 
-		$http.patch("/api6/schedules/" + scheduleId,schedule).success(function (res) {
+		$http.patch("/api4/schedules/" + scheduleId,schedule).success(function (res) {
 			$scope.sched = res;
 			// console.log($scope.sched);
 			$route.reload();
@@ -40,7 +40,7 @@ angular.module('pndApp').controller('pndScheduleCtrl',function($scope,$filter, $
    $scope.today = function() {
     $scope.dt = new Date();
   };
-  
+
   $scope.today();
 
   $scope.clear = function() {
@@ -137,10 +137,10 @@ angular.module('pndApp').filter('dateFilter', function($filter) {
 		var out = []
     //console.log(dt);
 		var fDate = new Date(dt);
-    
+
 		//var fDate = fDate;
 		angular.forEach(input,function(schedule){
-			
+
 			// console.log('schedule--'+schedule);
 			// console.log('schedule pickup date--'+schedule.pickup_date);
 			var pickup_date = new Date(schedule.pickup_date);
@@ -166,5 +166,3 @@ angular.module('pndApp').filter('dateFilter', function($filter) {
 
 
 })
-
-

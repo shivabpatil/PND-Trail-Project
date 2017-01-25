@@ -3,7 +3,7 @@ var express = require('express');
 var routes = function (Schedule) {
 	var scheduleRouter = express.Router();
 	var scheduleController = require('../Controllers/scheduleController')(Schedule);
-	 
+
 	scheduleRouter.route('/schedules')
 		.post(scheduleController.post)
 		.get(scheduleController.get);
@@ -23,10 +23,10 @@ var routes = function (Schedule) {
 			}
 		});
 	});
-	// //get single schedule 
+	// //get single schedule
 	scheduleRouter.route('/schedules/:scheduleId')
-		.get(function (req,res) {		
-				res.json(req.schedule);		
+		.get(function (req,res) {
+				res.json(req.schedule);
 			})
 		.put(function (req,res) {
 				req.schedule.customer_name = req.body.customer_name;
@@ -44,6 +44,8 @@ var routes = function (Schedule) {
 				req.schedule.pickup_time = req.body.pickup_time;
 				req.schedule.drop_time = req.body.drop_time;
 				req.schedule._serviceCenterId = req.body._serviceCenterId;
+				req.schedule.service_center_name =	req.body.service_center_name;
+				req.schedule._areaId =	req.body._areaId;
 				req.schedule.save(function (error) {
 					if (error) {
 						res.status(500).send(error);
@@ -61,7 +63,7 @@ var routes = function (Schedule) {
 			}
 			req.schedule.save(function (error) {
 				if (error) {
-					res.status(500).send(error);		
+					res.status(500).send(error);
 				} else {
 					res.json(req.schedule);
 				}
@@ -76,7 +78,7 @@ var routes = function (Schedule) {
 				}
 			});
 		})
-	return scheduleRouter; 
+	return scheduleRouter;
 };
 
 module.exports = routes;

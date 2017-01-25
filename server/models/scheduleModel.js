@@ -30,42 +30,48 @@ var scheduleModel = new Schema({
 	},
 	pickup_address:{
 		line1:{
-			type:String
-		},
-		landmark:{
-			type:String
-		},
-		area:{
 			type:String,
-			required:true
 		},
 		city:{
 			type:String,
-			required:true,	
+		},
+		loc:{
+			loc_type:{
+				type:String,
+			},
+			coordinates:[{type:Number}],
 		},
 		state:{
 			type:String,
-			required:true,
+		},
+		address_type:{
+			type:String,
+		},
+		address_default:{
+			type:String,
 		}
 	},
 	drop_address:{
 		line1:{
-			type:String
-		},
-		landmark:{
-			type:String
-		},
-		area:{
 			type:String,
-			required:true
 		},
 		city:{
 			type:String,
-			required:true,	
+		},
+		loc:{
+			loc_type:{
+				type:String,
+			},
+			coordinates:[{type:Number}],
 		},
 		state:{
 			type:String,
-			required:true,
+		},
+		address_type:{
+			type:String,
+		},
+		address_default:{
+			type:String,
 		}
 	},
 	pickup_date:{
@@ -78,7 +84,7 @@ var scheduleModel = new Schema({
 	},
 	status:{
 		type:String
-		
+
 	},
 	pickup_time:{
 		type:String,
@@ -86,17 +92,20 @@ var scheduleModel = new Schema({
 	},
 	drop_time:{
 		type:String,
-		
+
 	},
+  service_center_name:{
+			type:String,
+		},
 	_serviceCenterId:Schema.Types.ObjectId,
-	
+  _areaId:Schema.Types.ObjectId,
 	create_at:{
 		type:Date,
 		default: Date.now
 	},
 	updated_at:{
 		type:Date
-		
+
 	},
 });
 

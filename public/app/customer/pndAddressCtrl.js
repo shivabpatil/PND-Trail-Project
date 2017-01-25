@@ -7,7 +7,7 @@ angular.module('pndApp').controller('pndAddressCtrl', function($scope,$location,
       console.log(customer)
 			customerService.postCustomer(customer);
 			console.log(customer)
-			$location.path('/admin')
+			$location.path('/bookslot')
 		}
 	}
   $scope.moveBack = function(){
