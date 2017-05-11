@@ -36,7 +36,7 @@ angular.module('pndApp.pndAppServices', [])
 			return $http.post("/api3/bookedSlots",bookedSlot);
 		}
 		this.deleteBookedSlot= function(id){
-			return $http.delete("/api3/bookedSlot/" + id).then(function(res){
+			return $http.delete("/api3/bookedSlots/" + id).then(function(res){
 				return res;
 			});
 
